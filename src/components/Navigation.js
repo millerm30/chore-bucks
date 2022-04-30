@@ -36,13 +36,13 @@ const Navigation = () => {
           className="collapse navbar-collapse flex-grow items-center"
           id="navbarSupportedContent">
           <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
-            <li className="nav-item px-2 hover:text-gray-700">
+            <li className="nav-item px-2 hover:text-gray-700 uppercase">
               <Link to="hero">Home</Link>
             </li>
-            <li className="nav-item px-2 hover:text-gray-700">
+            <li className="nav-item px-2 hover:text-gray-700 uppercase">
               <Link to="chores">Chores</Link>
             </li>
-            <li className="nav-item px-2 hover:text-gray-700">
+            <li className="nav-item px-2 hover:text-gray-700 uppercase">
               <Link to="choresadd">Add Chore</Link>
             </li>
           </ul>
