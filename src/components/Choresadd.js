@@ -8,13 +8,13 @@ const Hero = () => {
 
   const chores = [
     { label: "", value: "" },
-    { label: "Feed Pet", value: "Feed Family Pet" },
-    { label: "Make Bed", value: "Make Bed" },
-    { label: "Clean Bedroom", value: "Clean Bedroom" },
-    { label: "Wash Dishes", value: "Wash Dishes" },
-    { label: "Empty Dishwasher", value: "Empty Diswasher" },
-    { label: "Fold Laundry", value: "Fold Laundry" },
-    { label: "Pickup Toys", value: "Pickup Toys" },
+    { label: "Feed Pet", value: "Feed Family Pet", id: 1 },
+    { label: "Make Bed", value: "Make Bed", id: 2},
+    { label: "Clean Bedroom", value: "Clean Bedroom", id: 3 },
+    { label: "Wash Dishes", value: "Wash Dishes", id: 4 },
+    { label: "Empty Dishwasher", value: "Empty Diswasher", id: 5 },
+    { label: "Fold Laundry", value: "Fold Laundry", id: 5 },
+    { label: "Pickup Toys", value: "Pickup Toys", id :6 },
   ];
   return (
     <div className="heroContent text-center bg-hero-pattern bg-no-repeat bg-center bg-cover h-96">
@@ -25,7 +25,7 @@ const Hero = () => {
       </div>
       <div className="myForm pt-5">
         <form onChange={handleChange} className="flex flex-col w-1/3 mx-auto">
-          <label for="chores" className="mb-3">
+          <label htmlFor="chores" className="mb-3">
             Choose your chore:{" "}
           </label>
           <select

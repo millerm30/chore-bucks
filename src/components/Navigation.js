@@ -4,10 +4,10 @@ import {Outlet, Link} from 'react-router-dom'
 const Navigation = () => {
   return (
     <div className="navibar">
-      <nav class="relative w-full flex flex-wrap items-center justify-between py-4 bg-gray-100 text-gray-500 shadow-lg navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
+      <nav className="relative w-full flex flex-wrap items-center justify-between py-4 bg-gray-100 text-gray-500 shadow-lg navbar navbar-expand-lg navbar-light">
+        <div className="container-fluid w-full flex flex-wrap items-center justify-between">
           <button
-            class="navbar-toggler text-gray-500 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline"
+            className="navbar-toggler text-gray-500 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -20,7 +20,7 @@ const Navigation = () => {
               focusable="false"
               data-prefix="fas"
               data-icon="bars"
-              class="w-6"
+              className="w-6"
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
@@ -33,13 +33,13 @@ const Navigation = () => {
           </button>
         </div>
         <div
-          class="collapse navbar-collapse flex-grow items-center"
+          className="collapse navbar-collapse flex-grow items-center"
           id="navbarSupportedContent">
-          <ul class="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
-            <li class="nav-item px-2 hover:text-gray-700">
+          <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
+            <li className="nav-item px-2 hover:text-gray-700">
               <Link to="hero">Home</Link>
             </li>
-            <li class="nav-item pr-2 hover:text-gray-700">
+            <li className="nav-item px-2 hover:text-gray-700">
               <Link to="choresadd">Add Chore</Link>
             </li>
           </ul>
