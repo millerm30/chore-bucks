@@ -11,7 +11,11 @@ const Hero = () => {
     {label: '', value: ''},
     {label: 'Feed Pet', value: 'Feed Family Pet'},
     {label: 'Make Bed', value: 'Make Bed'},
-    {}
+    {label: 'Clean Bedroom', value: 'Clean Bedroom'},
+    {label: 'Wash Dishes', value: 'Wash Dishes'},
+    {label: 'Empty Dishwasher', value: 'Empty Diswasher'},
+    {label: 'Fold Laundry', value: 'Fold Laundry'},
+    {label: 'Pickup Toys', value: 'Pickup Toys'}
   ]
   return (
     <div className="heroContent text-center bg-hero-pattern bg-no-repeat bg-center bg-cover h-96">
