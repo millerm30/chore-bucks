@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}","./node_modules/tw-elements/dist/js/**/*.js"],
   theme: {
     extend: {
       backgroundImage: {
@@ -7,5 +7,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require("tw-elements/dist/plugin")
+  ],
 };
