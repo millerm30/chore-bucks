@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Navigation from './components/Navigation'
 import Footer from './components/Footer';
 import Hero from './components/Hero';
+import Chores from './components/Chores'
 import Choresadd from './components/Choresadd';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,6 +18,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route path="hero" element={<Hero />} />
+          <Route path="chores" element={<Chores />} />
           <Route path="choresadd" element={<Choresadd />} />
         </Route>
       </Routes>

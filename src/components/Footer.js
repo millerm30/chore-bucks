@@ -4,21 +4,21 @@ const Footer = () => {
   return (
     <div className='w-full fixed bottom-0'>
       <footer className="text-center lg:text-left bg-gray-100 text-gray-600">
-  <div className="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
-    <div className="mr-12 hidden lg:block">
-      <span>&copy;2022, Design By Michael Miller:</span>
-    </div>
-    <div className="flex justify-center">
-      <a href="#!" className="mr-6 text-gray-600">
-        <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f"
-          className="w-2.5" role="img" xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 320 512">
-          <path fill="currentColor"
+        <div className="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
+          <div className="mr-12 hidden lg:block">
+            <span>&copy;2022, Design By Michael Miller:</span>
+        </div>
+        <div className="flex justify-center">
+          <a href="http://www.facebook.com/millerm30" target="_blank" className="mr-6 text-gray-600">
+            <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f"
+            className="w-2.5" role="img" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512">
+            <path fill="currentColor"
             d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z">
-          </path>
+            </path>
         </svg>
       </a>
-      <a href="#!" className="mr-6 text-gray-600">
+      <a href="http://www.twitter.com/millerm30" target="_blank" className="mr-6 text-gray-600">
         <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter"
           className="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <path fill="currentColor"
@@ -26,15 +26,7 @@ const Footer = () => {
           </path>
         </svg>
       </a>
-      <a href="#!" className="mr-6 text-gray-600">
-        <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google"
-          className="w-3.5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
-          <path fill="currentColor"
-            d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
-          </path>
-        </svg>
-      </a>
-      <a href="#!" className="mr-6 text-gray-600">
+      <a href="http://www.instagram.com/millergm302022" target="_blank" className="mr-6 text-gray-600">
         <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"
           className="w-3.5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
           <path fill="currentColor"
@@ -42,7 +34,7 @@ const Footer = () => {
           </path>
         </svg>
       </a>
-      <a href="#!" className="mr-6 text-gray-600">
+      <a href="http://linkedin.com/in/michael-miller-0aa2bb229" target="_blank" className="mr-6 text-gray-600">
         <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin-in"
           className="w-3.5" role="img" xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512">
@@ -51,7 +43,7 @@ const Footer = () => {
           </path>
         </svg>
       </a>
-      <a href="#!" className="text-gray-600">
+      <a href="http://www.github.com/millerm30" target="_blank" className="text-gray-600">
         <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github"
           className="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
           <path fill="currentColor"

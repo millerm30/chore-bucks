@@ -40,6 +40,9 @@ const Navigation = () => {
               <Link to="hero">Home</Link>
             </li>
             <li className="nav-item px-2 hover:text-gray-700">
+              <Link to="chores">Chores</Link>
+            </li>
+            <li className="nav-item px-2 hover:text-gray-700">
               <Link to="choresadd">Add Chore</Link>
             </li>
           </ul>
