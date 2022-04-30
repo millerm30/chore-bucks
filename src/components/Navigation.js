@@ -34,7 +34,8 @@ const Navigation = () => {
         </div>
         <div
           className="collapse navbar-collapse flex-grow items-center"
-          id="navbarSupportedContent">
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
             <li className="nav-item px-2 hover:text-gray-700 uppercase">
               <Link to="hero">Home</Link>
