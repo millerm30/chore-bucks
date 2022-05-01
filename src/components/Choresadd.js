@@ -17,7 +17,7 @@ const Hero = () => {
     { label: 'Pickup Toys', value: 'Pickup Toys', id :6 },
   ];
   return (
-    <div className='heroContent text-center bg-hero-pattern bg-no-repeat bg-center bg-cover h-96'>
+    <div className='choreaddContainer text-center'>
       <div className='appInfo pt-10'>
         <h2 className='text-2xl font-semibold p-1'>
           Add your chores below!
