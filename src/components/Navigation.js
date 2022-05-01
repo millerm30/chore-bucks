@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, Outlet} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const Navigation = () => {
   return (
@@ -42,10 +42,12 @@ const Navigation = () => {
             <li className="nav-item px-2 hover:text-gray-700 uppercase">
               <Link to="/chores">Chores</Link>
             </li>
+            <li className="nav-item px-2 hover:text-gray-700 uppercase">
+              <Link to="/choresadd">Add Chores</Link>
+            </li>
           </ul>
         </div>
       </nav>
-      <Outlet />
     </div>
   );
 }
