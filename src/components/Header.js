@@ -1,6 +1,6 @@
 import React from 'react'
 import AppLogo from '../assets/appLogo.png'
-import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { RiMoneyDollarCircleLine } from "react-icons/ri"
 
 const Header = () => {
   return (
@@ -17,7 +17,6 @@ const Header = () => {
           <p>Points</p>
         </span>
       </div>
-      
     </div>
   )
 }
