@@ -17,6 +17,7 @@ const Header = () => {
           <p>Points</p>
         </span>
       </div>
+      
     </div>
   )
 }
