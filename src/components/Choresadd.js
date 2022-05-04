@@ -31,8 +31,7 @@ const Hero = () => {
           <select
             value={value}
             name='chores'
-            className='rounded-md py-2 border border-blue-700 rounded outline-none'
-          >
+            className='rounded-md py-2 border border-blue-700 rounded outline-none'>
             {chores.map((chores) => (
               <option value={chores.value}>{chores.label}</option>
             ))}
