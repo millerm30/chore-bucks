@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import toast from 'toastr';
 
 const Hero = () => {
-  const [value, setValue] = useState('');
+  const [chore,setChore] = useState('');
   const handleChange = (e) => {
-    setValue(e.target.value);
+    toast.success('New Chore Added!');
+    setChore(e.target.value);
   };
 
   const chores = [
@@ -29,7 +31,7 @@ const Hero = () => {
             Choose your chore:{' '}
           </label>
           <select
-            value={value}
+            value={chore}
             name='chores'
             className='rounded-md py-2 border border-blue-700 rounded outline-none'>
             {chores.map((chores) => (
@@ -39,7 +41,7 @@ const Hero = () => {
         </form>
       </div>
       <div>
-        <h2>{value}</h2>
+        <h2>{chore}</h2>
       </div>
     </div>
   );
