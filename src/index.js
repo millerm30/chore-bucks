@@ -4,9 +4,9 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './index.css'
 import 'tw-elements'
 import Layout from './Layout'
-import HeroPage from './routes/HeroPage'
-import ChoresPage from './routes/ChoresPage'
-import ChoresaddPage from './routes/ChoresaddPage'
+import HeroPage from './components/Hero'
+import ChoresPage from './components/Chores'
+import ChoresaddPage from './components/Choresadd'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
