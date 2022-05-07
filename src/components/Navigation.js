@@ -5,7 +5,7 @@ const Navigation = () => {
   return (
     <div className='navbarContainer'>
       <nav className='navbarContent relative w-full flex flex-wrap items-center justify-between py-4 bg-gray-100 text-gray-500 shadow-lg navbar navbar-expand-lg navbar-light'>
-        <div className='container-fluid w-full flex flex-wrap items-center justify-between'>
+        <div className='container-fluid w-full flex flex-wrap items-center justify-start'>
           <button
             className='navbar-toggler text-gray-500 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline'
             type='button'

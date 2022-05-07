@@ -13,7 +13,7 @@ const Hero = () => {
           Complete your chore to add points to your bank!
         </h4>
         <p className="p-1">
-          Each point earned will value .25&#162; Maximum of 10 points per chore.
+          Points earned can be used towards your wishlist items.
         </p>
       </div>
     </div>
