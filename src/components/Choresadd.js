@@ -17,7 +17,7 @@ const Hero = () => {
 
   const choresChoices = [
     { label: '', value: '' },
-    { label: 'Feed Pet', value: 'Feed Family Pet', id: 1 },
+    { label: 'Feed Family Pet', value: 'Feed Family Pet', id: 1 },
     { label: 'Make Bed', value: 'Make Bed', id: 2 },
     { label: 'Clean Bedroom', value: 'Clean Bedroom', id: 3 },
     { label: 'Wash Dishes', value: 'Wash Dishes', id: 4 },

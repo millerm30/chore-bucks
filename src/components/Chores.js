@@ -12,7 +12,7 @@ const Chores = () => {
      <div className="choresContainer text-center">
        <div className="appInfo pt-10">
          <h2 className="text-2xl font-semibold p-1">Chore Area</h2>
-         <p className="mb-5">Drop completed chores in the box</p>
+         <p className="mb-5">Drop completed chores in the box to build points!</p>
          <Chorebucket />
          {chores.length === 0 && (
            <p className="italic pt-4">No Chores to do!</p>
