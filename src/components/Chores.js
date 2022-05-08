@@ -3,7 +3,6 @@ import { useChores } from '../contexts/Chores';
 import { Chorebucket } from './Chorebucket';
 import { GoTrashcan } from "react-icons/go";
 
-
 const Chores = () => {
 
   const {chores, removeChore} = useChores();
