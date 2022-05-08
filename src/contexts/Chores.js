@@ -1,10 +1,21 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import toast from 'react-hot-toast';
 
 const ChoresContext = React.createContext();
 
 export function ChoresProvider({ children }) {
-    const [chores, setChores] = useState([]);
+    const [chores, setChores] = useState(getInitialChores());
+
+    useEffect(() => {
+        const temp = JSON.stringify(chores)
+        localStorage.setItem('chores', temp)
+    },[chores]);
+
+    function getInitialChores() {
+        const temp = localStorage.getItem('chores')
+        const savedChores = JSON.parse(temp)
+        return savedChores || []
+    }
 
     const addChore = (chore) => {
         toast.success(`${chore} added to chores list!`);
