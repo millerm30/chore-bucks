@@ -23,12 +23,19 @@ export function ChoresProvider({ children }) {
     };
 
     const removeChore = (chore) => {
-        toast.success(`${chore} removed from chores list!`);
+        toast.error(`${chore} removed from chores list!`);
+        setChores(chores.filter((c) => c !== chore));
+    };
+
+    const completeChore = (chore) => {
+        toast(`${chore} Completed. Good Job!`, {
+            icon: '👏'
+        });
         setChores(chores.filter((c) => c !== chore));
     };
 
     return (
-        <ChoresContext.Provider value={{ chores, addChore, removeChore }}>
+        <ChoresContext.Provider value={{ chores, addChore, removeChore, completeChore }}>
             {children}
         </ChoresContext.Provider>
     );
