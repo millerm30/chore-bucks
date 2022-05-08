@@ -12,7 +12,7 @@ import App from './App'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <App>
-    <BrowserRouter>
+    <BrowserRouter basename="/chore-bucks">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="" element={<HeroPage />} />
