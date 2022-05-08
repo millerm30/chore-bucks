@@ -5,22 +5,22 @@ const choresChoices = [
   },
   { 
     label: "Feed Family Pet", 
-    value: "Feed Family Pet", 
+    value: "Feed Family Pet",
     id: 1 
   },
   { 
     label: "Make Your Bed", 
-    value: "Make Your Bed", 
+    value: "Make Your Bed",
     id: 2 
   },
   { 
     label: "Clean Bedroom", 
-    value: "Clean Bedroom", 
+    value: "Clean Bedroom",
     id: 3 
   },
   { label: "Wash Dishes", 
-  value: "Wash Dishes", 
-  id: 4 
+    value: "Wash Dishes",
+    id: 4 
   },
   { label: "Empty Dishwasher", 
     value: "Empty Diswasher", 
@@ -40,13 +40,13 @@ const choresChoices = [
     id: 8
   },
   {
-    label: "Pick Up Toys",
-    value: "Pick Up Toys",
+    label: "Mop Floors",
+    value: "Mop Floors",
     id: 9
   },
   {
     label: "Rake Leaves",
-    value: "Rake Leaves",
+    value: "Rake Leaves", 
     id: 10
   },
   {
