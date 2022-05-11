@@ -6,7 +6,7 @@ const choresChoices = [
   { 
     label: "Feed Family Pet", 
     value: "Feed Family Pet",
-    id: 1 
+    id: 1
   },
   { 
     label: "Make Your Bed", 
