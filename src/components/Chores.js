@@ -23,7 +23,7 @@ const Chores = () => {
                    className="text-2xl text-red-600 self-end">
                    <GoTrashcan />
                  </button>
-                 <h2 className="choreName text-md md:text-xl py-3">{chore}</h2>
+                 <h2 className="choreName text-md md:text-xl py-3">{chore}</h2>                 
                  <button
                  onClick={() => completeChore(chore)}
                  className="bg-blue-400 mb-4 self-center px-4 py-2 border-2 border-blue-600 rounded-lg transition ease-in-out hover:bg-blue-500">
