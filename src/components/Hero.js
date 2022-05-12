@@ -10,7 +10,7 @@ const Hero = () => {
       </div>
       <div className='secondInfo'>
         <h4 className="text-1xl font-bold p-1">
-          Complete your chore to add points to your bank!
+          Complete your chores to add points to your bank!
         </h4>
         <p className="p-1">
           Points earned can be used towards your wishlist items.
