@@ -7,6 +7,7 @@ import Layout from './components/Layout'
 import HeroPage from './components/Hero'
 import ChoresPage from './components/Chores'
 import ChoresaddPage from './components/Choresadd'
+import WishlistPage from './components/Wishlist'
 import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,6 +19,7 @@ root.render(
           <Route path="" element={<HeroPage />} />
           <Route path="/chores" element={<ChoresPage />} />
           <Route path="/choresadd" element={<ChoresaddPage />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

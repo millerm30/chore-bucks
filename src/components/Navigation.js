@@ -32,20 +32,24 @@ const Navigation = () => {
             </svg>
           </button>
         </div>
-        <div
-          className="collapse navbar-collapse flex-grow items-center"
-          id="navbarSupportedContent"
-        >
-          <ul className="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
-            <li className="nav-item px-2 hover:text-gray-700 uppercase">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="nav-item px-2 hover:text-gray-700 uppercase">
-              <Link to="/chores">Chores</Link>
-            </li>
-            <li className="nav-item px-2 hover:text-gray-700 uppercase">
-              <Link to="/choresadd">Add Chores</Link>
-            </li>
+        <div className="collapse navbar-collapse flex-grow items-center" id="navbarSupportedContent">
+          <ul className="navbar-nav flex flex-col justify-between w-full pl-0 list-style-none mr-auto">
+            <div className="leftNavi flex flex-col lg:flex-row">
+              <li className="nav-item px-2 hover:text-gray-700 uppercase">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="nav-item px-2 hover:text-gray-700 uppercase">
+                <Link to="/chores">Chores</Link>
+              </li>
+              <li className="nav-item px-2 hover:text-gray-700 uppercase">
+                <Link to="/choresadd">Add Chores</Link>
+              </li>
+            </div>
+            <div className="rightNavi flex">
+              <li className="nav-item px-2 hover:text-gray-700 uppercase">
+                <Link to="/wishlist">Wishlist</Link>
+              </li>
+            </div>
           </ul>
         </div>
       </nav>
