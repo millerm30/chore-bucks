@@ -12,7 +12,7 @@ const Wishlist = () => {
 
   return (
     <div className="container mx-auto pt-10">
-      <h1 className="text-2xl font-semibold p-1 text-center">😉 Future Wish List Page 👍</h1>
+      <h1 className="text-2xl font-semibold p-1 text-center">😉 Future Wish List Page! 👍</h1>
       <form onSubmit={handleSubmit} className="flex flex-col w-3/4 mx-auto md:w-1/3 items-center">
         <label htmlFor="wishlist" className="mb-3">Wish List Item</label>
         <input
