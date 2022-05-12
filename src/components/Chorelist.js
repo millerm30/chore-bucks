@@ -84,6 +84,11 @@ const choresChoices = [
     label: "Help Make Meal",
     value: "Help Make Meal",
     id: 17
+  },
+  {
+    label: "Take Out Trash",
+    value: "Take Out Trash",
+    id: 18
   }
 ];
 
