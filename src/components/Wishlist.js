@@ -17,7 +17,6 @@ const Wishlist = () => {
         <label htmlFor="wishlist" className="mb-3">Wish List Item</label>
         <input
         type='text'
-        
         className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-full"
         placeholder='Enter Wish Item...'
         >
