@@ -24,12 +24,12 @@ export function ChoresProvider({ children }) {
     };
 
     const removeChore = (chore) => {
-        toast.error(`${chore.chore} removed from chores list!`);
+        toast.error(`${chore} removed from chores list!`);
         setChores(chores.filter((c) => c !== chore));
     };
 
     const completeChore = (chore) => {
-        toast(`${chore.chore} Completed. Good Job!`, {
+        toast(`${chore} Completed. Good Job!`, {
             icon: '👏'
         });
         setChores(chores.filter((c) => c !== chore));
