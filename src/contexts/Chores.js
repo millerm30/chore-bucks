@@ -9,11 +9,11 @@ export function ChoresProvider({ children }) {
 
     useEffect(() => {
         const temp = JSON.stringify(chores)
-        localStorage.setItem('chores', temp)
+        localStorage.setItem('id', temp)
     },[chores]);
 
     function getInitialChores() {
-        const temp = localStorage.getItem('chores')
+        const temp = localStorage.getItem('id')
         const savedChores = JSON.parse(temp)
         return savedChores || []
     }
@@ -23,16 +23,16 @@ export function ChoresProvider({ children }) {
         setChores([...chores, { id: uuid(), chore }]);
     };
 
-    const removeChore = (chore) => {
-        toast.error(`${chore.chore} removed from chores list!`);
-        setChores(chores.filter((c) => c !== chore));
+    const removeChore = (id) => {
+        toast.error(`${id.chore} removed from chores list!`);
+        setChores(chores.filter((i) => i !== id));
     };
 
-    const completeChore = (chore) => {
-        toast(`${chore.chore} Completed. Good Job!`, {
+    const completeChore = (id) => {
+        toast(`${id.chore} Completed. Good Job!`, {
             icon: '👏'
         });
-        setChores(chores.filter((c) => c !== chore));
+        setChores(chores.filter((i) => i !== id));
     };
 
     return (
