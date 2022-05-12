@@ -26,7 +26,7 @@ const Chores = () => {
                  <h2 className="choreName text-md md:text-xl py-3">{chore}</h2>                 
                  <button
                  onClick={() => completeChore(chore)}
-                 className="bg-blue-400 mb-4 self-center px-4 py-2 border-2 border-blue-600 rounded-lg transition ease-in-out hover:bg-blue-500">
+                 className="bg-blue-400 mb-4 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500">
                    Complete
                  </button>
                </div>
