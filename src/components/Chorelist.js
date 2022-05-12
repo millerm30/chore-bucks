@@ -1,7 +1,8 @@
 const choresChoices = [
   { 
     label: "", 
-    value: "" 
+    value: "",
+    id: 0
   },
   { 
     label: "Feed Family Pet", 
@@ -51,7 +52,7 @@ const choresChoices = [
   },
   {
     label: "Put Away Groceries",
-    value: "Pit Away Groceries",
+    value: "Put Away Groceries",
     id: 11
   },
   {

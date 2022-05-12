@@ -39,6 +39,7 @@ const Hero = () => {
           </select>
           <button 
           type="submit"
+          disabled={!chore}
           className='bg-blue-400 mt-5 self-center px-4 py-2 border-2 border-blue-600 rounded-lg transition ease-in-out hover:bg-blue-500'>
           Add Chore
           </button>
