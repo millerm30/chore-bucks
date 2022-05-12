@@ -1,5 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react';
 import toast from 'react-hot-toast';
+import {v4 as uuid} from 'uuid';
 
 const ChoresContext = React.createContext();
 
@@ -19,7 +20,7 @@ export function ChoresProvider({ children }) {
 
     const addChore = (chore) => {
         toast.success(`${chore} added to chores list!`);
-        setChores([...chores, chore]);
+        setChores([...chores, { id: uuid(), chore }]);
     };
 
     const removeChore = (chore) => {
