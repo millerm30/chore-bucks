@@ -14,9 +14,9 @@ const Wishlist = () => {
       <Wishadd addWish={addWish} />
       <div className="wishes grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-3 lg:grid-cols-4">
         {wishes.map((wish) => (
-          <div key={uuid()} className="wish bg-[#f8f8f8] w-full px-2 py-1 flex flex-col justify-start items-center border-2 border-blue-400 rounded-lg">
-            <h2>{wish.title}</h2>
-            <h3>{wish.points}</h3>
+          <div key={uuid()} className="wish bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-start items-center border-2 border-blue-400 rounded-lg">
+            <h2 className='text-xl font-semibold p-1 text-center'>{wish.title}</h2>
+            <h3 className='text-lg font-semibold p-1 text-center'>{wish.points}</h3>
           </div>
         ))}
       </div>

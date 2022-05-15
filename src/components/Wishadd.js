@@ -12,18 +12,19 @@ const Wishadd = ({addWish}) => {
   }
   return (
     <div className="container mx-auto pt-10">
-      <form onSubmit={handleSubmit} className="flex flex-col w-3/4 mx-auto md:w-1/3 items-center">
+      <form onSubmit={handleSubmit} className="flex flex-col w-3/4 mx-auto md:w-1/3">
         <h1 className="text-2xl font-semibold p-1 text-center">😉 Wish List! 👍</h1>
-        <label className="mb-3">Add Wish Item:</label>
+        <label className="text-left mt-5">Add Wish Item:</label>
         <input
           onChange={(e) => setTitle(e.target.value)}
           value={title}
           type="text"
           required
           placeholder='Enter your wish item...'
-          className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-full my-5"
+          className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-full mb-2"
         >
         </input>
+        <label className='text-left'>Add Point Value:</label>
         <input 
         onChange={(e) => setPoints(e.target.value)}
         value={points}
