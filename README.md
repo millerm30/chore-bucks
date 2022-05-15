@@ -1,3 +1,11 @@
+# ChoreBucks Web App
+
+This is my second project as a student of Get Coding. This web app is written in ReactJS.
+This web app allows families to create a fun chore list for kids to complete and earn points towards wish list list items that they add to their wish list. Trade in points to pay for their wish list items. This app will allow kids to learn the value of money in a fun way!
+
+## 🚀 About Me
+I'm currently a student with [Get Coding](http://www.get-coding.ca) completing Full Stack Development.
+
 ### `npm start`
 
 Runs the app in the development mode.\
