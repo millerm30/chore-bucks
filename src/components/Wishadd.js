@@ -29,12 +29,12 @@ const Wishadd = ({addWish}) => {
         </input>
         <label className='text-left'>Add Point Value:</label>
         <input 
-        onChange={(e) => setPoints(e.target.value)}
-        value={points}
-        type='number'
-        required
-        placeholder='Enter point value...'
-        className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-1/2"
+          onChange={(e) => setPoints(e.target.value)}
+          value={points}
+          type='number'
+          required
+          placeholder='Enter point value...'
+          className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-1/2"
         >
         </input>
         <button
