@@ -18,9 +18,9 @@ export function ChoresProvider({ children }) {
         return savedChores || []
     }
 
-    const addChore = (chore) => {
+    const addChore = (chore, points) => {
         toast.success(`${chore} added to chores list!`);
-        setChores([...chores, { id: uuid(), chore }]);
+        setChores([...chores, { id: uuid(), chore, points }]);
     };
 
     const removeChore = (id) => {

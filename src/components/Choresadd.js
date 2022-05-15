@@ -6,37 +6,53 @@ const Hero = () => {
   const { addChore } = useChores();
 
   const [ chore, setChore ] = useState('');
+  const [ point, setPoint] = useState()
 
   const handleChoresChange = (e) => {
     setChore(e.target.value);
   };
 
+  const handlePointChange = (e) => {
+    setPoint(e.target.value);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addChore(chore);
+    addChore(chore, point);
   };
   
   return (
     <div className="choreaddContainer text-center">
       <div className="appInfo pt-10">
-        <h2 className="text-2xl font-semibold p-1">Add your chores below!</h2>
+        <h2 className="text-2xl font-semibold p-1">🙂 Add your chores below! 🚀</h2>
       </div>
       <div className="myForm pt-5">
         <form onSubmit={handleSubmit} className="flex flex-col w-3/4 mx-auto md:w-1/3">
-          <label htmlFor="chores" className="mb-3">
+          <label htmlFor="chores" className="mb-1 text-left">
             Choose your chore:{''}
           </label>
           <select
             value={chore}
             name="chores"
             onChange={handleChoresChange}
-            className="rounded-md py-2 border border-blue-700 rounded outline-none">
+            className="rounded-md py-2 border mb-2 border-blue-700 rounded outline-none">
             {choresChoices.map((choice) => (
               <option key={choice.id} value={choice.value}>
                 {choice.label}
               </option>
             ))}
           </select>
+          <label htmlFor='chores' className='mb-1 text-left'>
+            Point value...
+          </label>
+          <input
+          type='number' 
+          required
+          value={point}
+          name="chores"
+          onChange={handlePointChange}
+          className="rounded-md py-2 border border-blue-700 rounded outline-none w-1/2">
+          </input>
           <button 
           type="submit"
           disabled={!chore}
