@@ -6,7 +6,7 @@ const Hero = () => {
   const { addChore } = useChores();
 
   const [ chore, setChore ] = useState('');
-  const [ point, setPoint] = useState()
+  const [ point, setPoint] = useState('')
 
   const handleChoresChange = (e) => {
     setChore(e.target.value);
