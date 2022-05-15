@@ -2,10 +2,13 @@ import React, {useState} from 'react'
 
 const Wishadd = ({addWish}) => {
   const [title, setTitle] = useState('')
+  const [points, setPoints] = useState('')
+
   const handleSubmit = (e) => {
       e.preventDefault()
-      addWish(title)
+      addWish(title, points)
       setTitle('')
+      setPoints('')
   }
   return (
     <div className="container mx-auto pt-10">
@@ -18,8 +21,18 @@ const Wishadd = ({addWish}) => {
           type="text"
           required
           placeholder='Enter your wish item...'
-          className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-full"
-        ></input>
+          className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-full my-5"
+        >
+        </input>
+        <input 
+        onChange={(e) => setPoints(e.target.value)}
+        value={points}
+        type='number'
+        required
+        placeholder='Enter point value...'
+        className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-1/2"
+        >
+        </input>
         <button
           type="submit"
           value="add wish"
