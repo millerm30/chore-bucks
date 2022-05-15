@@ -19,6 +19,8 @@ const Hero = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addChore(chore, point);
+    setChore('')
+    setPoint('')
   };
   
   return (
