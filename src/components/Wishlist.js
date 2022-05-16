@@ -1,12 +1,23 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {v4 as uuid} from 'uuid'
 import Wishadd from './Wishadd';
 
 const Wishlist = () => {
-  const [wishes, setWishes] = useState([]);
+  const [wishes, setWishes] = useState(getInitialWishes());
 
   const addWish = (title, points) => {
     setWishes([...wishes, {title, points, id: uuid()}])
+  }
+
+  useEffect(() => {
+    const store = JSON.stringify(wishes)
+    localStorage.setItem('wish', store)
+  })
+
+  function getInitialWishes() {
+    const store = localStorage.getItem('wish')
+    const savedWishes = JSON.parse(store)
+    return savedWishes || []
   }
 
   return (
