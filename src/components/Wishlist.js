@@ -12,7 +12,7 @@ const Wishlist = () => {
   useEffect(() => {
     const store = JSON.stringify(wishes)
     localStorage.setItem('wish', store)
-  })
+  }, [wishes])
 
   function getInitialWishes() {
     const store = localStorage.getItem('wish')
