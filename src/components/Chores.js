@@ -8,7 +8,7 @@ const Chores = () => {
 
    return (
      <div className="choresContainer text-center">
-       <div className="appInfo pt-10">
+       <div className="appInfo pt-10 mb-28">
          <h2 className="text-2xl font-semibold p-1">🧒 Chore Area 🚀</h2>
          <p className="mb-5">Complete chores to build points!</p>
          {chores.length === 0 && (

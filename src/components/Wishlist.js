@@ -10,7 +10,7 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="wishList">
+    <div className="wishList mb-20">
       <Wishadd addWish={addWish} />
       <div className="wishes grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-3 lg:grid-cols-4">
         {wishes.map((wish) => (
