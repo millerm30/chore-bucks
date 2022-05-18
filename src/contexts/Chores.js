@@ -5,15 +5,15 @@ import {v4 as uuid} from 'uuid';
 const ChoresContext = React.createContext();
 
 export function ChoresProvider({ children }) {
-    const [chores, setChores] = useState(getInitialChores());
+    const [chores, setChores] = useState(getInitialChores);
 
     useEffect(() => {
         const temp = JSON.stringify(chores)
-        localStorage.setItem('id', temp)
+        localStorage.setItem('chore', temp)
     },[chores]);
 
     function getInitialChores() {
-        const temp = localStorage.getItem('id')
+        const temp = localStorage.getItem('chore')
         const savedChores = JSON.parse(temp)
         return savedChores || []
     }
@@ -23,16 +23,16 @@ export function ChoresProvider({ children }) {
         setChores([...chores, { id: uuid(), chore, points }]);
     };
 
-    const removeChore = (id) => {
-        toast.error(`${id.chore} removed from chores list!`);
-        setChores(chores.filter((i) => i !== id));
+    const removeChore = (chore) => {
+        toast.error(`${chore.chore} removed from chores list!`);
+        setChores(chores.filter((c) => c !== chore));
     };
 
-    const completeChore = (id) => {
-        toast(`${id.chore} Completed. Good Job!`, {
+    const completeChore = (chore) => {
+        toast(`${chore.chore} Completed. Good Job!`, {
             icon: '👏'
         });
-        setChores(chores.filter((i) => i !== id));
+        setChores(chores.filter((c) => c !== chore));
     };
 
     return (

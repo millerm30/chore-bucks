@@ -4,8 +4,14 @@ import Wishadd from './Wishadd';
 import { GoTrashcan } from "react-icons/go";
 import toast from "react-hot-toast";
 
+function getInitialWishes() {
+  const store = localStorage.getItem("wish");
+  const savedWishes = JSON.parse(store);
+  return savedWishes || [];
+}
+
 const Wishlist = () => {
-  const [wishes, setWishes] = useState(getInitialWishes());
+  const [wishes, setWishes] = useState(getInitialWishes);
 
   const addWish = (title, points) => {
     toast.success(`${title} added to wish list!`);
@@ -21,12 +27,6 @@ const Wishlist = () => {
     const store = JSON.stringify(wishes)
     localStorage.setItem('wish', store)
   }, [wishes])
-
-  function getInitialWishes() {
-    const store = localStorage.getItem('wish')
-    const savedWishes = JSON.parse(store)
-    return savedWishes || []
-  }
 
   return (
     <div className="wishList mb-20">
