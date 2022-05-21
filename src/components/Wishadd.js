@@ -6,7 +6,7 @@ const Wishadd = ({addWish}) => {
 
   const handleSubmit = (e) => {
       e.preventDefault()
-      addWish(title, points)
+      addWish(title, Number(points))
       setTitle('')
       setPoints('')
   }
