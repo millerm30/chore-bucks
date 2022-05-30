@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const Navigation = () => {
   return (
-    <div className="navbarContainer">
+    <nav className="navbarContainer">
       <nav className="navbarContent relative w-full flex flex-wrap items-center justify-between py-2 bg-gray-100 text-gray-500 shadow-lg navbar navbar-expand-lg navbar-light">
         <div className="container-fluid w-full flex flex-wrap items-center justify-start">
           <button
@@ -53,7 +53,7 @@ const Navigation = () => {
           </ul>
         </div>
       </nav>
-    </div>
+    </nav>
   );
 }
 

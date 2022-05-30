@@ -4,7 +4,7 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri"
 
 const Header = () => {
   return (
-    <div className='headerContainer container flex justify-between mx-auto min-w-full pt-0.5 pb-0.5 bg-gray-100'>
+    <header className='headerContainer container flex justify-between mx-auto min-w-full pt-0.5 pb-0.5 bg-gray-100'>
       <div className='appLogo flex content-center'>
         <img src={AppLogo} alt='' className='hidden w-24 md:block pl-2'/>
         <h1 className='self-center'><span className='text-3xl text-blue-800 font-bold'>Chore</span><span className='text-3xl text-green-800 font-bold'>Bucks</span></h1>
@@ -16,7 +16,7 @@ const Header = () => {
           <p>Points</p>
         </span>
       </div>
-    </div>
+    </header>
   )
 }
 

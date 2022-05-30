@@ -24,13 +24,13 @@ const Hero = () => {
   };
   
   return (
-    <div className="choreaddContainer text-center mb-24">
-      <div className="appInfo pt-10">
+    <main className="choreaddContainer text-center mb-24">
+      <section className="appInfo pt-10">
         <h2 className="text-2xl font-semibold p-1">
           🙂 Add your chores below! 🚀
         </h2>
-      </div>
-      <div className="myForm pt-5">
+      </section>
+      <section className="myForm pt-5">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col w-3/4 mx-auto md:w-1/3"
@@ -69,8 +69,8 @@ const Hero = () => {
             Add Chore
           </button>
         </form>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

@@ -11,11 +11,11 @@ const Wishadd = ({addWish}) => {
       setPoints('')
   }
   return (
-    <div className="container mx-auto pt-10">
-      <div className='wishHeader'>
+    <section className="container mx-auto pt-10">
+      <section className='wishHeader'>
         <h1 className="text-2xl font-semibold p-1 text-center">😉 Wish List! 👍</h1>
         <p className='text-center'>Add items to your wish list that you would like to build your points to purchase!</p>
-      </div>
+      </section>
       <form onSubmit={handleSubmit} className="flex flex-col w-3/4 mx-auto md:w-1/3">
         <label className="text-left mt-5">Add Wish Item:</label>
         <input
@@ -45,7 +45,7 @@ const Wishadd = ({addWish}) => {
           Add Wish Item
         </button>
       </form>
-    </div>
+    </section>
   );
 }
 

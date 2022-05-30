@@ -89,6 +89,26 @@ const choresChoices = [
     label: "Take Out Trash",
     value: "Take Out Trash",
     id: 18
+  },
+  {
+    label: "Help Clean Bathroom",
+    value: "Help Clean Bathroom",
+    id: 19
+  },
+  {
+    label: "Help Clean Kitchen",
+    value: "Help Clean Kitchen",
+    id: 20
+  },
+  {
+    label: "Help Clean Garage",
+    value: "Help Clean Garage",
+    id: 21
+  },
+  {
+    label: "Help Clean Yard",
+    value: "Help Clean Yard",
+    id: 22
   }
 ];
 
