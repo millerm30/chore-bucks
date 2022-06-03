@@ -10,11 +10,11 @@ const Header = ({ points }) => {
         <img src={AppLogo} alt="" className="hidden w-20 md:block pl-2"/>
         <h1 className="self-center"><span className="text-3xl text-blue-800 font-bold">Chore</span><span className="text-3xl text-green-800 font-bold">Bucks</span></h1>
       </div>
-      <div className="shoppingBasket flex flex-col items-center">
+      <div className="shoppingBasket flex flex-col items-center my-auto">
         <Link to="/cart"><FiShoppingCart className="text-3xl text-yellow-600 mr-3" /></Link>
-        <span className="pointsValue pr-2">
+        <span className="flex pointsValue mt-2 pr-2">
           <p className="text-center font-semibold">{points}</p>
-          <p>Points</p>
+          <p className="ml-1">Points</p>
         </span>
       </div>
     </header>
