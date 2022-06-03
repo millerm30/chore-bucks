@@ -33,7 +33,7 @@ const Wishlist = () => {
       <Wishadd addWish={addWish} />
       <section className="wishes grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-3 lg:grid-cols-4">
         {wishes.map((wish) => (
-          <article key={uuid()} className="wish bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-start items-center border-2 border-blue-400 rounded-lg">
+          <div key={uuid()} className="wish bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-start items-center border-2 border-blue-400 rounded-lg">
             <button
               onClick={() => removeWish(wish)}
               className="text-2xl text-red-600 self-end">
@@ -41,7 +41,7 @@ const Wishlist = () => {
             </button>
             <h2 className='text-xl font-semibold p-1 text-center'>{wish.title}</h2>
             <h3 className='text-lg font-semibold p-1 text-center'>💰{wish.points} Points</h3>
-          </article>
+          </div>
         ))}
       </section>
     </main>
