@@ -5,13 +5,13 @@ import { FiShoppingCart } from "react-icons/fi";
 
 const Header = ({ points }) => {
   return (
-    <header className="headerContainer container flex justify-between mx-auto min-w-full pt-0.5 pb-0.5 bg-gray-100">
+    <header className="headerContainer container flex justify-between mx-auto min-w-full pt-0.5 bg-gray-100">
       <div className="appLogo flex content-center">
-        <img src={AppLogo} alt="" className="hidden w-24 md:block pl-2"/>
+        <img src={AppLogo} alt="" className="hidden w-20 md:block pl-2"/>
         <h1 className="self-center"><span className="text-3xl text-blue-800 font-bold">Chore</span><span className="text-3xl text-green-800 font-bold">Bucks</span></h1>
       </div>
       <div className="shoppingBasket flex flex-col items-center">
-        <Link to="/cart"><FiShoppingCart className="text-3xl text-yellow-600 mr-4" /></Link>
+        <Link to="/cart"><FiShoppingCart className="text-3xl text-yellow-600 mr-3" /></Link>
         <span className="pointsValue pr-2">
           <p className="text-center font-semibold">{points}</p>
           <p>Points</p>
