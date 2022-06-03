@@ -1,6 +1,6 @@
-import React, {useContext, useState, useEffect} from 'react';
-import toast from 'react-hot-toast';
-import {v4 as uuid} from 'uuid';
+import React, {useContext, useState, useEffect} from "react";
+import toast from "react-hot-toast";
+import {v4 as uuid} from "uuid";
 
 const ChoresContext = React.createContext();
 
@@ -15,7 +15,7 @@ export function ChoresProvider({ children, addPoints }) {
 
     useEffect(() => {
         const temp = JSON.stringify(chores)
-        localStorage.setItem('chore', temp)
+        localStorage.setItem("chore", temp)
     },[chores]);
 
     const addChore = (chore, points) => {
@@ -30,7 +30,7 @@ export function ChoresProvider({ children, addPoints }) {
 
     const completeChore = (chore) => {
         toast(`${chore.chore} Completed. Good Job!`, {
-            icon: '👏'
+            icon: "👏"
         });
         addPoints(chore.points)
         setChores(chores.filter((c) => c !== chore));

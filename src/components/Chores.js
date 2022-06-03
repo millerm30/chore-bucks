@@ -1,5 +1,5 @@
-import React from 'react';
-import { useChores } from '../contexts/Chores';
+import React from "react";
+import { useChores } from "../contexts/Chores";
 import { GoTrashcan } from "react-icons/go";
 
 const Chores = () => {
@@ -12,7 +12,7 @@ const Chores = () => {
          <h2 className="text-2xl font-semibold p-1">🧒 Chore Area 🚀</h2>
          <p className="mb-5">Complete chores to build points!</p>
         </section>
-        <section className='choresArea'>
+        <section className="choresArea">
          {chores.length === 0 && (
            <p className="italic pt-4">No Chores to do!</p>
          )}

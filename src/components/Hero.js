@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Hero = () => {
   return (
@@ -8,7 +8,7 @@ const Hero = () => {
           Kids earn points for completing their chores!
         </h2>
       </section>
-      <section className='secondInfo'>
+      <section className="secondInfo">
         <h4 className="text-1xl font-bold p-1">
           Complete your chores to add points to your bank!
         </h4>

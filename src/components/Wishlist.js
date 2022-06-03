@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import {v4 as uuid} from 'uuid'
-import Wishadd from './Wishadd';
+import React, {useState, useEffect} from "react";
+import {v4 as uuid} from "uuid";
+import Wishadd from "./Wishadd";
 import { GoTrashcan } from "react-icons/go";
 import toast from "react-hot-toast";
 
@@ -8,7 +8,7 @@ function getInitialWishes() {
   const store = localStorage.getItem("wish");
   const savedWishes = JSON.parse(store);
   return savedWishes || [];
-}
+};
 
 const Wishlist = () => {
   const [wishes, setWishes] = useState(getInitialWishes);
@@ -18,6 +18,11 @@ const Wishlist = () => {
     setWishes([...wishes, {title, points, id: uuid()}])
   }
 
+  const completeWish = (wish) => {
+    toast.success(`${wish.title} added to shopping cart!`);
+    setWishes(wishes.filter((i) => i.id !== wish.id));
+  }
+
    const removeWish = (wish) => {
      toast.error(`${wish.title} removed from wish list!`);
      setWishes(wishes.filter((i) => i !== wish));
@@ -25,7 +30,7 @@ const Wishlist = () => {
 
   useEffect(() => {
     const store = JSON.stringify(wishes)
-    localStorage.setItem('wish', store)
+    localStorage.setItem("wish", store)
   }, [wishes])
 
   return (
@@ -39,8 +44,13 @@ const Wishlist = () => {
               className="text-2xl text-red-600 self-end">
               <GoTrashcan />
             </button>
-            <h2 className='text-xl font-semibold p-1 text-center'>{wish.title}</h2>
-            <h3 className='text-lg font-semibold p-1 text-center'>💰{wish.points} Points</h3>
+            <h2 className="text-xl font-semibold p-1 text-center">{wish.title}</h2>
+            <h3 className="text-lg font-semibold p-1 text-center">💰{wish.points} Points</h3>
+            <button
+                 onClick={() => completeWish(wish)}
+                 className="bg-blue-400 mb-4 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500">
+                   Add To Cart
+                 </button>
           </div>
         ))}
       </section>

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { useChores } from '../contexts/Chores'
-import choresChoices from './Chorelist'
+import React, { useState } from "react";
+import { useChores } from "../contexts/Chores";
+import choresChoices from "./Chorelist";
 
 const Hero = () => {
   const { addChore } = useChores();
 
-  const [ chore, setChore ] = useState('');
-  const [ point, setPoint] = useState('');
+  const [ chore, setChore ] = useState("");
+  const [ point, setPoint] = useState("");
 
   const handleChoresChange = (e) => {
     setChore(e.target.value);
@@ -19,8 +19,8 @@ const Hero = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addChore(chore, Number(point));
-    setChore('')
-    setPoint('')
+    setChore("")
+    setPoint("")
   };
   
   return (

@@ -1,19 +1,20 @@
-import React, {useState} from 'react'
-import ReactDOM from 'react-dom/client'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import './index.css'
-import 'tw-elements'
-import Layout from './components/Layout'
-import HeroPage from './components/Hero'
-import ChoresPage from './components/Chores'
-import ChoresaddPage from './components/Choresadd'
-import WishlistPage from './components/Wishlist'
-import App from './App'
+import React, {useState} from "react";
+import ReactDOM from "react-dom/client";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import "./index.css";
+import "tw-elements";
+import Layout from "./components/Layout";
+import HeroPage from "./components/Hero";
+import ChoresPage from "./components/Chores";
+import ChoresaddPage from "./components/Choresadd";
+import WishlistPage from "./components/Wishlist";
+import App from "./App";
+import Cart from "./components/Cart";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 function getBucksFromLocalStorage() {
-  const points = localStorage.getItem('points');
+  const points = localStorage.getItem("points");
   if (points) {
     return Number(points);
   }
@@ -26,7 +27,7 @@ const Main = () => {
   const addPoints = (amount) => {
     const newPoints = points + amount;
     setPoints(newPoints);
-    localStorage.setItem('points', newPoints);
+    localStorage.setItem("points", newPoints);
 };
 
 return(
@@ -38,6 +39,7 @@ return(
           <Route path="/chores" element={<ChoresPage />} />
           <Route path="/choresadd" element={<ChoresaddPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/cart" element={<Cart points={points}/>} />
         </Route>
       </Routes>
     </BrowserRouter>
