@@ -2,7 +2,7 @@ import React from 'react'
 import AppLogo from '../assets/appLogo.png'
 import { RiMoneyDollarCircleLine } from "react-icons/ri"
 
-const Header = () => {
+const Header = ({ points }) => {
   return (
     <header className='headerContainer container flex justify-between mx-auto min-w-full pt-0.5 pb-0.5 bg-gray-100'>
       <div className='appLogo flex content-center'>
@@ -12,8 +12,8 @@ const Header = () => {
       <div className='shoppingBasket flex flex-col items-center'>
         <RiMoneyDollarCircleLine className='text-4xl text-yellow-600 pr-2' />
         <span className='pointsValue pr-2'>
-          <p className='text-center font-semibold'>0</p>
-          <p>Points</p>
+          <p className='text-center font-semibold'>{points}</p>
+          <p>Bucks</p>
         </span>
       </div>
     </header>

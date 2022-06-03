@@ -5,10 +5,10 @@ import Navigation from './Navigation'
 import Footer from './Footer'
 import { Toaster } from 'react-hot-toast'
 
-const Layout = () => {
+const Layout = ({ points }) => {
   return (
     <>
-      <Header />
+      <Header points={points} />
       <Navigation />
       <Outlet />
       <Footer />

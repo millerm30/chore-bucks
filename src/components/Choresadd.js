@@ -14,7 +14,7 @@ const Hero = () => {
 
   const handlePointChange = (e) => {
     setPoint(e.target.value);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
