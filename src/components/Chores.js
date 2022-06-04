@@ -17,7 +17,7 @@ const Chores = () => {
            <p className="italic pt-4">No Chores to do!</p>
          )}
          {
-           <section className="choreList grid grid-cols-2 gap-5 mx-5 md:grid-cols-3 lg:grid-cols-4">
+           <section className="choreList grid grid-cols-2 gap-5 mx-5 mb-24 md:grid-cols-3 lg:grid-cols-4">
              {chores.map((chore) => (
                <div key={Math.random()} className="chore bg-[#f8f8f8] w-full px-2 py-1 flex flex-col justify-start items-center border-2 border-blue-400 rounded-lg">
                  <button
