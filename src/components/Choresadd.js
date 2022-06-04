@@ -29,6 +29,9 @@ const Hero = () => {
         <h2 className="text-2xl font-semibold p-1">
           🙂 Add your chores below! 🚀
         </h2>
+        <p className="text-center">
+          Add your chores below to start earning points!
+        </p>
       </section>
       <section className="myForm pt-5">
         <form
