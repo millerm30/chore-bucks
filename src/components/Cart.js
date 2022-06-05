@@ -30,7 +30,6 @@ const Cart = ({ points }) => {
           Purchase
         </button>
       </section>
-      <section></section>
     </main>
   );
 }

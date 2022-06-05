@@ -24,7 +24,7 @@ const choresChoices = [
     id: 4 
   },
   { label: "Empty Dishwasher", 
-    value: "Empty Diswasher", 
+    value: "Empty Dishwasher", 
     id: 5 
   },
   { label: "Fold Laundry", 
@@ -109,6 +109,11 @@ const choresChoices = [
     label: "Help Clean Yard",
     value: "Help Clean Yard",
     id: 22
+  },
+  {
+    label: " Help pack lunch",
+    value: "Help pack lunch",
+    id: 23
   }
 ];
 
