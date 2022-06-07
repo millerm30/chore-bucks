@@ -1,12 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
+import {FaBars, FaTimes} from "react-icons/fa";
 import {Link} from "react-router-dom";
 
 const Navigation = () => {
+  const [nav, setNav] = useState(false);
+  const handleNav = () => setNav(!nav);
+
   return (
     <nav className="navbarContainer">
       <nav className="navbarContent relative w-full flex flex-wrap items-center justify-between py-2 bg-gray-100 text-gray-500 shadow-lg navbar navbar-expand-lg navbar-light">
-        <div className="container-fluid w-full flex flex-wrap items-center justify-start">
+        <div className="container-fluid w-full flex flex-wrap items-center justify-start hamburger">
           <button
+            onClick={handleNav}
             className="navbar-toggler text-gray-500 border-0 hover:shadow-none hover:no-underline py-2 px-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline"
             type="button"
             data-bs-toggle="collapse"
@@ -14,22 +19,8 @@ const Navigation = () => {
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
-          >
-            <svg
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="bars"
-              className="w-6"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-            >
-              <path
-                fill="currentColor"
-                d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
-              ></path>
-            </svg>
+          > 
+            {!nav ? <FaBars className="text-2xl" /> : <FaTimes className="text-2xl"/>} 
           </button>
         </div>
         <div className="collapse navbar-collapse flex-grow items-center" id="navbarSupportedContent">
