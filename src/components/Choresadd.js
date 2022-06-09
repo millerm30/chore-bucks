@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useChores } from "../contexts/Chores";
 import choresChoices from "./Chorelist";
 
-const Hero = () => {
+const Choresadd = () => {
   const { addChore } = useChores();
 
   const [ chore, setChore ] = useState("");
@@ -73,8 +73,35 @@ const Hero = () => {
           </button>
         </form>
       </section>
+      <section>
+        <div>
+          <div className="appInfo pt-10">
+            <h2 className="text-xl font-semibold p-1">
+              Don't see your chore above? <br></br>Add it yourself! 
+            </h2>
+          </div>
+          <div className="myForm pt-5">
+            <form className="flex flex-col w-3/4 mx-auto md:w-1/3">
+              <label htmlFor="choresNew" className="mb-1 text-left">
+                Add new chore:
+              </label>
+              <input
+                type="text"
+                placeholder="Enter new chore..."
+                className="rounded-md p-2 border border-blue-700 rounded outline-none w-full"
+              ></input>
+              <button
+                type="submit"
+                className="bg-blue-400 mt-5 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500"
+              >
+                Add New Chore
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
 
-export default Hero;
+export default Choresadd;
