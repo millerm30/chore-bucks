@@ -97,7 +97,7 @@ const Choresadd = () => {
                 type="submit"
                 disabled={!newchore}
                 onClick={() => {
-                  choresChoices.push({
+                  choresChoices.concat({
                     id: choresChoices.length + 1,
                     value: newchore,
                     label: newchore,
