@@ -76,8 +76,8 @@ const choresChoices = [
     id: 15
   },
   {
-    label: "Help Paint",
-    value: "Help Paint",
+    label: "Help Paint The House",
+    value: "Help Paint The House",
     id: 16
   },
   {
@@ -114,6 +114,16 @@ const choresChoices = [
     label: " Help pack lunch",
     value: "Help pack lunch",
     id: 23
+  },
+  {
+    label: "Complete School Homework",
+    value: "Complete School Homework",
+    id: 24
+  },
+  {
+    label: "Practice Piano Lessons",
+    value: "Practice Piano Lessons",
+    id: 25
   }
 ];
 
