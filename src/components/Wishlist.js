@@ -36,6 +36,10 @@ const Wishlist = () => {
   return (
     <main className="wishList mb-20">
       <Wishadd addWish={addWish} />
+      {wishes.length === 0 && (
+        <p className="text-center italic pt-4">No Wish List Items!</p>
+         )}
+      {
       <section className="wishes grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-3 lg:grid-cols-4">
         {wishes.map((wish) => (
           <div key={uuid()} className="wish bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-start items-center border-2 border-blue-400 rounded-lg">
@@ -54,6 +58,7 @@ const Wishlist = () => {
           </div>
         ))}
       </section>
+      }
     </main>
   );
 }
