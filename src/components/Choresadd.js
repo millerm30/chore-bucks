@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useChores } from "../contexts/Chores";
 import choresChoices from "./Chorelist";
 import toast from "react-hot-toast";
+import {v4 as uuid} from 'uuid';
+
 
 const Choresadd = () => {
   const { addChore } = useChores();
 
   const [ chore, setChore ] = useState("");
   const [ point, setPoint] = useState("");
-  const [ newchore, setnewChore] = useState([]);
+  const [ newchore, setnewChore] = useState("");
 
   const handleChoresChange = (e) => {
     setChore(e.target.value);
@@ -17,6 +19,14 @@ const Choresadd = () => {
   const handlePointChange = (e) => {
     setPoint(e.target.value);
   };
+  
+  const handleNewChore = (e) => {
+    e.preventDefault();
+    choresChoices.push({label: newchore, value: newchore, id: uuid()});
+    setnewChore([newchore]);
+    setnewChore("");
+    toast(`${newchore} added to chore list!`, { icon: "👍" });
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,16 +106,7 @@ const Choresadd = () => {
               <button
                 type="submit"
                 disabled={!newchore}
-                onClick={() => {
-                  choresChoices.push({
-                    id: choresChoices.length + 1,
-                    value: newchore,
-                    label: newchore,
-                  });
-                  setnewChore("");
-                  toast(`${newchore} added to chore list!`,
-                  { icon: "👍"});
-                }}
+                onClick={handleNewChore}
                 className="bg-blue-400 mt-5 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500"
               >
                 Add New Chore
