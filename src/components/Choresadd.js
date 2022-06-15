@@ -7,6 +7,7 @@ import {v4 as uuid} from 'uuid';
 
 const Choresadd = () => {
   const { addChore } = useChores();
+  const [myArray, updateMyArray] = useState(choresChoices);
 
   const [ chore, setChore ] = useState("");
   const [ point, setPoint] = useState("");
@@ -22,8 +23,7 @@ const Choresadd = () => {
   
   const handleNewChore = (e) => {
     e.preventDefault();
-    choresChoices.push({label: newchore, value: newchore, id: uuid()});
-    setnewChore([newchore]);
+    updateMyArray( arr => [...arr, {label: newchore, value: newchore, id: uuid()}]);
     setnewChore("");
     toast(`${newchore} added to chore list!`, { icon: "👍" });
   }
@@ -59,7 +59,7 @@ const Choresadd = () => {
             onChange={handleChoresChange}
             className="rounded-md py-2 border mb-2 border-blue-700 rounded outline-none"
           >
-            {choresChoices.map((choice) => (
+            {myArray.map((choice) => (
               <option key={choice.id} value={choice.value}>
                 {choice.label}
               </option>
