@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const Wishadd = ({addWish}) => {
+const WishAdd = ({addWish}) => {
   const [title, setTitle] = useState("");
   const [points, setPoints] = useState("");
 
@@ -50,4 +50,4 @@ const Wishadd = ({addWish}) => {
   );
 }
 
-export default Wishadd
+export default WishAdd

@@ -10,7 +10,7 @@ function getInitialWishes() {
   return savedWishes || [];
 };
 
-const Wishlist = () => {
+const WishList = () => {
   const [wishes, setWishes] = useState(getInitialWishes);
 
   const addWish = (title, points) => {
@@ -63,4 +63,4 @@ const Wishlist = () => {
   );
 }
 
-export default Wishlist
+export default WishList
