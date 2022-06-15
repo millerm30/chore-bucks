@@ -4,14 +4,13 @@ import choresChoices from "./Chorelist";
 import toast from "react-hot-toast";
 import {v4 as uuid} from 'uuid';
 
-
-const Choresadd = () => {
+const ChoresAdd = () => {
   const { addChore } = useChores();
-  const [myArray, updateMyArray] = useState(choresChoices);
-  
-  const [ chore, setChore ] = useState("");
-  const [ point, setPoint] = useState("");
-  const [ newchore, setnewChore] = useState("");
+  const [choresList, setChoresList] = useState(choresChoices);
+
+  const [chore, setChore] = useState("");
+  const [point, setPoint] = useState("");
+  const [label, setLabel] = useState("");
 
   const handleChoresChange = (e) => {
     setChore(e.target.value);
@@ -20,21 +19,21 @@ const Choresadd = () => {
   const handlePointChange = (e) => {
     setPoint(e.target.value);
   };
-  
+
   const handleNewChore = (e) => {
     e.preventDefault();
-    updateMyArray([...myArray, {label: newchore, value: newchore, id: uuid()}]);
-    setnewChore("");
-    toast(`${newchore} added to chore list!`, { icon: "👍" });
-  }
+    setChoresList([...choresList,{ label: label, value: label, id: uuid() },]);
+    setLabel("");
+    toast(`${label} added to chore list!`, { icon: "👍" });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addChore(chore, Number(point));
-    setChore("")
-    setPoint("")
+    setChore("");
+    setPoint("");
   };
-  
+
   return (
     <main className="choreaddContainer text-center mb-24">
       <section className="appInfo pt-10">
@@ -59,7 +58,7 @@ const Choresadd = () => {
             onChange={handleChoresChange}
             className="rounded-md py-2 border mb-2 border-blue-700 rounded outline-none"
           >
-            {myArray.map((choice) => (
+            {choresList.map((choice) => (
               <option key={choice.id} value={choice.value}>
                 {choice.label}
               </option>
@@ -98,25 +97,25 @@ const Choresadd = () => {
                 Add new chore:
               </label>
               <input
-                value={newchore}
+                value={label}
                 name="choresNew"
-                onChange={(e) => setnewChore(e.target.value)}
+                onChange={(e) => setLabel(e.target.value)}
                 className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-full mb-2"
               ></input>
               <button
                 type="submit"
-                disabled={!newchore}
+                disabled={!label}
                 onClick={handleNewChore}
                 className="bg-blue-400 mt-5 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500"
               >
                 Add New Chore
               </button>
-            </form> 
+            </form>
           </div>
         </div>
       </section>
     </main>
   );
-};
+};;
 
-export default Choresadd;
+export default ChoresAdd;
