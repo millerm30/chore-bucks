@@ -8,7 +8,7 @@ import {v4 as uuid} from 'uuid';
 const Choresadd = () => {
   const { addChore } = useChores();
   const [myArray, updateMyArray] = useState(choresChoices);
-
+  
   const [ chore, setChore ] = useState("");
   const [ point, setPoint] = useState("");
   const [ newchore, setnewChore] = useState("");
@@ -23,7 +23,7 @@ const Choresadd = () => {
   
   const handleNewChore = (e) => {
     e.preventDefault();
-    updateMyArray( arr => [...arr, {label: newchore, value: newchore, id: uuid()}]);
+    updateMyArray([...myArray, {label: newchore, value: newchore, id: uuid()}]);
     setnewChore("");
     toast(`${newchore} added to chore list!`, { icon: "👍" });
   }
