@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useChores } from "../contexts/Chores";
 import choresChoices from "./Chorelist";
 import toast from "react-hot-toast";
 import {v4 as uuid} from 'uuid';
 
+const getInitialNewChoresLocalStorage = () => {
+  const temp = localStorage.getItem("choresList");
+  if (temp) {
+    return JSON.parse(temp);
+  }
+  return choresChoices;
+};
+
 const ChoresAdd = () => {
   const { addChore } = useChores();
-  const [choresList, setChoresList] = useState(choresChoices);
+  const [choresList, setChoresList] = useState(getInitialNewChoresLocalStorage);
 
   const [chore, setChore] = useState("");
   const [point, setPoint] = useState("");
@@ -33,6 +41,10 @@ const ChoresAdd = () => {
     setChore("");
     setPoint("");
   };
+
+  useEffect(() => {
+    localStorage.setItem("choresList", JSON.stringify(choresList));
+  }, [choresList]);
 
   return (
     <main className="choreaddContainer text-center mb-24">
