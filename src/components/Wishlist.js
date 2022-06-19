@@ -34,7 +34,7 @@ const WishList = () => {
   }, [wishes])
 
   return (
-    <main className="wishList mb-20">
+    <main className="wishList">
       <Wishadd addWish={addWish} />
       {wishes.length === 0 && (
         <p className="text-center italic pt-4">No Wish List Items!</p>

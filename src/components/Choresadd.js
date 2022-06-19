@@ -47,7 +47,7 @@ const ChoresAdd = () => {
   }, [choresList]);
 
   return (
-    <main className="choreaddContainer text-center mb-24">
+    <main className="choreaddContainer text-center">
       <section className="appInfo pt-10">
         <h2 className="text-2xl font-semibold p-1">
           🙂 Add your chores below! 🚀

@@ -7,7 +7,7 @@ const Header = ({ points }) => {
   return (
     <header className="headerContainer container flex justify-between mx-auto min-w-full pt-0.5 bg-gray-100">
       <div className="appLogo flex content-center">
-        <img src={AppLogo} alt="" className="hidden w-16 md:block"/>
+        <img src={AppLogo} alt="" className="w-16 md:block"/>
         <h1 className="self-center"><span className="text-3xl text-blue-800 font-bold">Chore</span><span className="text-3xl text-green-800 font-bold">Bucks</span></h1>
       </div>
       <div className="shoppingBasket flex flex-col items-center my-auto">
