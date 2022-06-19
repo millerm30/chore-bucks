@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {FaBars, FaTimes} from "react-icons/fa";
 import {Link} from "react-router-dom";
+import {Squash as Hamburger} from 'hamburger-react';
 
 const Navigation = () => {
   const [nav, setNav] = useState(false);
@@ -20,7 +20,7 @@ const Navigation = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           > 
-            {!nav ? <FaBars className="text-2xl" /> : <FaTimes className="text-2xl"/>} 
+            <Hamburger size={30} rounded duration={0.3} easing="ease-in" toggled={nav} toggle={setNav} /> 
           </button>
         </div>
         <div className="collapse navbar-collapse flex-grow items-center" id="navbarSupportedContent">
