@@ -13,7 +13,7 @@ const WishAdd = ({addWish}) => {
   
   return (
     <section className="container mx-auto pt-10">
-      <section className="wishHeader">
+      <section>
         <h1 className="text-2xl font-semibold p-1 text-center">😉 Wish List! 👍</h1>
         <p className="text-center">Add items to your wish list that you would like to build your points to purchase!</p>
       </section>

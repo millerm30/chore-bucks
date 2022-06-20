@@ -8,7 +8,7 @@ const Navigation = () => {
 
   return (
     <nav className="navbarContainer">
-      <nav className="navbarContent relative w-full flex flex-wrap items-center justify-between py-2 bg-gray-100 text-gray-500 shadow-lg navbar navbar-expand-lg navbar-light">
+      <nav className="navbarContent relative w-full flex flex-wrap items-center justify-between py-2 bg-gray-100 text-gray-500 shadow-lg navbar navbar-expand-sm navbar-light">
         <div className="container-fluid w-full flex flex-wrap items-center justify-start hamburger">
           <button
             onClick={handleNav}
@@ -25,7 +25,7 @@ const Navigation = () => {
         </div>
         <div className="collapse navbar-collapse flex-grow items-center" id="navbarSupportedContent">
           <ul className="navbar-nav flex flex-col justify-between w-full pl-0 list-style-none mr-auto">
-            <div className="leftNavi flex flex-col lg:flex-row">
+            <div className="leftNavi flex flex-col sm:flex-row">
               <li className="nav-item px-2 hover:text-gray-700 uppercase">
                 <Link to="/">Home</Link>
               </li>

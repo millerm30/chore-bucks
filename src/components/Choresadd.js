@@ -47,8 +47,8 @@ const ChoresAdd = () => {
   }, [choresList]);
 
   return (
-    <main className="choreaddContainer text-center">
-      <section className="appInfo pt-10">
+    <main className="text-center">
+      <section className="pt-10">
         <h2 className="text-2xl font-semibold p-1">
           🙂 Add your chores below! 🚀
         </h2>
@@ -56,7 +56,7 @@ const ChoresAdd = () => {
           Add your chores below to start earning points!
         </p>
       </section>
-      <section className="myForm pt-5">
+      <section className="pt-5">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col w-3/4 mx-auto md:w-1/3"
@@ -96,14 +96,14 @@ const ChoresAdd = () => {
           </button>
         </form>
       </section>
-      <section>
+      <section className="pb-5">
         <div>
-          <div className="appInfo pt-10">
+          <div className="pt-10">
             <h2 className="text-xl font-semibold p-1">
               Don't see your chore above? <br></br>Add it yourself!
             </h2>
           </div>
-          <div className="myForm pt-5">
+          <div className="pt-5">
             <form className="flex flex-col w-3/4 mx-auto md:w-1/3">
               <label htmlFor="choresNew" className="mb-1 text-left">
                 Add new chore:

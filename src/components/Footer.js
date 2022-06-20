@@ -3,10 +3,10 @@ import {FaFacebook, FaTwitter, FaInstagram, FaGithub, FaLinkedin} from "react-ic
 
 const Footer = () => {
   return (
-    <footer className="footerContainer w-full">
-      <div className="socialContainer text-center lg:text-left bg-gray-100 text-gray-600">
-        <div className="socialContent flex justify-center items-center lg:justify-between p-6 border-t border-gray-300">
-          <div className="copyrightContent mr-12 hidden lg:block">
+    <footer className="w-full">
+      <div className="text-center lg:text-left bg-gray-100 text-gray-600">
+        <div className="flex justify-center items-center lg:justify-between p-6 border-t border-gray-300">
+          <div className="mr-12 hidden lg:block">
             <span>&copy;2022, Designed By Michael Miller</span>
           </div>
           <div className="socialIcons flex justify-center">
