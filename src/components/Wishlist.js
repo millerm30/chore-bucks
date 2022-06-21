@@ -16,12 +16,12 @@ const WishList = () => {
   const addWish = (title, points) => {
     toast.success(`${title} added to wish list!`);
     setWishes([...wishes, {title, points, id: uuid()}])
-  }
+  };
 
   const completeWish = (wish) => {
     toast.success(`${wish.title} added to shopping cart!`);
     setWishes(wishes.filter((i) => i.id !== wish.id));
-  }
+  };
 
    const removeWish = (wish) => {
      toast.error(`${wish.title} removed from wish list!`);
@@ -31,7 +31,7 @@ const WishList = () => {
   useEffect(() => {
     const store = JSON.stringify(wishes)
     localStorage.setItem("wish", store)
-  }, [wishes])
+  }, [wishes]);
 
   return (
     <main>

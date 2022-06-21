@@ -8,7 +8,7 @@ function getInitialChores() {
   const temp = localStorage.getItem("chore");
   const savedChores = JSON.parse(temp);
   return savedChores || [];
-}
+};
 
 export function ChoresProvider({ children, addPoints }) {
     const [chores, setChores] = useState(getInitialChores);

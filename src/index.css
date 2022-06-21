@@ -17,6 +17,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* styling for main which allows footer to stay at the bottom of the page using css calc function for viewport height */
+
 main {
   min-height: calc(100vh - 79px - 66px - 40px);
 }
+
+
+
