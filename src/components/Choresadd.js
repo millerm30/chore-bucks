@@ -77,11 +77,12 @@ const ChoresAdd = () => {
             ))}
           </select>
           <label htmlFor="chores" className="mb-1 text-left">
-            Point value...
+            Point value:
           </label>
           <input
             type="number"
             required
+            placeholder="Enter point value..."
             value={point}
             name="chores"
             onChange={handlePointChange}
@@ -110,6 +111,7 @@ const ChoresAdd = () => {
               </label>
               <input
                 value={label}
+                placeholder="Enter new chore..."
                 name="choresNew"
                 onChange={(e) => setLabel(e.target.value)}
                 className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-full mb-2"
