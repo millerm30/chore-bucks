@@ -82,6 +82,7 @@ const ChoresAdd = () => {
           <input
             type="number"
             required
+            min={0}
             placeholder="Enter point value..."
             value={point}
             name="chores"
