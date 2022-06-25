@@ -23,7 +23,7 @@ const Cart = ({ points }) => {
         <div className="w-full mx-auto grid grid-cols-2 grid-rows-2 mt-10 lg:w-1/2">
           {addToCart.map((wish) => (
             <div
-              key={uuid}
+              key={uuid()}
               className="bg-white w-full px-2 py-1 flex flex-col justify-start items-center border-2 border-blue-400 rounded-lg"
             >
               <h2 className="text-md md:text-xl py-3">{wish}</h2>
