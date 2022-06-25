@@ -3,6 +3,7 @@ import {v4 as uuid} from "uuid";
 import Wishadd from "./Wishadd";
 import { GoTrashcan } from "react-icons/go";
 import toast from "react-hot-toast";
+import { useShopping } from "../contexts/Shopping";
 
 function getInitialWishes() {
   const store = localStorage.getItem("wish");
@@ -12,6 +13,7 @@ function getInitialWishes() {
 
 const WishList = () => {
   const [wishes, setWishes] = useState(getInitialWishes);
+  const { addToCart, addToCartHandler } = useShopping();
 
   const addWish = (title, points) => {
     toast.success(`${title} added to wish list!`);
@@ -21,6 +23,7 @@ const WishList = () => {
   const completeWish = (wish) => {
     toast.success(`${wish.title} added to shopping cart!`);
     setWishes(wishes.filter((i) => i.id !== wish.id));
+    addToCartHandler([...addToCart, wish]);
   };
 
    const removeWish = (wish) => {
