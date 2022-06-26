@@ -1,10 +1,11 @@
 import React from "react";
 import { useShopping } from "../contexts/Shopping";
 import {v4 as uuid} from "uuid";
+import { GoTrashcan } from "react-icons/go";
 
 const Cart = ({ points }) => {
 
-  const { addToCart } = useShopping();
+  const { addToCart, removeFromCartHandler } = useShopping();
    
   return (
     <main className="text-center">
@@ -17,24 +18,45 @@ const Cart = ({ points }) => {
           Available Chore Bucks 💰{points}
         </h2>
         {addToCart.length === 0 && (
-           <p className="italic pt-4">No items add to your cart!</p>
-         )}
+          <p className="italic pt-4">No items added to your cart!</p>
+        )}
         {
-        <div className="w-full mx-auto grid grid-cols-2 grid-rows-2 mt-10 lg:w-1/2">
-          {addToCart.map((wish) => (
-            <div
-              key={uuid()}
-              className="bg-white w-full px-2 py-1 flex flex-col justify-start items-center border-2 border-blue-400 rounded-lg"
-            >
-              <h2 className="text-md md:text-xl py-3">{wish}</h2>
-              <h2 className="text-md md:text-xl py-3">💰{wish}</h2>
-              <button className="bg-blue-400 mt-5 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500">
-                Purchase
-              </button>
-            </div>
-          ))}
-        </div>
-        } 
+          <div className="w-full mx-auto mt-10">
+            {addToCart.map((wish) => (
+              <div
+                key={uuid()}
+                className="container flex flex-row justify-center w-full items-center py-3 mx-auto"
+              >
+                <span>
+                  <h2 className="text-left text-md md:text-xl">
+                    Prize: {wish.title}
+                  </h2>
+                  <h2 className="text-md md:text-xl">Cost: 💰{wish.points}</h2>
+                </span>
+                <span className="my-auto mt-0">
+                  <button
+                    onClick={() => removeFromCartHandler(wish)}
+                    className="text-2xl text-red-600"
+                  >
+                    <GoTrashcan />
+                  </button>
+                </span>
+              </div>
+            ))}
+          </div>
+        }
+          <div className="container flex flex-col justify-center w-full items-center py-3 mx-auto">
+            <span>
+              <h2 className="text-left text-md md:text-xl underline">
+                Cart Total: 💰
+                {addToCart.reduce((acc, curr) => acc + curr.points, 0)}
+              </h2>
+            </span>
+            <button className="bg-blue-400 my-4 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500">
+              Purchase
+            </button>
+          </div>
+      
       </section>
     </main>
   );

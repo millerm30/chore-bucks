@@ -23,7 +23,7 @@ const WishList = () => {
   const completeWish = (wish) => {
     toast.success(`${wish.title} added to shopping cart!`);
     setWishes(wishes.filter((i) => i.id !== wish.id));
-    addToCartHandler([...addToCart, wish]);
+    addToCartHandler(addToCart, wish.title, wish.points);
   };
 
    const removeWish = (wish) => {

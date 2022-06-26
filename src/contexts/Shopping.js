@@ -1,16 +1,34 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
+import toast from "react-hot-toast";
+import {v4 as uuid} from "uuid";
 
 const ShoppingContext = React.createContext();
 
-export function ShoppingProvider({ children }) {
-    const [addToCart , setAddToCart] = useState([]);
+function getInitalCart() {
+  return localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
+}
 
-    const addToCartHandler = ({wish}) => {
-        setAddToCart(addToCart.concat(wish));
+export function ShoppingProvider({ children }) {
+    const [addToCart , setAddToCart] = useState(getInitalCart);
+
+    const addToCartHandler = (wish, title, points) => {
+        setAddToCart([...addToCart, {title: title, points: points, id: uuid()}]);
     };
 
+    const removeFromCartHandler = (wish) => {
+        toast.error(`${wish.title} removed from shopping cart!`);
+        setAddToCart(addToCart.filter((i) => i !== wish));
+    };
+
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(addToCart));
+    }
+    , [addToCart]);
+
     return (
-        <ShoppingContext.Provider value={{ addToCart, addToCartHandler }}>
+        <ShoppingContext.Provider value={{ addToCart, addToCartHandler, removeFromCartHandler }}>
         {children}
         </ShoppingContext.Provider>
     );
