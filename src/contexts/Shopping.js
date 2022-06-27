@@ -13,7 +13,7 @@ function getInitalCart() {
 export function ShoppingProvider({ children }) {
     const [addToCart , setAddToCart] = useState(getInitalCart);
 
-    const addToCartHandler = (wish, title, points) => {
+    const addToCartHandler = (addToCart, title, points) => {
         setAddToCart([...addToCart, {title: title, points: points, id: uuid()}]);
     };
 
