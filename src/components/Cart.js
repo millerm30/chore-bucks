@@ -5,7 +5,7 @@ import { GoTrashcan } from "react-icons/go";
 
 const Cart = ({ points }) => {
 
-  const { addToCart, removeFromCartHandler } = useShopping();
+  const { addToCart, removeFromCartHandler, purchaseCartHandler } = useShopping();
    
   return (
     <main className="text-center">
@@ -52,7 +52,10 @@ const Cart = ({ points }) => {
                 {addToCart.reduce((acc, curr) => acc + curr.points, 0)}
               </h2>
             </span>
-            <button className="bg-blue-400 my-4 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500">
+            <button
+              disabled={addToCart.length === 0}
+              onClick={purchaseCartHandler}
+              className="bg-blue-400 my-4 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500">
               Purchase
             </button>
           </div>

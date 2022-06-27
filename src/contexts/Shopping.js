@@ -22,13 +22,17 @@ export function ShoppingProvider({ children }) {
         setAddToCart(addToCart.filter((i) => i !== wish));
     };
 
+    const purchaseCartHandler = () => {
+        alert("Stay Tuned! This feature is coming soon!");
+    };
+
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(addToCart));
     }
     , [addToCart]);
 
     return (
-        <ShoppingContext.Provider value={{ addToCart, addToCartHandler, removeFromCartHandler }}>
+        <ShoppingContext.Provider value={{ addToCart, addToCartHandler, removeFromCartHandler, purchaseCartHandler }}>
         {children}
         </ShoppingContext.Provider>
     );
