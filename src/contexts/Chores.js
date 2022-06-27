@@ -5,7 +5,7 @@ import {v4 as uuid} from "uuid";
 const ChoresContext = React.createContext();
 
 function getInitialChores() {
-  const temp = localStorage.getItem("chore");
+  const temp = localStorage.getItem("chores");
   const savedChores = JSON.parse(temp);
   return savedChores || [];
 };
@@ -15,7 +15,7 @@ export function ChoresProvider({ children, addPoints }) {
 
     useEffect(() => {
         const temp = JSON.stringify(chores)
-        localStorage.setItem("chore", temp)
+        localStorage.setItem("chores", temp)
     },[chores]);
 
     const addChore = (chore, points) => {

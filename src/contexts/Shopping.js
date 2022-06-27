@@ -5,8 +5,8 @@ import {v4 as uuid} from "uuid";
 const ShoppingContext = React.createContext();
 
 function getInitalCart() {
-  return localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart"))
+  return localStorage.getItem("cartList")
+    ? JSON.parse(localStorage.getItem("cartList"))
     : [];
 }
 
@@ -27,7 +27,7 @@ export function ShoppingProvider({ children }) {
     };
 
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(addToCart));
+        localStorage.setItem("cartList", JSON.stringify(addToCart));
     }
     , [addToCart]);
 

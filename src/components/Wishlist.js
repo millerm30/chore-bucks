@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { useShopping } from "../contexts/Shopping";
 
 function getInitialWishes() {
-  const store = localStorage.getItem("wish");
+  const store = localStorage.getItem("wishList");
   const savedWishes = JSON.parse(store);
   return savedWishes || [];
 };
@@ -33,7 +33,7 @@ const WishList = () => {
 
   useEffect(() => {
     const store = JSON.stringify(wishes)
-    localStorage.setItem("wish", store)
+    localStorage.setItem("wishList", store)
   }, [wishes]);
 
   return (
