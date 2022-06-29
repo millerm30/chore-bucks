@@ -38,7 +38,7 @@ return(
           <Route path="" element={<HeroPage />} />
           <Route path="/chores" element={<ChoresPage />} />
           <Route path="/choresadd" element={<ChoresaddPage />} />
-          <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/wishlist" element={<WishlistPage points={points}/>} />
           <Route path="/cart" element={<Cart points={points}/>} />
         </Route>
       </Routes>
