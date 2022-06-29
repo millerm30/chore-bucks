@@ -27,7 +27,7 @@ const WishList = ({points}) => {
       toast.success(`${wish.title} added to shopping cart!`);
     }
     else {
-      toast.error(`You don't have enough points to buy ${wish.title}`);
+      toast.error(`You don't have enough points to buy ${wish.title}! Complete more chores!`);
     }
   };
 
