@@ -13,7 +13,7 @@ function getInitialWishes() {
 
 const WishList = ({ points }) => {
   const [wishes, setWishes] = useState(getInitialWishes);
-  const { addToCart, addToCartHandler } = useShopping();
+  const { addToCartHandler } = useShopping();
 
   const addWish = (title, points) => {
     toast.success(`${title} added to wish list!`);
@@ -22,8 +22,8 @@ const WishList = ({ points }) => {
 
   const completeWish = (wish) => {
     if (points >= wish.points) {
+      addToCartHandler(wish.title, wish.points);
       setWishes(wishes.filter((i) => i.id !== wish.id));
-      addToCartHandler(addToCart, wish.title, wish.points);
       toast.success(`${wish.title} added to shopping cart! 🚀`);
     }
     else {

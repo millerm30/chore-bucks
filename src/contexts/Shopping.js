@@ -1,6 +1,6 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import {v4 as uuid} from "uuid";
+import { v4 as uuid} from "uuid";
 
 const ShoppingContext = React.createContext();
 
@@ -13,8 +13,8 @@ function getInitalCart() {
 export function ShoppingProvider({ children }) {
     const [addToCart , setAddToCart] = useState(getInitalCart);
 
-    const addToCartHandler = (addToCart, title, points) => {
-        setAddToCart([...addToCart, {title: title, points: points, id: uuid()}]);
+    const addToCartHandler = (itemTitle, itemPoints) => {
+        setAddToCart([...addToCart, { title: itemTitle, points: itemPoints, id: uuid() }]);
     };
 
     const removeFromCartHandler = (wish) => {
