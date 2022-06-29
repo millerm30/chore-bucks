@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const WishAdd = ({addWish}) => {
+const WishAdd = ({ addWish }) => {
   const [title, setTitle] = useState("");
   const [points, setPoints] = useState("");
 

@@ -11,7 +11,7 @@ function getInitialWishes() {
   return savedWishes || [];
 };
 
-const WishList = ({points}) => {
+const WishList = ({ points }) => {
   const [wishes, setWishes] = useState(getInitialWishes);
   const { addToCart, addToCartHandler } = useShopping();
 
