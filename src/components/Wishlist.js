@@ -24,10 +24,10 @@ const WishList = ({points}) => {
     if (points >= wish.points) {
       setWishes(wishes.filter((i) => i.id !== wish.id));
       addToCartHandler(addToCart, wish.title, wish.points);
-      toast.success(`${wish.title} added to shopping cart!`);
+      toast.success(`${wish.title} added to shopping cart! 🚀`);
     }
     else {
-      toast.error(`You don't have enough points to buy ${wish.title}! Complete more chores!`);
+      toast.error(`You don't have enough points to buy ${wish.title}! Complete more chores! 🧹`); 
     }
   };
 
