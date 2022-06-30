@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import "./index.css";
@@ -29,6 +29,10 @@ const Main = () => {
     setPoints(newPoints);
     localStorage.setItem("points", newPoints);
 };
+
+  useEffect(() => {
+    localStorage.setItem("points", points);
+  } , [points]);
 
 return(
   <App addPoints={addPoints}>
