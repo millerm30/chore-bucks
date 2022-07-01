@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
-import {Squash as Hamburger} from 'hamburger-react';
+import { Link } from "react-router-dom";
+import { Squash as Hamburger } from 'hamburger-react';
 
 const Navigation = () => {
   const [nav, setNav] = useState(false);

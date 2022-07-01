@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import "tw-elements";
 import Layout from "./components/Layout";
@@ -24,25 +24,22 @@ function getBucksFromLocalStorage() {
 const Main = () => {
   const [points, setPoints] = useState(() => getBucksFromLocalStorage());
 
-  const addPoints = (amount) => {
-    const newPoints = points + amount;
-    setPoints(newPoints);
-    localStorage.setItem("points", newPoints);
-};
+  const addPoints = (amount) => setPoints(points + amount);
+  const removePoints = (amount) => setPoints(points - amount);
 
   useEffect(() => {
     localStorage.setItem("points", points);
   } , [points]);
 
 return(
-  <App addPoints={addPoints}>
+  <App points={points} addPoints={addPoints} removePoints={removePoints}>
     <BrowserRouter basename="/chore-bucks">
       <Routes>
         <Route path="/" element={<Layout points={points}/>}>
           <Route path="" element={<HeroPage />} />
           <Route path="/chores" element={<ChoresPage />} />
           <Route path="/choresadd" element={<ChoresaddPage />} />
-          <Route path="/wishlist" element={<WishlistPage points={points}/>} />
+          <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/cart" element={<Cart points={points}/>} />
         </Route>
       </Routes>

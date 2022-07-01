@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 const WishAdd = ({ addWish }) => {
   const [title, setTitle] = useState("");
@@ -41,6 +41,7 @@ const WishAdd = ({ addWish }) => {
         </input>
         <button
           type="submit"
+          disabled={!title || !points}
           value="add wish"
           className="bg-blue-400 mt-5 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500"
         >

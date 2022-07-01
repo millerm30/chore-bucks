@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useChores } from "../contexts/Chores";
 import choresChoices from "./Chorelist";
 import toast from "react-hot-toast";
-import {v4 as uuid} from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 const getInitialNewChoresLocalStorage = () => {
   const temp = localStorage.getItem("choresList");

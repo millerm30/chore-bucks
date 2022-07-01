@@ -1,45 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import {v4 as uuid} from "uuid";
 import Wishadd from "./Wishadd";
 import { GoTrashcan } from "react-icons/go";
-import toast from "react-hot-toast";
-import { useShopping } from "../contexts/Shopping";
+import { useWishes } from "../contexts/Wishes";
 
-function getInitialWishes() {
-  const store = localStorage.getItem("wishList");
-  const savedWishes = JSON.parse(store);
-  return savedWishes || [];
-};
-
-const WishList = ({ points }) => {
-  const [wishes, setWishes] = useState(getInitialWishes);
-  const { addToCartHandler } = useShopping();
-
-  const addWish = (title, points) => {
-    toast.success(`${title} added to wish list!`);
-    setWishes([...wishes, {title, points, id: uuid()}])
-  };
-
-  const completeWish = (wish) => {
-    if (points >= wish.points) {
-      addToCartHandler(wish.title, wish.points);
-      setWishes(wishes.filter((i) => i.id !== wish.id));
-      toast.success(`${wish.title} added to shopping cart! 🚀`);
-    }
-    else {
-      toast.error(`You don't have enough points to buy ${wish.title}! Complete more chores! 🧹`); 
-    }
-  };
-
-   const removeWish = (wish) => {
-     toast.error(`${wish.title} removed from wish list!`);
-     setWishes(wishes.filter((i) => i !== wish));
-   };
-
-  useEffect(() => {
-    const store = JSON.stringify(wishes)
-    localStorage.setItem("wishList", store)
-  }, [wishes]);
+const WishList = () => {
+  const { wishes, addWish, completeWish, removeWish } = useWishes();
 
   return (
     <main>

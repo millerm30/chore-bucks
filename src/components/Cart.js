@@ -1,11 +1,11 @@
 import React from "react";
 import { useShopping } from "../contexts/Shopping";
-import {v4 as uuid} from "uuid";
+import { v4 as uuid } from "uuid";
 import { GoTrashcan } from "react-icons/go";
 
 const Cart = ({ points }) => {
 
-  const { addToCart, removeFromCartHandler, purchaseCartHandler } = useShopping();
+  const { cart, removeFromCartHandler, purchaseCartHandler } = useShopping();
    
   return (
     <main className="text-center">
@@ -17,12 +17,12 @@ const Cart = ({ points }) => {
         <h2 className="text-2xl font-semi-bold p-1">
           Available Chore Bucks 💰{points}
         </h2>
-        {addToCart.length === 0 && (
+        {cart.length === 0 && (
           <p className="italic pt-4">No items added to your cart!</p>
         )}
         {
           <div className="w-full mx-auto mt-10">
-            {addToCart.map((wish) => (
+            {cart.map((wish) => (
               <div
                 key={uuid()}
                 className="container flex flex-row justify-center w-full items-center py-3 mx-auto"
@@ -49,11 +49,11 @@ const Cart = ({ points }) => {
             <span>
               <h2 className="text-left text-md md:text-xl underline">
                 Cart Total: 💰
-                {addToCart.reduce((acc, curr) => acc + curr.points, 0)}
+                {cart.reduce((acc, curr) => acc + curr.points, 0)}
               </h2>
             </span>
             <button
-              disabled={addToCart.length === 0}
+              disabled={cart.length === 0}
               onClick={purchaseCartHandler}
               className="bg-blue-400 my-4 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500">
               Purchase

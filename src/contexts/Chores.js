@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect} from "react";
 import toast from "react-hot-toast";
-import {v4 as uuid} from "uuid";
+import { v4 as uuid } from "uuid";
 
 const ChoresContext = React.createContext();
 

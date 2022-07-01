@@ -8,31 +8,37 @@ function getInitalCart() {
   return localStorage.getItem("cartList")
     ? JSON.parse(localStorage.getItem("cartList"))
     : [];
-}
+};
 
-export function ShoppingProvider({ children }) {
-    const [addToCart , setAddToCart] = useState(getInitalCart);
+export function ShoppingProvider({ points, removePoints, children }) {
+    const [cart , setCart] = useState(getInitalCart);
 
     const addToCartHandler = (itemTitle, itemPoints) => {
-        setAddToCart([...addToCart, { title: itemTitle, points: itemPoints, id: uuid() }]);
+        setCart([...cart, { title: itemTitle, points: itemPoints, id: uuid() }]);
     };
 
     const removeFromCartHandler = (wish) => {
         toast.error(`${wish.title} removed from shopping cart!`);
-        setAddToCart(addToCart.filter((i) => i !== wish));
+        setCart(cart.filter((i) => i !== wish));
     };
 
     const purchaseCartHandler = () => {
-        alert("Stay Tuned! This feature is coming soon!");
+        if (points >= cart.reduce((acc, cur) => acc + cur.points, 0)) {
+            cart.forEach((i) => removePoints(i.points));
+            setCart([]);
+            toast.success("Purchase successful. Great job!");
+        } else {
+            toast.error("You don't have enough points to purchase items! Keep working on your chores!");
+        }
     };
 
     useEffect(() => {
-        localStorage.setItem("cartList", JSON.stringify(addToCart));
+        localStorage.setItem("cartList", JSON.stringify(cart));
     }
-    , [addToCart]);
+    , [cart]);
 
     return (
-        <ShoppingContext.Provider value={{ addToCart, addToCartHandler, removeFromCartHandler, purchaseCartHandler }}>
+        <ShoppingContext.Provider value={{ cart, addToCartHandler, removeFromCartHandler, purchaseCartHandler }}>
         {children}
         </ShoppingContext.Provider>
     );
