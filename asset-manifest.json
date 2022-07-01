@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/chore-bucks/static/css/main.61c662b7.css",
-    "main.js": "/chore-bucks/static/js/main.c8603fff.js",
+    "main.css": "/chore-bucks/static/css/main.fa8ab640.css",
+    "main.js": "/chore-bucks/static/js/main.10974ee5.js",
     "index.html": "/chore-bucks/index.html",
     "static/media/wave.svg": "/chore-bucks/static/media/wave.105e4dc8436087dd50d8.svg",
-    "main.61c662b7.css.map": "/chore-bucks/static/css/main.61c662b7.css.map",
-    "main.c8603fff.js.map": "/chore-bucks/static/js/main.c8603fff.js.map"
+    "main.fa8ab640.css.map": "/chore-bucks/static/css/main.fa8ab640.css.map",
+    "main.10974ee5.js.map": "/chore-bucks/static/js/main.10974ee5.js.map"
   },
   "entrypoints": [
-    "static/css/main.61c662b7.css",
-    "static/js/main.c8603fff.js"
+    "static/css/main.fa8ab640.css",
+    "static/js/main.10974ee5.js"
   ]
 }
