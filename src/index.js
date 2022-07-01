@@ -10,6 +10,7 @@ import ChoresaddPage from "./components/Choresadd";
 import WishlistPage from "./components/Wishlist";
 import App from "./App";
 import Cart from "./components/Cart";
+import Login from "./components/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -26,6 +27,7 @@ const Main = () => {
 
   const addPoints = (amount) => setPoints(points + amount);
   const removePoints = (amount) => setPoints(points - amount);
+  const isLoggedIn = true;
 
   useEffect(() => {
     localStorage.setItem("points", points);
@@ -35,6 +37,7 @@ return(
   <App points={points} addPoints={addPoints} removePoints={removePoints}>
     <BrowserRouter basename="/chore-bucks">
       <Routes>
+        {isLoggedIn ? (
         <Route path="/" element={<Layout points={points}/>}>
           <Route path="" element={<HeroPage />} />
           <Route path="/chores" element={<ChoresPage />} />
@@ -42,6 +45,9 @@ return(
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/cart" element={<Cart points={points}/>} />
         </Route>
+        ) : (
+          <Route path="/" element={<Login />} />
+        )}
       </Routes>
     </BrowserRouter>
   </App>
