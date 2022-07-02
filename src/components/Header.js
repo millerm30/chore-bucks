@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AppLogo from "../assets/appLogo.png";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 import { useShopping } from "../contexts/Shopping";
 
@@ -13,9 +14,9 @@ const Header = ({ points }) => {
         <h1 className="self-center"><span className="text-3xl text-blue-800 font-bold">Chore</span><span className="text-3xl text-green-800 font-bold">Bucks</span></h1>
       </div>
       <div className="flex flex-col items-center my-auto">
-          <Link to="/cart"><FiShoppingCart className="text-3xl text-black pt-1" /></Link>
-          {cart.length > 0 && <h2 className="absolute ml-8 text-xs bg-red-500 text-white px-2 rounded-xl">{cart.length}</h2>}
-        <span className="flex mt-2 pr-2">
+          <Link to="/cart"><AiOutlineShoppingCart className="text-4xl text-black pt-1 mr-2" /></Link>
+          {cart.length > 0 && <h2 className="absolute ml-7 text-xs bg-red-500 text-white px-2 rounded-xl">{cart.length}</h2>}
+        <span className="flex pr-2">
           <p className="text-center font-semibold">{points}</p>
           <p className="ml-1">Points</p>
         </span>
