@@ -5,7 +5,7 @@ import { GoTrashcan } from "react-icons/go";
 import { useWishes } from "../contexts/Wishes";
 
 const WishList = () => {
-  const { wishes, addWish, completeWish, removeWish } = useWishes();
+  const { wishes, addWish, completeWish, removeWish, createRandomBackGroundColors } = useWishes();
 
   return (
     <main>
@@ -16,7 +16,7 @@ const WishList = () => {
       {
       <section className="grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-3 lg:grid-cols-4">
         {wishes.map((wish) => (
-          <div key={uuid()} className="bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-start items-center border-2 border-blue-400 rounded-lg">
+          <div key={uuid()} className="bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-start items-center border-2 rounded-lg" style={{ borderColor: createRandomBackGroundColors() }}>
             <button
               onClick={() => removeWish(wish)}
               className="text-2xl text-red-600 self-end">

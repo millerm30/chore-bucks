@@ -33,13 +33,21 @@ export function WishesProvider({ children }) {
       setWishes(wishes.filter((i) => i !== wish));
     };
 
+    const createRandomBackGroundColors = () => {
+      let x = Math.floor(Math.random() * 256);
+      let y = Math.floor(Math.random() * 256);
+      let z = Math.floor(Math.random() * 256);
+      let bgColor = "rgb(" + x + "," + y + "," + z + ")";
+      return bgColor;
+    };
+
     useEffect(() => {
       const store = JSON.stringify(wishes);
       localStorage.setItem("wishList", store);
     }, [wishes]);
     
     return (
-        <WishesContext.Provider value={{ wishes, addWish, completeWish, removeWish }}>
+        <WishesContext.Provider value={{ wishes, addWish, completeWish, removeWish, createRandomBackGroundColors }}>
         {children}
         </WishesContext.Provider>
     );

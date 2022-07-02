@@ -4,7 +4,7 @@ import { GoTrashcan } from "react-icons/go";
 
 const Chores = () => {
 
-  const {chores, removeChore, completeChore} = useChores();
+  const {chores, removeChore, completeChore, createRandomBackGroundColors} = useChores();
 
    return (
      <main className="text-center">
@@ -19,7 +19,7 @@ const Chores = () => {
          {
            <section className="grid grid-cols-2 gap-5 mx-5 mb-24 md:grid-cols-3 lg:grid-cols-4">
              {chores.map((chore) => (
-               <div key={Math.random()} className="bg-[#f8f8f8] w-full px-2 py-1 flex flex-col justify-start items-center border-2 border-blue-400 rounded-lg">
+               <div key={Math.random()} className="bg-[#f8f8f8] w-full px-2 py-1 flex flex-col justify-start items-center border-2 rounded-lg" style={{ borderColor: createRandomBackGroundColors() }}>
                  <button
                    onClick={() => removeChore(chore)}
                    className="text-2xl text-red-600 self-end">
