@@ -28,7 +28,7 @@ const Cart = ({ points }) => {
                 className="container flex flex-col w-3/4 justify-between w-full items-center py-3 mx-auto border-b-2 border-gray-600 md:w-1/2 lg:w-1/3"
               >
                 <span className="container flex justify-between py-2">
-                  <h2 className="text-left text-md">Prize: {wish.title}</h2>
+                  <h2 className="text-left text-md">Wish: {wish.title}</h2>
                   <button
                     onClick={() => removeFromCartHandler(wish)}
                     className="text-2xl text-red-600"
