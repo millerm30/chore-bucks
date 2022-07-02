@@ -13,10 +13,8 @@ const Header = ({ points }) => {
         <h1 className="self-center"><span className="text-3xl text-blue-800 font-bold">Chore</span><span className="text-3xl text-green-800 font-bold">Bucks</span></h1>
       </div>
       <div className="flex flex-col items-center my-auto">
-        <span className="container flex">
-          <Link to="/cart"><FiShoppingCart className="text-3xl text-black ml-2 pt-1" /></Link>
-          {cart.length > 0 && <h2 className="absolute ml-7 text-sm bg-red-500 text-white px-2 rounded-xl">{cart.length}</h2>}
-        </span>
+          <Link to="/cart"><FiShoppingCart className="text-3xl text-black pt-1" /></Link>
+          {cart.length > 0 && <h2 className="absolute ml-8 text-xs bg-red-500 text-white px-2 rounded-xl">{cart.length}</h2>}
         <span className="flex mt-2 pr-2">
           <p className="text-center font-semibold">{points}</p>
           <p className="ml-1">Points</p>
