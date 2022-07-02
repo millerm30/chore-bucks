@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AppLogo from "../assets/appLogo.png";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { FiShoppingCart } from "react-icons/fi";
 import { useShopping } from "../contexts/Shopping";
 
 const Header = ({ points }) => {
