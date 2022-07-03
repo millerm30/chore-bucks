@@ -8,7 +8,7 @@ const WishList = () => {
   const { wishes, addWish, completeWish, removeWish, createRandomBackGroundColors } = useWishes();
 
   return (
-    <main>
+    <main className="bg-green-100">
       <Wishadd addWish={addWish} />
       {wishes.length === 0 && (
         <p className="text-center italic pt-4">No Wish List Items!</p>

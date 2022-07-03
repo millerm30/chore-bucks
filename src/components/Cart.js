@@ -8,7 +8,7 @@ const Cart = ({ points }) => {
   const { cart, removeFromCartHandler, purchaseCartHandler } = useShopping();
    
   return (
-    <main className="text-center">
+    <main className="text-center bg-green-100">
       <section className="pt-10 mb-12">
         <h2 className="text-2xl font-semibold p-1">🧒 Shopping Cart 🚀</h2>
         <p className="mb-5">Complete your purchase!</p>

@@ -7,7 +7,7 @@ const Chores = () => {
   const {chores, removeChore, completeChore, createRandomBackGroundColors} = useChores();
 
    return (
-     <main className="text-center">
+     <main className="text-center bg-green-100">
         <section className="pt-10 mb-12">
          <h2 className="text-2xl font-semibold p-1">🧒 Chore Area 🚀</h2>
          <p className="mb-5">Complete chores to build points!</p>

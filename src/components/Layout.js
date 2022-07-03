@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Outlet } from "react-router";
 import Header from "./Header";
 import Navigation from "./Navigation";
@@ -7,12 +7,26 @@ import { Toaster } from "react-hot-toast";
 import Scroll from "./Scroll";
 
 const Layout = ({ points }) => {
+  const [show, setShow] = useState(false);
+  // if scrollY > 100, show the scroll to top button
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  }
+  window.addEventListener("scroll", handleScroll);
+
+
   return (
     <>
       <Header points={points} />
       <Navigation />
       <Outlet />
-      <Scroll />
+      {show ? (
+        <Scroll />
+      ) : null}
       <Footer />
       <Toaster />
     </>

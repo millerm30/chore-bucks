@@ -47,7 +47,7 @@ const ChoresAdd = () => {
   }, [choresList]);
 
   return (
-    <main className="text-center">
+    <main className="text-center bg-green-100">
       <section className="pt-10">
         <h2 className="text-2xl font-semibold p-1">
           🙂 Add your chores below! 🚀
@@ -100,7 +100,7 @@ const ChoresAdd = () => {
       </section>
       <section className="pb-5">
         <div>
-          <div className="pt-10">
+          <div className="pt-5">
             <h2 className="text-xl font-semibold p-1">
               Don't see your chore above? <br></br>Add it yourself!
             </h2>

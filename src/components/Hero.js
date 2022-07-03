@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <main className="text-center bg-hero-pattern bg-no-repeat bg-center bg-cover flex flex-col items-center justify-start">
+    <main className="text-center bg-hero-pattern bg-no-repeat bg-center bg-cover bg-green-100 flex flex-col items-center justify-start">
       <section>
         <h2 className="text-3xl p-1 mt-5 mb-5 font-bold">
           Kids earn points for completing their chores!

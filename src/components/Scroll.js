@@ -24,7 +24,7 @@ const Scroll = () => {
     };
 
   return (
-    <section className="py-5">
+    <section className="py-5 bg-green-100">
         {showScroll ? (
             <FaArrowUp
                 className="mx-auto text-2xl animate-bounce cursor-pointer"
