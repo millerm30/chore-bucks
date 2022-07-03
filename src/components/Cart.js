@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useShopping } from "../contexts/Shopping";
 import { v4 as uuid } from "uuid";
 import { GoTrashcan } from "react-icons/go";
@@ -6,7 +6,12 @@ import { GoTrashcan } from "react-icons/go";
 const Cart = ({ points }) => {
 
   const { cart, removeFromCartHandler, purchaseCartHandler } = useShopping();
-   
+  const [cartTotal, setcartTotal] = useState(0);
+  
+  useEffect(() => {
+    setcartTotal(cart.reduce((acc, curr) => acc + curr.points, 0));
+  }, [cart]);
+
   return (
     <main className="text-center bg-green-100">
       <section className="pt-10 mb-12">
@@ -46,7 +51,7 @@ const Cart = ({ points }) => {
           <div className="container flex flex-col justify-center w-3/4 items-center py-3 mx-auto md:w-1/2 lg:w-1/3">
             <span className="container flex justify-between">
               <h2 className="text-left text-md">Cart Total:</h2>
-              <h2 className="text-md">💰 {cart.reduce((acc, curr) => acc + curr.points, 0)}</h2>
+              <h2 className="text-md">💰 {cartTotal}</h2>
             </span>
             <button
               disabled={cart.length === 0}

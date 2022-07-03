@@ -34,8 +34,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
 
     useEffect(() => {
         localStorage.setItem("cartList", JSON.stringify(cart));
-    }
-    , [cart]);
+    }, [cart]);
 
     return (
         <ShoppingContext.Provider value={{ cart, addToCartHandler, removeFromCartHandler, purchaseCartHandler }}>
