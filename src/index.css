@@ -20,7 +20,7 @@ body {
 /* styling for main which allows footer to stay at the bottom of the page using css calc function for viewport height */
 
 main {
-  min-height: calc(100vh - 79px - 66px - 40px);
+  min-height: calc(100vh - 79px - 66px - 40px - 40px);
 }
 
 
