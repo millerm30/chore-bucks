@@ -1,6 +1,7 @@
 import React from "react";
 import { useChores } from "../contexts/Chores";
 import { GoTrashcan } from "react-icons/go";
+import Scroll from "./Scroll";
 
 const Chores = () => {
 
@@ -17,7 +18,7 @@ const Chores = () => {
            <p className="italic pt-4">No Chores to do!</p>
          )}
          {
-           <section className="grid grid-cols-2 gap-5 mx-5 mb-24 md:grid-cols-3 lg:grid-cols-4">
+           <section className="grid grid-cols-2 gap-5 mx-5 py-5 md:grid-cols-3 lg:grid-cols-4">
              {chores.map((chore) => (
                <div key={Math.random()} className="bg-[#f8f8f8] w-full px-2 py-1 flex flex-col justify-start items-center border-2 rounded-lg" style={{ borderColor: createRandomBackGroundColors() }}>
                  <button
@@ -37,6 +38,7 @@ const Chores = () => {
            </section>
          }
        </section>
+       <Scroll />
      </main>
    );
 }

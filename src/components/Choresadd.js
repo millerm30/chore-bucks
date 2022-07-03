@@ -3,6 +3,7 @@ import { useChores } from "../contexts/Chores";
 import choresChoices from "./Chorelist";
 import toast from "react-hot-toast";
 import { v4 as uuid } from 'uuid';
+import Scroll from "./Scroll";
 
 const getInitialNewChoresLocalStorage = () => {
   const temp = localStorage.getItem("choresList");
@@ -129,6 +130,7 @@ const ChoresAdd = () => {
           </div>
         </div>
       </section>
+      <Scroll />
     </main>
   );
 };;

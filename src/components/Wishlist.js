@@ -3,6 +3,7 @@ import {v4 as uuid} from "uuid";
 import Wishadd from "./Wishadd";
 import { GoTrashcan } from "react-icons/go";
 import { useWishes } from "../contexts/Wishes";
+import Scroll from "./Scroll";
 
 const WishList = () => {
   const { wishes, addWish, completeWish, removeWish, createRandomBackGroundColors } = useWishes();
@@ -33,6 +34,7 @@ const WishList = () => {
         ))}
       </section>
       }
+      <Scroll />
     </main>
   );
 }
