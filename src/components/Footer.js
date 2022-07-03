@@ -3,9 +3,9 @@ import { FaFacebook, FaTwitter, FaInstagram, FaGithub, FaLinkedin } from "react-
 
 const Footer = () => {
   return (
-    <footer className="w-full">
-      <div className="text-center lg:text-left bg-gray-100 text-gray-600">
-        <div className="flex justify-center items-center lg:justify-between p-6 border-t border-gray-300">
+    <footer className="w-full h-14">
+      <div className="text-center lg:text-left bg-gray-100 text-gray-600 h-14">
+        <div className="flex justify-center items-center lg:justify-between p-6 border-t border-gray-300 h-14">
           <div className="mr-12 hidden lg:block">
             <span>&copy;2022, Designed By Michael Miller</span>
           </div>
