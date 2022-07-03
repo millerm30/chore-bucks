@@ -12,7 +12,7 @@ const Scroll = () => {
     }, []);
 
     const handleScroll = () => {
-        if (window.scrollY > 80) {
+        if (window.scrollY > 100) {
             setShowScroll(true)
         } else {
             setShowScroll(false)

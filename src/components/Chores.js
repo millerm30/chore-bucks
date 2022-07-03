@@ -1,7 +1,6 @@
 import React from "react";
 import { useChores } from "../contexts/Chores";
 import { GoTrashcan } from "react-icons/go";
-import Scroll from "./Scroll";
 
 const Chores = () => {
 
@@ -38,7 +37,6 @@ const Chores = () => {
            </section>
          }
        </section>
-       <Scroll />
      </main>
    );
 }

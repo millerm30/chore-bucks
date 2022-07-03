@@ -2,7 +2,6 @@ import React from "react";
 import { useShopping } from "../contexts/Shopping";
 import { v4 as uuid } from "uuid";
 import { GoTrashcan } from "react-icons/go";
-import Scroll from "./Scroll";
 
 const Cart = ({ points }) => {
 
@@ -57,7 +56,6 @@ const Cart = ({ points }) => {
             </button>
           </div>
       </section>
-      <Scroll />
     </main>
   );
 }

@@ -4,6 +4,7 @@ import Header from "./Header";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { Toaster } from "react-hot-toast";
+import Scroll from "./Scroll";
 
 const Layout = ({ points }) => {
   return (
@@ -11,6 +12,7 @@ const Layout = ({ points }) => {
       <Header points={points} />
       <Navigation />
       <Outlet />
+      <Scroll />
       <Footer />
       <Toaster />
     </>
