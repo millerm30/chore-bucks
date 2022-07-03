@@ -13,7 +13,6 @@ function getInitalCart() {
 export function ShoppingProvider({ points, removePoints, children }) {
     const [cart , setCart] = useState(getInitalCart);
     
-
     const addToCartHandler = (itemTitle, itemPoints) => {
         setCart([...cart, { title: itemTitle, points: itemPoints, id: uuid() }]);
     };
