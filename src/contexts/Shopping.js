@@ -12,6 +12,7 @@ function getInitalCart() {
 
 export function ShoppingProvider({ points, removePoints, children }) {
     const [cart , setCart] = useState(getInitalCart);
+    
 
     const addToCartHandler = (itemTitle, itemPoints) => {
         setCart([...cart, { title: itemTitle, points: itemPoints, id: uuid() }]);
@@ -23,12 +24,12 @@ export function ShoppingProvider({ points, removePoints, children }) {
     };
 
     const purchaseCartHandler = () => {
-        if (points >= cart.reduce((acc, cur) => acc + cur.points, 0)) {
-            cart.forEach((i) => removePoints(i.points));
-            setCart([]);
-            toast.success("Purchase successful. Great job!");
+        if (points >= cart.reduce((acc, curr) => acc + curr.points, 0)) {
+        cart.forEach(() => removePoints(cart.reduce((acc, curr) => acc + curr.points, 0)));
+        setCart([]);
+        toast.success("Purchase successful. Great job!");
         } else {
-            toast.error("You don't have enough points to purchase items! Keep working on your chores!");
+        toast.error("Not enough points to purchase! Keep working on your chores!");
         }
     };
 
