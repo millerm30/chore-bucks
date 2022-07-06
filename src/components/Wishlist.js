@@ -8,7 +8,7 @@ const WishList = () => {
   const { wishes, addWish, completeWish, removeWish, createRandomBackGroundColors } = useWishes();
 
   return (
-    <main className="bg-green-100">
+    <main className="bg-blue-300">
       <Wishadd addWish={addWish} />
       {wishes.length === 0 && (
         <p className="text-center italic pt-4">No Wish List Items!</p>
@@ -26,7 +26,7 @@ const WishList = () => {
             <h3 className="text-lg font-semibold p-1 text-center">💰{wish.points} Points</h3>
             <button
                  onClick={() => completeWish(wish)}
-                 className="bg-blue-400 mb-4 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500">
+                 className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg">
                    Add To Cart
                  </button>
           </div>

@@ -7,9 +7,9 @@ const Chores = () => {
   const {chores, removeChore, completeChore, createRandomBackGroundColors} = useChores();
 
    return (
-     <main className="text-center bg-green-100">
+     <main className="text-center bg-blue-300">
         <section className="pt-10 mb-12">
-         <h2 className="text-2xl font-semibold p-1">🧒 Chore Area 🚀</h2>
+         <h2 className="text-3xl font-semibold p-1">🧒 Chore Area 🚀</h2>
          <p className="mb-5">Complete chores to build points!</p>
         </section>
         <section className="choresArea">
@@ -29,7 +29,7 @@ const Chores = () => {
                  <h2 className="text-md md:text-xl py-3">💰{chore.points} Points</h2>                                  
                  <button
                  onClick={() => completeChore(chore)}
-                 className="bg-blue-400 mb-4 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500">
+                 className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg">
                    Complete
                  </button>
                </div>

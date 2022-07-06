@@ -9,7 +9,7 @@ const Navigation = () => {
   return (
     <nav className="navbarContainer">
       <nav className="navbarContent relative w-full flex flex-wrap items-center justify-between py-2 bg-gray-100 text-gray-500 shadow-lg navbar navbar-expand-sm navbar-light">
-        <div className="container-fluid w-full flex flex-wrap items-center justify-start hamburger">
+        <div className="container-fluid w-full flex flex-wrap items-center justify-start hamburger ml-2">
           <button
             onClick={handleNav}
             className="navbar-toggler text-gray-500 border-0 hover:shadow-none hover:no-underline pr-2.5 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none focus:no-underline"
@@ -25,7 +25,7 @@ const Navigation = () => {
         </div>
         <div className="collapse navbar-collapse flex-grow items-center" id="navbarSupportedContent">
           <ul className="navbar-nav flex flex-col justify-between w-full pl-0 list-style-none mr-auto">
-            <div className="leftNavi flex flex-col sm:flex-row">
+            <div className="leftNavi ml-2 flex flex-col sm:flex-row">
               <li className="nav-item px-2 hover:text-gray-700 uppercase">
                 <Link to="/">Home</Link>
               </li>
@@ -36,7 +36,7 @@ const Navigation = () => {
                 <Link to="/choresadd">Add Chores</Link>
               </li>
             </div>
-            <div className="rightNavi flex">
+            <div className="rightNavi flex ml-2 mr-2">
               <li className="nav-item px-2 hover:text-gray-700 uppercase">
                 <Link to="/wishlist">Wishlist</Link>
               </li>

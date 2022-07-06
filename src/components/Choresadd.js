@@ -47,10 +47,10 @@ const ChoresAdd = () => {
   }, [choresList]);
 
   return (
-    <main className="text-center bg-green-100">
+    <main className="text-center bg-blue-300">
       <section className="pt-10">
-        <h2 className="text-2xl font-semibold p-1">
-          🙂 Add your chores below! 🚀
+        <h2 className="text-3xl font-semibold py-1">
+          🙂 Add chores below! 🚀
         </h2>
         <p className="text-center">
           Add your chores below to start earning points!
@@ -92,7 +92,7 @@ const ChoresAdd = () => {
           <button
             type="submit"
             disabled={!chore}
-            className="bg-blue-400 mt-5 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500"
+            className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"
           >
             Add Chore
           </button>
@@ -105,13 +105,14 @@ const ChoresAdd = () => {
               Don't see your chore above? <br></br>Add it yourself!
             </h2>
           </div>
-          <div className="pt-5">
+          <div className="pt-2">
             <form className="flex flex-col w-3/4 mx-auto md:w-1/3">
               <label htmlFor="choresNew" className="mb-1 text-left">
                 Add new chore:
               </label>
               <input
                 value={label}
+                maxLength="100"
                 placeholder="Enter new chore..."
                 name="choresNew"
                 onChange={(e) => setLabel(e.target.value)}
@@ -121,7 +122,7 @@ const ChoresAdd = () => {
                 type="submit"
                 disabled={!label}
                 onClick={handleNewChore}
-                className="bg-blue-400 mt-5 self-center px-4 py-2 border-2 border-blue-600 rounded-lg hover:bg-blue-500"
+                className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"
               >
                 Add New Chore
               </button>
