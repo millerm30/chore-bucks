@@ -26,18 +26,18 @@ export function ChoresProvider({ children, addPoints}) {
         localStorage.setItem("chores", temp)
     },[chores]);
 
-    const addChore = (chore, points) => {
-        toast.success(`${chore} added to chores list!`);
-        setChores([...chores, { id: uuid(), chore, points, style: {borderColor: createRandomBackGroundColors()} }]);
+    const addChore = (title, points) => {
+        toast.success(`${title} added to chores list!`);
+        setChores([...chores, { id: uuid(), title, points, style: {borderColor: createRandomBackGroundColors()} }]);
     };
 
     const removeChore = (chore) => {
-        toast.error(`${chore.chore} removed from chores list!`);
+        toast.error(`${chore.title} removed from chores list!`);
         setChores(chores.filter((c) => c !== chore));
     };
 
     const completeChore = (chore) => {
-        toast(`${chore.chore} Completed. Good Job!`, {
+        toast(`${chore.title} Completed. Good Job!`, {
             icon: "👏"
         });
         addPoints(chore.points)

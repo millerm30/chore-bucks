@@ -1,6 +1,8 @@
 import React from "react";
 import { useChores } from "../contexts/Chores";
 import { GoTrashcan } from "react-icons/go";
+import Card from "./Card";
+import { v4 as uuid } from "uuid";
 
 const Chores = () => {
 
@@ -19,20 +21,13 @@ const Chores = () => {
          {
            <section className="grid grid-cols-2 gap-5 mx-5 py-5 md:grid-cols-3 lg:grid-cols-4">
              {chores.map((chore) => (
-               <div key={Math.random()} className="bg-[#f8f8f8] w-full px-2 py-1 flex flex-col justify-start items-center border-2 rounded-lg" style={chore.style}>
-                 <button
-                   onClick={() => removeChore(chore)}
-                   className="text-2xl text-red-600 self-end">
-                   <GoTrashcan />
-                 </button>
-                 <h2 className="text-md md:text-xl py-3">{chore.chore}</h2>
-                 <h2 className="text-md md:text-xl py-3">💰{chore.points} Points</h2>                                  
-                 <button
-                 onClick={() => completeChore(chore)}
-                 className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg">
-                   Complete
-                 </button>
-               </div>
+              <Card key={uuid()} title={chore.title} points={chore.points} style={chore.style} remove={<GoTrashcan onClick={() => removeChore(chore)}/>}>
+                <button
+                  onClick={() => completeChore(chore)}
+                  className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg">
+                  Complete
+                </button>
+              </Card>
              ))}
            </section>
          }

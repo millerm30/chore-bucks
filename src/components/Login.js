@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import AppLogo from "../assets/appLogo.png";
-import { useUser } from "../contexts/Login"
+import { useUser } from "../contexts/Auth"
 
 const Login = () => {
   const { signInGuestUser } = useUser();

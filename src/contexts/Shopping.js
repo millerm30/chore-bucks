@@ -26,7 +26,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
         if (points >= cart.reduce((acc, curr) => acc + curr.points, 0)) {
         cart.forEach(() => removePoints(cart.reduce((acc, curr) => acc + curr.points, 0)));
         setCart([]);
-        toast.success("Purchase successful. Great job!");
+        toast.success("🎉 Purchase successful. Great job! 🎉");
         } else {
         toast.error("Not enough points to purchase! Keep working on your chores!");
         }
