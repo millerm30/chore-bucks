@@ -30,7 +30,7 @@ const ChoresAdd = () => {
 
   const handleNewChore = (e) => {
     e.preventDefault();
-    setChoresList([...choresList,{ label: label, value: label, id: uuid() },]);
+    setChoresList([...choresList,{ label: label, value: label, id: uuid()}]);
     setLabel("");
     toast(`${label} added to chore list!`, { icon: "👍" });
   };

@@ -10,7 +10,15 @@ function getInitialChores() {
   return savedChores || [];
 };
 
-export function ChoresProvider({ children, addPoints }) {
+const createRandomBackGroundColors = () => {
+  let x = Math.floor(Math.random() * 256);
+  let y = Math.floor(Math.random() * 256);
+  let z = Math.floor(Math.random() * 256);
+  let bgColor = "rgb(" + x + "," + y + "," + z + ")";
+  return bgColor;
+};
+
+export function ChoresProvider({ children, addPoints}) {
     const [chores, setChores] = useState(getInitialChores);
 
     useEffect(() => {
@@ -20,7 +28,7 @@ export function ChoresProvider({ children, addPoints }) {
 
     const addChore = (chore, points) => {
         toast.success(`${chore} added to chores list!`);
-        setChores([...chores, { id: uuid(), chore, points }]);
+        setChores([...chores, { id: uuid(), chore, points, style: {borderColor: createRandomBackGroundColors()} }]);
     };
 
     const removeChore = (chore) => {
@@ -36,16 +44,8 @@ export function ChoresProvider({ children, addPoints }) {
         setChores(chores.filter((c) => c !== chore));
     };
 
-    const createRandomBackGroundColors = () => {
-      let x = Math.floor(Math.random() * 256);
-      let y = Math.floor(Math.random() * 256);
-      let z = Math.floor(Math.random() * 256);
-      let bgColor = "rgb(" + x + "," + y + "," + z + ")";
-      return bgColor;
-    };
-
     return (
-        <ChoresContext.Provider value={{ chores, addChore, removeChore, completeChore, createRandomBackGroundColors }}>
+        <ChoresContext.Provider value={{ chores, addChore, removeChore, completeChore }}>
             {children}
         </ChoresContext.Provider>
     );

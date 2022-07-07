@@ -11,7 +11,15 @@ function getInitialWishes() {
   return localStorage.getItem(localStorageKey)
     ? JSON.parse(localStorage.getItem(localStorageKey))
     : [];
-}
+};
+
+ const createRandomBackGroundColors = () => {
+   let x = Math.floor(Math.random() * 256);
+   let y = Math.floor(Math.random() * 256);
+   let z = Math.floor(Math.random() * 256);
+   let bgColor = "rgb(" + x + "," + y + "," + z + ")";
+   return bgColor;
+ };
 
 export function WishesProvider({ children }) {
     const { addToCartHandler } = useShopping();
@@ -19,7 +27,7 @@ export function WishesProvider({ children }) {
 
     const addWish = (title, points) => {
       toast.success(`${title} added to wish list!`);
-      setWishes([...wishes, { title, points, id: uuid() }]);
+      setWishes([...wishes, { title, points, id: uuid(), style: {borderColor: createRandomBackGroundColors()} }]);
     };
 
     const completeWish = (wish) => {
@@ -31,14 +39,6 @@ export function WishesProvider({ children }) {
     const removeWish = (wish) => {
       toast.error(`${wish.title} removed from wish list!`);
       setWishes(wishes.filter((i) => i !== wish));
-    };
-
-    const createRandomBackGroundColors = () => {
-      let x = Math.floor(Math.random() * 256);
-      let y = Math.floor(Math.random() * 256);
-      let z = Math.floor(Math.random() * 256);
-      let bgColor = "rgb(" + x + "," + y + "," + z + ")";
-      return bgColor;
     };
 
     useEffect(() => {
