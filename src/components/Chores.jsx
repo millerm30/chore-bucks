@@ -27,6 +27,7 @@ const Chores = () => {
              {chores.map((chore) => (
                <Card
                  key={uuid()}
+                 style={chore.style}
                  title={chore.title}
                  points={chore.points}
                  remove={<GoTrashcan onClick={() => removeChore(chore)} />}
