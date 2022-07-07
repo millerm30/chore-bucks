@@ -25,12 +25,13 @@ const Cart = ({ points }) => {
         {cart.length === 0 && (
           <p className="italic pt-4">No items added to your cart!</p>
         )}
-        {
-          <div className="w-full mx-auto mt-10">
+        {cart.length === 0 ? null : (
+        
+          <div className="w-4/5 mx-auto mt-10 pb-5 rounded-lg bg-white md:w-1/2 lg:w-1/3">
             {cart.map((wish) => (
               <div
                 key={uuid()}
-                className="container flex flex-col w-3/4 justify-between w-full items-center py-3 mx-auto border-b-2 border-gray-600 md:w-1/2 lg:w-1/3"
+                className="container flex flex-col w-4/5 justify-between w-full items-center py-3 mx-auto border-b-2 border-gray-600"
               >
                 <span className="container flex justify-between py-2">
                   <h2 className="text-left text-md">Wish: {wish.title}</h2>
@@ -47,11 +48,11 @@ const Cart = ({ points }) => {
               </div>
             ))}
           </div>
-        }
+        )}
           <div className="container flex flex-col justify-center w-3/4 items-center py-3 mx-auto md:w-1/2 lg:w-1/3">
             {cart.length === 0 ? (
               null ) : (
-            <span className="container flex justify-between">
+            <span className="container flex justify-between w-4/5">
               <h2 className="text-left text-md">Cart Total:</h2>
               <h2 className="text-md">💰 {cartTotal}</h2>
             </span>
