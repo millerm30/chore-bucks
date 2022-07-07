@@ -32,9 +32,6 @@ const Navigation = () => {
               <li className="nav-item px-2 hover:text-gray-700 uppercase">
                 <Link to="/chores">Chores</Link>
               </li>
-              <li className="nav-item px-2 hover:text-gray-700 uppercase">
-                <Link to="/choresadd">Add Chores</Link>
-              </li>
             </div>
             <div className="rightNavi flex ml-2 mr-2">
               <li className="nav-item px-2 hover:text-gray-700 uppercase">
