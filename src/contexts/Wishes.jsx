@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import toast from 'react-hot-toast';
-import { useShopping } from '../contexts/Shopping';
+import { useShopping } from './Shopping';
 
 const WishesContext = React.createContext();
 
