@@ -17,7 +17,7 @@ const WishList = () => {
       {
         <section className="grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-3 lg:grid-cols-4">
           {wishes.map((wish) => (
-            <Card key={uuid()} title={wish.title} points={wish.points} style={wish.style} remove={<GoTrashcan onClick={() => removeWish(wish)}/>}>
+            <Card key={wish.id} title={wish.title} points={wish.points} style={wish.style} remove={<GoTrashcan onClick={() => removeWish(wish)}/>}>
                 <button
                   onClick={() => completeWish(wish)}
                   className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg">

@@ -26,7 +26,7 @@ const Chores = () => {
            <section className="grid grid-cols-2 gap-5 mx-5 py-5 md:grid-cols-3 lg:grid-cols-4">
              {chores.map((chore) => (
                <Card
-                 key={uuid()}
+                 key={chore.id}
                  style={chore.style}
                  title={chore.title}
                  points={chore.points}
