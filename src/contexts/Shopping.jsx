@@ -28,7 +28,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
         setCart([]);
         toast.success("🎉 Purchase successful. Great job! 🎉");
         } else {
-        toast.error("Not enough points to purchase! Keep working on your chores!");
+        toast.error("👎 Not enough points to purchase! Keep working on your chores! 😉");
         }
     };
 
