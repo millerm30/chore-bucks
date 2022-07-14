@@ -8,7 +8,7 @@ import Scroll from "./Scroll";
 
 const Layout = ({ points }) => {
   const [show, setShow] = useState(false);
-  // if scrollY > 100, show the scroll to top button
+  
   const handleScroll = () => {
     if (window.scrollY > 100) {
       setShow(true);

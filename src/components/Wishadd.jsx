@@ -26,7 +26,7 @@ const WishAdd = ({ addWish }) => {
           maxLength="100"
           required
           placeholder="Enter your wish item..."
-          className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-full mb-2"
+          className="rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2"
         >
         </input>
         <label className="text-left">Add Point Value:</label>
@@ -37,7 +37,7 @@ const WishAdd = ({ addWish }) => {
           min="0"
           required
           placeholder="Enter point value..."
-          className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-1/2"
+          className="rounded-md py-2 px-2 border border-blue-700 outline-none w-1/2"
         >
         </input>
         <button

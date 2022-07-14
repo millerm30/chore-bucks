@@ -115,7 +115,7 @@ export default function MyModal() {
                           value={chore}
                           name="chores"
                           onChange={handleChoresChange}
-                          className="rounded-md py-2 border mb-2 border-blue-700 rounded outline-none"
+                          className="rounded-md py-2 border mb-2 border-blue-700 outline-none"
                         >
                           {choresList.map((choice) => (
                             <option key={choice.id} value={choice.value}>
@@ -134,7 +134,7 @@ export default function MyModal() {
                           value={point}
                           name="chores"
                           onChange={handlePointChange}
-                          className="rounded-md p-2 border border-blue-700 rounded outline-none w-1/2"
+                          className="rounded-md p-2 border border-blue-700 outline-none w-1/2"
                         ></input>
                         <button
                           type="submit"
@@ -163,7 +163,7 @@ export default function MyModal() {
                               placeholder="Enter new chore..."
                               name="choresNew"
                               onChange={(e) => setLabel(e.target.value)}
-                              className="rounded-md py-2 px-2 border border-blue-700 rounded outline-none w-full mb-2"
+                              className="rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2"
                             ></input>
                             <button
                               type="submit"

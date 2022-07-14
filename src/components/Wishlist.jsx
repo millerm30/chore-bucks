@@ -2,7 +2,6 @@ import React from "react";
 import Wishadd from "./Wishadd";
 import { GoTrashcan } from "react-icons/go";
 import { useWishes } from "../contexts/Wishes";
-import { v4 as uuid } from "uuid";
 import Card from "./Card";
 
 const WishList = () => {
@@ -20,7 +19,7 @@ const WishList = () => {
             <Card key={wish.id} title={wish.title} points={wish.points} style={wish.style} remove={<GoTrashcan onClick={() => removeWish(wish)}/>}>
                 <button
                   onClick={() => completeWish(wish)}
-                  className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg">
+                  className="bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg">
                   Complete
                 </button>
             </Card>

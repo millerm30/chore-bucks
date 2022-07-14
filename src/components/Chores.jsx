@@ -3,7 +3,6 @@ import { useChores } from "../contexts/Chores";
 import { GoTrashcan } from "react-icons/go";
 import Card from "./Card";
 import ChoresAddModal from "./ChoresAddModal";
-import { v4 as uuid } from "uuid";
 
 const Chores = () => {
 
