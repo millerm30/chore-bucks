@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export const Card = ({title, points, style, remove, children}) => {
   return (
@@ -12,11 +12,9 @@ export const Card = ({title, points, style, remove, children}) => {
         <span className="mx-auto">
           {children}
         </span>
-      
       </div>
     </div>
-    
   )
-}
+};
 
-export default Card
+export default Card;
