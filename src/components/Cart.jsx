@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useShopping } from "../contexts/Shopping";
-import { v4 as uuid } from "uuid";
 import { GoTrashcan } from "react-icons/go";
 
 const CartItem = ({ wish, removeFromCartHandler }) => (
   <div
     key={wish.id}
-    className="container flex flex-col w-4/5 justify-between w-full items-center py-3 mx-auto border-b-2 border-gray-600"
+    className="container flex flex-col w-4/5 justify-between items-center py-3 mx-auto border-b-2 border-gray-600"
   >
     <span className="container flex justify-between py-2">
       <h2 className="text-left text-md">Wish: {wish.title}</h2>
@@ -17,8 +16,9 @@ const CartItem = ({ wish, removeFromCartHandler }) => (
         <GoTrashcan />
       </button>
     </span>
-    <span className="container flex justify-between my-auto mt-0">
+    <span className="container flex justify-between my-auto mt-0">      
       <span>
+        {/*}
         <label htmlFor="wishQuantity">Quantity:</label>
         <select
           name="wishQuantity"
@@ -30,7 +30,8 @@ const CartItem = ({ wish, removeFromCartHandler }) => (
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-      </span>
+        */}
+      </span> 
       <h2 className="text-md">ChoreBucks: 💰{wish.points}</h2>
     </span>
   </div>
