@@ -1,11 +1,12 @@
+/* eslint-disable no-restricted-globals */
 import React from "react";
 import { useChores } from "../contexts/Chores";
 import { GoTrashcan } from "react-icons/go";
 import Card from "./Card";
-import ChoresAddModal from "./ChoresAddModal";
+import { Link, useLocation, Outlet } from "react-router-dom";
 
 const Chores = () => {
-
+  const location = useLocation();
   const {chores, removeChore, completeChore} = useChores();
 
    return (
@@ -15,7 +16,8 @@ const Chores = () => {
          <p className="mb-5">Complete chores to build points!</p>
        </section>
        <section>
-          <ChoresAddModal />
+          <Link to="/choresadd" className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg" state={{ background: location }}>Add Chores</Link>
+          <Outlet />
        </section>
        <section className="choresArea">
          {chores.length === 0 && (

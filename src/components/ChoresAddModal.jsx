@@ -4,6 +4,7 @@ import choresChoices from "./Chorelist";
 import toast from "react-hot-toast";
 import { v4 as uuid } from 'uuid';
 import { Dialog, Transition } from '@headlessui/react'
+import { useNavigate } from "react-router";
 
 const getInitialNewChoresLocalStorage = () => {
   const temp = localStorage.getItem("choresList");
@@ -14,9 +15,14 @@ const getInitialNewChoresLocalStorage = () => {
 };
 
 export default function MyModal() {
-  let [isOpen, setIsOpen] = useState(false)
+  let [isOpen, setIsOpen] = useState(true)
   const { addChore } = useChores();
   const [choresList, setChoresList] = useState(getInitialNewChoresLocalStorage);
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate("/chores");
+  };
 
   const [chore, setChore] = useState("");
   const [point, setPoint] = useState("");
@@ -52,22 +58,9 @@ export default function MyModal() {
     setIsOpen(false)
   }
 
-  function openModal() {
-    setIsOpen(true)
-  }
-
   return (
     <>
-      <div className="inset-0 flex items-center justify-center">
-        <button
-          type="button"
-          onClick={openModal}
-          className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"
-        >
-          Add Chores
-        </button>
-      </div>
-
+      <main className="bg-blue-300">
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -182,7 +175,7 @@ export default function MyModal() {
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
+                      onClick={goBack}
                     >
                       Close
                     </button>
@@ -193,6 +186,7 @@ export default function MyModal() {
           </div>
         </Dialog>
       </Transition>
+      </main>
     </>
   )
 }

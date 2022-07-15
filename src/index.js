@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "./index.css";
 import "tw-elements";
 import Layout from "./components/Layout";
 import HeroPage from "./components/Hero";
 import ChoresPage from "./components/Chores";
 import WishlistPage from "./components/Wishlist";
+import ModalAdd from "./components/ChoresAddModal";
 import App from "./App";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
@@ -40,6 +41,7 @@ return(
         <Route path="/" element={<Layout points={points}/>}>
           <Route path="" element={<HeroPage />} />
           <Route path="/chores" element={<ChoresPage />} />
+            <Route path="/choresadd" element={<ModalAdd />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/cart" element={<Cart points={points}/>} />
         </Route>
