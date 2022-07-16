@@ -20,7 +20,7 @@ const WishList = () => {
                 <button
                   onClick={() => completeWish(wish)}
                   className="bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg">
-                  Complete
+                  Add To Cart
                 </button>
             </Card>
           ))}
