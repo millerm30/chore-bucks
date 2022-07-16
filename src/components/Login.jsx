@@ -17,7 +17,8 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleChangeEye = () => {
+  const handleChangeEye = (e) => {
+    e.preventDefault();
     setShowPassword(!showPassword);
   };
 
