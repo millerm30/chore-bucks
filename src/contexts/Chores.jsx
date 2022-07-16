@@ -1,6 +1,9 @@
 import React, {useContext, useState, useEffect} from "react";
 import toast from "react-hot-toast";
 import { v4 as uuid } from "uuid";
+import tada from "../sounds/tada.mp3"
+import success from "../sounds/success.mp3";
+import failure from "../sounds/failure.mp3";
 
 const ChoresContext = React.createContext();
 
@@ -21,22 +24,29 @@ const createRandomBackGroundColors = () => {
 export function ChoresProvider({ children, addPoints}) {
     const [chores, setChores] = useState(getInitialChores);
 
+    let audioAddChore = new Audio(success);
+    let audioSuccess = new Audio(tada);
+    let audioFailure = new Audio(failure);
+
     useEffect(() => {
         const temp = JSON.stringify(chores)
         localStorage.setItem("chores", temp)
     },[chores]);
 
     const addChore = (title, points) => {
+        audioAddChore.play();
         toast.success(`${title} added to chores list!`);
         setChores([...chores, { id: uuid(), title, points, style: {borderColor: createRandomBackGroundColors()} }]);
     };
 
     const removeChore = (chore) => {
+        audioFailure.play();
         toast.error(`${chore.title} removed from chores list!`);
         setChores(chores.filter((c) => c !== chore));
     };
 
     const completeChore = (chore) => {
+        audioSuccess.play();
         toast(`${chore.title} Completed. Good Job!`, {
             icon: "👏"
         });

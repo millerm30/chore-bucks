@@ -2,6 +2,9 @@ import React, { useContext, useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import toast from 'react-hot-toast';
 import { useShopping } from './Shopping';
+import boing from '../sounds/boing.mp3';
+import negative from '../sounds/negative.mp3';
+import yay from '../sounds/yay.mp3';
 
 const WishesContext = React.createContext();
 
@@ -25,18 +28,25 @@ export function WishesProvider({ children }) {
     const { addToCartHandler } = useShopping();
     const [wishes, setWishes] = useState(getInitialWishes);
 
+    let audioAddWish = new Audio(boing);
+    let audioFailure = new Audio(negative);
+    let audioSuccess = new Audio(yay);
+
     const addWish = (title, points) => {
+      audioAddWish.play();
       toast.success(`${title} added to wish list!`);
       setWishes([...wishes, { title, points, id: uuid(), style: {borderColor: createRandomBackGroundColors()} }]);
     };
 
     const completeWish = (wish) => {
-        addToCartHandler(wish.title, wish.points);
-        setWishes(wishes.filter((i) => i.id !== wish.id));
-        toast.success(`${wish.title} added to shopping cart! 🚀`);
+      audioSuccess.play();
+      addToCartHandler(wish.title, wish.points);
+      setWishes(wishes.filter((i) => i.id !== wish.id));
+      toast.success(`${wish.title} added to shopping cart! 🚀`);
     };
 
     const removeWish = (wish) => {
+      audioFailure.play();
       toast.error(`${wish.title} removed from wish list!`);
       setWishes(wishes.filter((i) => i !== wish));
     };
