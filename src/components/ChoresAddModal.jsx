@@ -57,132 +57,140 @@ export default function MyModal() {
   return (
     <>
       <main className="bg-blue-300">
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={() => null}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
+        <Transition appear show={isOpen} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={() => null}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-blue-300 p-6 text-left align-middle shadow-xl transition-all">
-                  <main className="text-center bg-blue-300">
-                    <section className="pt-2">
-                      <h2 className="text-3xl font-semibold py-1">
-                        🙂 Add chores! 🚀
-                      </h2>
-                      <p className="text-center">
-                        Add your chores below to start earning points!
-                      </p>
-                    </section>
-                    <section className="pt-5">
-                      <form
-                        onSubmit={handleSubmit}
-                        className="flex flex-col w-full mx-auto"
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center p-4 text-center">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-blue-300 p-6 text-left align-middle shadow-xl transition-all">
+                    <main className="text-center bg-blue-300">
+                      <section className="pt-2">
+                        <h2 className="text-3xl font-semibold py-1">
+                          🙂 Add chores! 🚀
+                        </h2>
+                        <p className="text-center">
+                          Add your chores below to start earning points!
+                        </p>
+                      </section>
+                      <section className="pt-5">
+                        <form
+                          onSubmit={handleSubmit}
+                          className="flex flex-col w-full mx-auto"
+                        >
+                          <label htmlFor="chores" className="mb-1 text-left">
+                            Choose your chore:{""}
+                          </label>
+                          <select
+                            value={chore}
+                            name="chores"
+                            onChange={handleChoresChange}
+                            className="rounded-md py-2 border mb-2 border-blue-700 outline-none"
+                          >
+                            {choresList.map((choice) => (
+                              <option key={choice.id} value={choice.value}>
+                                {choice.label}
+                              </option>
+                            ))}
+                          </select>
+                          <label htmlFor="chores" className="mb-1 text-left">
+                            Point value:
+                          </label>
+                          <input
+                            type="number"
+                            required
+                            min={0}
+                            placeholder="Enter point value..."
+                            value={point}
+                            name="chores"
+                            onChange={handlePointChange}
+                            className="rounded-md p-2 border border-blue-700 outline-none w-1/2"
+                          ></input>
+                          <button
+                            type="submit"
+                            disabled={!chore}
+                            className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
+                              !chore ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+                            }`}
+                          >
+                            Add Chore
+                          </button>
+                        </form>
+                      </section>
+                      <section className="pb-5">
+                        <div>
+                          <div className="pt-5">
+                            <h2 className="text-xl font-semibold p-1">
+                              Don't see your chore above? <br></br>Add it
+                              yourself!
+                            </h2>
+                          </div>
+                          <div className="pt-2">
+                            <form className="flex flex-col w-full mx-auto">
+                              <label
+                                htmlFor="choresNew"
+                                className="mb-1 text-left"
+                              >
+                                Add new chore:
+                              </label>
+                              <input
+                                value={label}
+                                maxLength="100"
+                                placeholder="Enter new chore..."
+                                name="choresNew"
+                                onChange={(e) => setLabel(e.target.value)}
+                                className="rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2"
+                              ></input>
+                              <button
+                                type="submit"
+                                disabled={!label}
+                                onClick={handleNewChore}
+                                className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
+                                  !label ? "opacity-50 cursor-not-allowed" : "cursor-pointer" 
+                                }`}
+                              >
+                                Add New Chore
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </section>
+                    </main>
+                    <div className="mt-4">
+                      <button
+                        type="button"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        onClick={goBack}
                       >
-                        <label htmlFor="chores" className="mb-1 text-left">
-                          Choose your chore:{""}
-                        </label>
-                        <select
-                          value={chore}
-                          name="chores"
-                          onChange={handleChoresChange}
-                          className="rounded-md py-2 border mb-2 border-blue-700 outline-none"
-                        >
-                          {choresList.map((choice) => (
-                            <option key={choice.id} value={choice.value}>
-                              {choice.label}
-                            </option>
-                          ))}
-                        </select>
-                        <label htmlFor="chores" className="mb-1 text-left">
-                          Point value:
-                        </label>
-                        <input
-                          type="number"
-                          required
-                          min={0}
-                          placeholder="Enter point value..."
-                          value={point}
-                          name="chores"
-                          onChange={handlePointChange}
-                          className="rounded-md p-2 border border-blue-700 outline-none w-1/2"
-                        ></input>
-                        <button
-                          type="submit"
-                          disabled={!chore}
-                          className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"
-                        >
-                          Add Chore
-                        </button>
-                      </form>
-                    </section>
-                    <section className="pb-5">
-                      <div>
-                        <div className="pt-5">
-                          <h2 className="text-xl font-semibold p-1">
-                            Don't see your chore above? <br></br>Add it yourself!
-                          </h2>
-                        </div>
-                        <div className="pt-2">
-                          <form className="flex flex-col w-full mx-auto">
-                            <label htmlFor="choresNew" className="mb-1 text-left">
-                              Add new chore:
-                            </label>
-                            <input
-                              value={label}
-                              maxLength="100"
-                              placeholder="Enter new chore..."
-                              name="choresNew"
-                              onChange={(e) => setLabel(e.target.value)}
-                              className="rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2"
-                            ></input>
-                            <button
-                              type="submit"
-                              disabled={!label}
-                              onClick={handleNewChore}
-                              className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"
-                            >
-                              Add New Chore
-                            </button>
-                          </form>
-                        </div>
-                      </div>
-                    </section>
-                  </main>
-                  <div className="mt-4">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={goBack}
-                    >
-                      Close
-                    </button>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
+                        Close
+                      </button>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
             </div>
-          </div>
-        </Dialog>
-      </Transition>
+          </Dialog>
+        </Transition>
       </main>
     </>
-  )
+  );
 }

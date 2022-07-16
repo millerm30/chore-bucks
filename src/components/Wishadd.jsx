@@ -43,8 +43,10 @@ const WishAdd = ({ addWish }) => {
         <button
           type="submit"
           disabled={!title || !points}
+          className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
+            !title || !points ? "opacity-40 cursor-not-allowed" : "cursor-pointer"
+          }`}
           value="add wish"
-          className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"
         >
           Add Wish Item
         </button>

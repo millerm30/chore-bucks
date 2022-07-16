@@ -79,7 +79,9 @@ const Cart = ({ points }) => {
           <button
             disabled={cart.length === 0}
             onClick={purchaseCartHandler}
-            className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"
+            className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
+              cart.length === 0 ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+            }`}
           >
             Purchase
           </button>
