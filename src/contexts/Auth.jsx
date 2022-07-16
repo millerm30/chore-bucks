@@ -1,23 +1,31 @@
 import React, { useContext, useState, useEffect } from "react";
-import { v4 as uuid } from "uuid";
 
 const UserContext = React.createContext();
 
-function getInitialUsersLocalStorage() {
-  const temp = localStorage.getItem("users");
-  const savedUsers = JSON.parse(temp);
-  return savedUsers || [];
+const userList = {
+   "Guest": {
+    displayName: "Guest",
+    password: "guest",
+   } 
+};
+ 
+const getUsers = () => {
+    const users = localStorage.getItem("users");
+    if (userList) {
+        return JSON.parse(users);
+    }
+    return userList;
 };
 
 export function UserProvider({ children }) {
-    const [users, setUsers] = useState(getInitialUsersLocalStorage);
+    const [users, setUsers] = useState(getUsers);
 
     const signInGuestUser = () => {
-        alert ("This feature is on the way! Chceck back soon!");
+        alert("This feature is on the way! Chceck back soon!");
     };
 
     useEffect(() => {
-        const temp = JSON.stringify(users, "username: guest, password: guest");
+        const temp = JSON.stringify(userList);
         localStorage.setItem("users", temp)
     },[users]);
 
