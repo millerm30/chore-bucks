@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/chore-bucks/static/css/main.fae8ed9b.css",
-    "main.js": "/chore-bucks/static/js/main.ac2dc754.js",
+    "main.css": "/chore-bucks/static/css/main.8b4ed424.css",
+    "main.js": "/chore-bucks/static/js/main.36b4b06e.js",
     "static/media/purchase.mp3": "/chore-bucks/static/media/purchase.c200e530c68e3e64a443.mp3",
     "static/media/remove.mp3": "/chore-bucks/static/media/remove.a1bb4a5522a99eb23e04.mp3",
     "static/media/boing.mp3": "/chore-bucks/static/media/boing.2f61125919951d7a337e.mp3",
@@ -13,11 +13,11 @@
     "static/media/tada.mp3": "/chore-bucks/static/media/tada.b7cef2c4108f467d6eff.mp3",
     "index.html": "/chore-bucks/index.html",
     "static/media/wave.svg": "/chore-bucks/static/media/wave.105e4dc8436087dd50d8.svg",
-    "main.fae8ed9b.css.map": "/chore-bucks/static/css/main.fae8ed9b.css.map",
-    "main.ac2dc754.js.map": "/chore-bucks/static/js/main.ac2dc754.js.map"
+    "main.8b4ed424.css.map": "/chore-bucks/static/css/main.8b4ed424.css.map",
+    "main.36b4b06e.js.map": "/chore-bucks/static/js/main.36b4b06e.js.map"
   },
   "entrypoints": [
-    "static/css/main.fae8ed9b.css",
-    "static/js/main.ac2dc754.js"
+    "static/css/main.8b4ed424.css",
+    "static/js/main.36b4b06e.js"
   ]
 }
