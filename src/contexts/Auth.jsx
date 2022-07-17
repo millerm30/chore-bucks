@@ -1,39 +1,69 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast"
 
 const UserContext = React.createContext();
 
-const userList = {
-   "Guest": {
+const users = {
+  "Guest": {
     displayName: "Guest",
-    password: "guest",
-   } 
+    password: "Guest",
+  },
 };
- 
-const getUsers = () => {
-    const users = localStorage.getItem("users");
-    if (userList) {
-        return JSON.parse(users);
+
+function getLoggedInUser() {
+  const user = localStorage.getItem("user");
+
+  if (user === null) {
+    return undefined;
+  } else {
+    return JSON.parse(user);
+  }
+};
+
+const useAuth = () => {
+  const [user, setUser] = useState(getLoggedInUser);
+  
+
+  const login = (username, password) => {
+    const user = users[username];
+
+    if (!user) {
+      toast("User not found", {
+        icon: "💩",
+      });
+      return;
     }
-    return userList;
+
+    const passwordCorrect = user.password === password;
+
+    if (!passwordCorrect) {
+      toast("Password is incorrect", {
+        icon: "🤨",
+      });
+      return;
+    }
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+    window.location.pathname = "/chore-bucks";
+  };
+  return [ user, login ];
+};
+
+const handleLogOut = () => {
+  localStorage.removeItem("user");
+  window.location.pathname = "/chore-bucks";
 };
 
 export function UserProvider({ children }) {
-    const [users, setUsers] = useState(getUsers);
+  const [user, login] = useAuth();
 
-    const signInGuestUser = () => {
-        alert("This feature is on the way! Chceck back soon!");
-    };
-
-    useEffect(() => {
-        const temp = JSON.stringify(userList);
-        localStorage.setItem("users", temp)
-    },[users]);
-
-    return (
-        <UserContext.Provider value={{ users, signInGuestUser }}>
-        {children}
-        </UserContext.Provider>
-    );
-    }
+  return (
+    <UserContext.Provider value={{ user, login, handleLogOut }}>
+      {children}
+      <Toaster />
+    </UserContext.Provider>
+  );
+};
 
 export const useUser = () => useContext(UserContext);

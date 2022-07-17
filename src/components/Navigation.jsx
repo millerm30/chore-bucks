@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { Squash as Hamburger } from 'hamburger-react';
+import { useUser } from "../contexts/Auth";
 
 const Navigation = () => {
   const [nav, setNav] = useState(false);
   const handleNav = () => setNav(!nav);
+  const { handleLogOut } = useUser();
 
   return (
     <nav className="navbarContainer">
@@ -33,9 +35,12 @@ const Navigation = () => {
                 <Link to="/chores">Chores</Link>
               </li>
             </div>
-            <div className="rightNavi flex ml-2 mr-2">
+            <div className="rightNavi ml-2 mr-2 flex flex-col sm:flex-row">
               <li className="nav-item px-2 hover:text-gray-700 uppercase">
                 <Link to="/wishlist">Wishlist</Link>
+              </li>
+              <li className="nav-item px-2 hover:text-gray-700 uppercase cursor-pointer">
+                <p onClick={handleLogOut}>Logout</p>
               </li>
             </div>
           </ul>

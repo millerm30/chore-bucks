@@ -5,7 +5,7 @@ const Hero = () => {
     <main className="text-center bg-hero-pattern bg-no-repeat bg-center bg-cover bg-blue-300 flex flex-col items-center justify-start">
       <section>
         <h2 className="text-3xl p-1 mt-5 mb-5 font-bold">
-          Kids earn points for completing their chores!
+          Kids earn points for completing chores!
         </h2>
       </section>
       <section>
@@ -13,7 +13,7 @@ const Hero = () => {
           Complete your chores to add points to your bank!
         </h4>
         <p className="p-1">
-          Points earned can be used towards your wishlist items.
+          Points earned can be used towards wishlist items.
         </p>
       </section>
     </main>

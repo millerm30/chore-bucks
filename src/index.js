@@ -22,22 +22,51 @@ function getBucksFromLocalStorage() {
   return 0;
 };
 
+function getLoggedInUser() {
+  const user = localStorage.getItem("user");
+
+  if (user === null) {
+    return undefined;
+  } else {
+    return JSON.parse(user);
+  }
+};
+
 const Main = () => {
   const [points, setPoints] = useState(() => getBucksFromLocalStorage());
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const user = getLoggedInUser();
+    if (user) {
+      return true;
+    }
+    return false;
+  }
+  );
+
+  useEffect(() => {
+    setIsLoggedIn(() => {
+      const user = getLoggedInUser();
+      if (user) {
+        return true;
+      }
+      return false;
+    }
+    );
+  }, [setIsLoggedIn]);
 
   const addPoints = (amount) => setPoints(points + amount);
   const removePoints = (amount) => setPoints(points - amount);
-  const isLoggedIn = true;
 
   useEffect(() => {
     localStorage.setItem("points", points);
   } , [points]);
 
 return(
+  
   <App points={points} addPoints={addPoints} removePoints={removePoints}>
     <BrowserRouter basename="/chore-bucks">
       <Routes>
-        {isLoggedIn ? (
+        {isLoggedIn ? ( 
         <Route path="/" element={<Layout points={points}/>}>
           <Route path="" element={<HeroPage />} />
           <Route path="/chores" element={<ChoresPage />} />
@@ -46,7 +75,7 @@ return(
           <Route path="/cart" element={<Cart points={points}/>} />
         </Route>
         ) : (
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login isLoggedIn={isLoggedIn}/>} />
         )}
       </Routes>
     </BrowserRouter>

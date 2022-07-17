@@ -4,13 +4,13 @@ import AppLogo from "../assets/appLogo.png";
 import { useUser } from "../contexts/Auth"
 
 const Login = () => {
-  const { signInGuestUser } = useUser();
+  const { login } = useUser();
   const [showPassword, setShowPassword] = useState(false);
-  const [user, setUser] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleUserChange = (e) => {
-    setUser(e.target.value);
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -24,9 +24,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signInGuestUser();
-    setUser("");
-    setPassword("");
+    login(username, password)
   };
 
   return (
@@ -39,7 +37,7 @@ const Login = () => {
         </h1>
       </div>
       <div className="flex flex-col items-center justify-around h-screen">
-        <form className=" w-3/4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:w-1/2 lg:w-1/3">
+        <form className=" w-3/4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:w-1/2 lg:w-1/3" onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
               htmlFor="username"
@@ -48,8 +46,9 @@ const Login = () => {
               Username
             </label>
             <input
-              value={user}
-              onChange={handleUserChange}
+              onChange={handleUsernameChange}
+              value={username}
+              name="userName"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"
@@ -72,8 +71,9 @@ const Login = () => {
               </button>
             </div>
             <input
-              value={password}
               onChange={handlePasswordChange}
+              value={password}
+              name="password"
               className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type={showPassword ? "text" : "password"}
@@ -83,21 +83,16 @@ const Login = () => {
               Please choose a password.
             </p>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col">
             <button
-              disabled={!user || !password}
-              onClick={handleSubmit}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button"
+              disabled={!username || !password}
+              className={`bg-blue-900 my-4 self-start px-4 py-2 text-white font-bold rounded-lg ${
+                !username || !password ? "opacity-40 cursor-not-allowed" : "cursor-pointer"
+              }`}
             >
               Sign In
             </button>
-            <a
-              className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-              href="#"
-            >
-              Forgot Password?
-            </a>
+            <p className='text-xs mt-2 text-center'>To login please use Guest as your username and password!</p>
           </div>
         </form>
         <p className="text-center text-black-500 text-xs">
