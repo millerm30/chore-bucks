@@ -79,14 +79,11 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
               placeholder="******************"
             />
-            <p className="text-red-500 text-xs italic">
-              Please choose a password.
-            </p>
           </div>
           <div className="flex flex-col">
             <button
               disabled={!username || !password}
-              className={`bg-blue-900 my-4 self-start px-4 py-2 text-white font-bold rounded-lg ${
+              className={`bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg ${
                 !username || !password ? "opacity-40 cursor-not-allowed" : "cursor-pointer"
               }`}
             >
