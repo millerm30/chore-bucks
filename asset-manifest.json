@@ -1,23 +1,22 @@
 {
   "files": {
     "main.css": "/chore-bucks/static/css/main.b06e0957.css",
-    "main.js": "/chore-bucks/static/js/main.f2aad86d.js",
+    "main.js": "/chore-bucks/static/js/main.1d8ba72f.js",
     "static/media/purchase.mp3": "/chore-bucks/static/media/purchase.c200e530c68e3e64a443.mp3",
     "static/media/remove.mp3": "/chore-bucks/static/media/remove.a1bb4a5522a99eb23e04.mp3",
-    "static/media/boing.mp3": "/chore-bucks/static/media/boing.2f61125919951d7a337e.mp3",
     "static/media/failure.mp3": "/chore-bucks/static/media/failure.7b134939934153701fac.mp3",
     "static/media/success.mp3": "/chore-bucks/static/media/success.a2774fd0d75bdfeed2da.mp3",
-    "static/media/negative.mp3": "/chore-bucks/static/media/negative.6b2eb1aa1ffcec110107.mp3",
     "static/media/nomoney.mp3": "/chore-bucks/static/media/nomoney.6b2eb1aa1ffcec110107.mp3",
     "static/media/yay.mp3": "/chore-bucks/static/media/yay.df9f2edf8def2f6773ea.mp3",
     "static/media/tada.mp3": "/chore-bucks/static/media/tada.b7cef2c4108f467d6eff.mp3",
+    "static/media/icqdelete.mp3": "/chore-bucks/static/media/icqdelete.794c891425fbe7ca29a4.mp3",
     "index.html": "/chore-bucks/index.html",
     "static/media/wave.svg": "/chore-bucks/static/media/wave.105e4dc8436087dd50d8.svg",
     "main.b06e0957.css.map": "/chore-bucks/static/css/main.b06e0957.css.map",
-    "main.f2aad86d.js.map": "/chore-bucks/static/js/main.f2aad86d.js.map"
+    "main.1d8ba72f.js.map": "/chore-bucks/static/js/main.1d8ba72f.js.map"
   },
   "entrypoints": [
     "static/css/main.b06e0957.css",
-    "static/js/main.f2aad86d.js"
+    "static/js/main.1d8ba72f.js"
   ]
 }
