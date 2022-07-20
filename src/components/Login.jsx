@@ -29,10 +29,10 @@ const Login = () => {
 
   return (
     <div className="bg-blue-100">
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-2">
         <img src={AppLogo} alt="" className="w-16 md:block" />
         <h1 className="self-center">
-          <span className="text-3xl text-blue-800 font-bold">Chore</span>
+          <span className="text-4xl text-blue-800 font-bold">Chore</span>
           <span className="text-3xl text-green-800 font-bold">Bucks</span>
         </h1>
       </div>
@@ -57,18 +57,23 @@ const Login = () => {
           </div>
           <div className="mb-6">
             <div className="flex justify-between">
-              <label
-                htmlFor="password"
-                className="block text-gray-700 text-sm font-bold mb-2"
-              >
-                Password
-              </label>
-              <button
-                onClick={handleChangeEye}
-                className="text-gray-700 text-2xl cursor-pointer"
-              >
-                {!showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-              </button>
+              <span>
+                <label
+                  htmlFor="password"
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                >
+                  Password
+                </label>
+              </span>
+              <span className="flex items-start">
+                <button
+                  onClick={handleChangeEye}
+                  className="text-gray-700 text-2xl cursor-pointer mr-1"
+                >
+                  {!showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />} 
+                </button>
+                  {!showPassword ? "show" : "hide"}
+              </span>
             </div>
             <input
               onChange={handlePasswordChange}
