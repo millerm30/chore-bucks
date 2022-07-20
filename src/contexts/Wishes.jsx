@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import toast from 'react-hot-toast';
 import { useShopping } from './Shopping';
-import boing from '../sounds/boing.mp3';
-import negative from '../sounds/negative.mp3';
+import success from "../sounds/success.mp3";
+import negative from '../sounds/icqdelete.mp3';
 import yay from '../sounds/yay.mp3';
 
 const WishesContext = React.createContext();
@@ -28,7 +28,7 @@ export function WishesProvider({ children }) {
     const { addToCartHandler } = useShopping();
     const [wishes, setWishes] = useState(getInitialWishes);
 
-    let audioAddWish = new Audio(boing);
+    let audioAddWish = new Audio(success);
     let audioFailure = new Audio(negative);
     let audioSuccess = new Audio(yay);
 
