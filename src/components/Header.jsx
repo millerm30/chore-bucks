@@ -25,7 +25,8 @@ const Header = ({ points }) => {
           </span>  
         </div>
       </div>
-      <div className="self-end mr-4">
+      <div className="flex flex-row self-end mr-4">
+        <h2>Welcome!</h2>
         <h2 className="ml-1">{user.displayName}</h2>
       </div>
     </header>

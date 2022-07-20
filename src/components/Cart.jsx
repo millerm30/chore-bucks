@@ -18,7 +18,7 @@ const CartItem = ({ wish, removeFromCartHandler }) => (
     </span>
     <span className="container flex justify-between my-auto mt-0">      
       <span>
-        {/*}
+        {/*
         <label htmlFor="wishQuantity">Quantity:</label>
         <select
           name="wishQuantity"

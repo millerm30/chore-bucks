@@ -32,8 +32,8 @@ const Login = () => {
       <div className="flex justify-center pt-2">
         <img src={AppLogo} alt="" className="w-16 md:block" />
         <h1 className="self-center">
-          <span className="text-4xl text-blue-800 font-bold">Chore</span>
-          <span className="text-3xl text-green-800 font-bold">Bucks</span>
+          <span className="text-5xl text-blue-800 font-bold">Chore</span>
+          <span className="text-4xl text-green-800 font-bold">Bucks</span>
         </h1>
       </div>
       <div className="flex flex-col items-center justify-around h-screen">
