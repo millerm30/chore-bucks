@@ -1,6 +1,7 @@
 import React from "react";
 import { useShopping } from "../contexts/Shopping";
 import { GoTrashcan } from "react-icons/go";
+import { motion } from "framer-motion";
 
 const CartItem = ({ wish, removeFromCartHandler }) => (
   <div
@@ -56,15 +57,19 @@ const Cart = ({ points }) => {
               <h2 className="text-md">💰 {cartTotal}</h2>
             </span>
           )}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             disabled={cart.length === 0}
             onClick={purchaseCartHandler}
             className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
-              cart.length === 0 ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+              cart.length === 0
+                ? "opacity-50 cursor-not-allowed"
+                : "cursor-pointer"
             }`}
           >
             Purchase
-          </button>
+          </motion.button>
         </div>
       </section>
     </main>

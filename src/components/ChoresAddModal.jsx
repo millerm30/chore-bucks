@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { v4 as uuid } from 'uuid';
 import { Dialog, Transition } from '@headlessui/react'
 import { useNavigate } from "react-router";
+import { motion } from "framer-motion";
 
 const getInitialNewChoresLocalStorage = () => {
   const temp = localStorage.getItem("choresList");
@@ -125,15 +126,19 @@ export default function MyModal() {
                             onChange={handlePointChange}
                             className="rounded-md p-2 border border-blue-700 outline-none w-1/2"
                           ></input>
-                          <button
+                          <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
                             type="submit"
                             disabled={!chore}
                             className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
-                              !chore ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+                              !chore
+                                ? "opacity-50 cursor-not-allowed"
+                                : "cursor-pointer"
                             }`}
                           >
                             Add Chore
-                          </button>
+                          </motion.button>
                         </form>
                       </section>
                       <section className="pb-5">
@@ -160,29 +165,35 @@ export default function MyModal() {
                                 onChange={(e) => setLabel(e.target.value)}
                                 className="rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2"
                               ></input>
-                              <button
+                              <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
                                 type="submit"
                                 disabled={!label}
                                 onClick={handleNewChore}
                                 className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
-                                  !label ? "opacity-50 cursor-not-allowed" : "cursor-pointer" 
+                                  !label
+                                    ? "opacity-50 cursor-not-allowed"
+                                    : "cursor-pointer"
                                 }`}
                               >
                                 Add New Chore
-                              </button>
+                              </motion.button>
                             </form>
                           </div>
                         </div>
                       </section>
                     </main>
                     <div className="mt-2">
-                      <button
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                         type="button"
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                         onClick={goBack}
                       >
                         Close
-                      </button>
+                      </motion.button>
                     </div>
                   </Dialog.Panel>
                 </Transition.Child>

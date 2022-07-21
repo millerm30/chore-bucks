@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const WishAdd = ({ addWish }) => {
   const [title, setTitle] = useState("");
@@ -40,7 +41,9 @@ const WishAdd = ({ addWish }) => {
           className="rounded-md py-2 px-2 border border-blue-700 outline-none w-1/2"
         >
         </input>
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           type="submit"
           disabled={!title || !points}
           className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
@@ -49,7 +52,7 @@ const WishAdd = ({ addWish }) => {
           value="add wish"
         >
           Add Wish Item
-        </button>
+        </motion.button>
       </form>
     </section>
   );
