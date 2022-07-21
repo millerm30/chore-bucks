@@ -13,12 +13,13 @@ function getInitalCart() {
     : [];
 };
 
+let audioRemove = new Audio(remove);
+let audioPurchase = new Audio(purchse);
+let audioNomoney = new Audio(nomoney);
+
 export function ShoppingProvider({ points, removePoints, children }) {
     const [cart , setCart] = useState(getInitalCart);
-
-    let audioRemove = new Audio(remove);
-    let audioPurchase = new Audio(purchse);
-    let audioNomoney = new Audio(nomoney);
+    const [cartTotal, setcartTotal] = useState(0);
     
     const addToCartHandler = (itemTitle, itemPoints) => {
         setCart([...cart, { title: itemTitle, points: itemPoints, id: uuid() }]);
@@ -44,10 +45,11 @@ export function ShoppingProvider({ points, removePoints, children }) {
 
     useEffect(() => {
         localStorage.setItem("cartList", JSON.stringify(cart));
-    }, [cart]);
+        setcartTotal(cart.reduce((acc, curr) => acc + curr.points, 0));
+    }, [cart, cartTotal]);
 
     return (
-        <ShoppingContext.Provider value={{ cart, addToCartHandler, removeFromCartHandler, purchaseCartHandler }}>
+        <ShoppingContext.Provider value={{ cart, addToCartHandler, removeFromCartHandler, purchaseCartHandler, cartTotal }}>
         {children}
         </ShoppingContext.Provider>
     );

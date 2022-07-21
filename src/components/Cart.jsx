@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useShopping } from "../contexts/Shopping";
 import { GoTrashcan } from "react-icons/go";
 
@@ -16,34 +16,14 @@ const CartItem = ({ wish, removeFromCartHandler }) => (
         <GoTrashcan />
       </button>
     </span>
-    <span className="container flex justify-between my-auto mt-0">      
-      <span>
-        {/*
-        <label htmlFor="wishQuantity">Quantity:</label>
-        <select
-          name="wishQuantity"
-          className="rounded-md border-2 border-gray-700 outline-none ml-2"
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        */}
-      </span> 
+    <span className="container flex justify-end my-auto mt-0">      
       <h2 className="text-md">ChoreBucks: 💰{wish.points}</h2>
     </span>
   </div>
 );
 
 const Cart = ({ points }) => {
-  const { cart, removeFromCartHandler, purchaseCartHandler } = useShopping();
-  const [cartTotal, setcartTotal] = useState(0);
-
-  useEffect(() => {
-    setcartTotal(cart.reduce((acc, curr) => acc + curr.points, 0));
-  }, [cart]);
+  const { cart, removeFromCartHandler, purchaseCartHandler, cartTotal } = useShopping();
 
   return (
     <main className="text-center bg-blue-300">
