@@ -6,9 +6,6 @@ import Card from "./Card";
 import { Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
-import addChoreSound from "../sounds/icqdelete.mp3";
-
-let addChoreAudio = new Audio(addChoreSound);
 
 const Chores = () => {
   const {chores, removeChore, completeChore} = useChores();
@@ -16,7 +13,6 @@ const Chores = () => {
   const navigate = useNavigate();
   const goToAddChoresLink = () => {
     navigate("/choresadd");
-    addChoreAudio.play();
   };
 
    return (
