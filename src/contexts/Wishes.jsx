@@ -16,21 +16,21 @@ function getInitialWishes() {
     : [];
 };
 
- const createRandomBackGroundColors = () => {
-   let x = Math.floor(Math.random() * 256);
-   let y = Math.floor(Math.random() * 256);
-   let z = Math.floor(Math.random() * 256);
-   let bgColor = "rgb(" + x + "," + y + "," + z + ")";
-   return bgColor;
- };
+const createRandomBackGroundColors = () => {
+  let x = Math.floor(Math.random() * 256);
+  let y = Math.floor(Math.random() * 256);
+  let z = Math.floor(Math.random() * 256);
+  let bgColor = "rgb(" + x + "," + y + "," + z + ")";
+  return bgColor;
+};
+
+let audioAddWish = new Audio(success);
+let audioFailure = new Audio(negative);
+let audioSuccess = new Audio(yay);
 
 export function WishesProvider({ children }) {
     const { addToCartHandler } = useShopping();
     const [wishes, setWishes] = useState(getInitialWishes);
-
-    let audioAddWish = new Audio(success);
-    let audioFailure = new Audio(negative);
-    let audioSuccess = new Audio(yay);
 
     const addWish = (title, points) => {
       audioAddWish.play();

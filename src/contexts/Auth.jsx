@@ -24,7 +24,6 @@ function getLoggedInUser() {
 const useAuth = () => {
   const [user, setUser] = useState(getLoggedInUser);
   
-
   const login = (username, password) => {
     const user = users[username];
 

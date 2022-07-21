@@ -11,8 +11,11 @@ import ModalAdd from "./components/ChoresAddModal";
 import App from "./App";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
+import loginSound from  "./sounds/login.mp3";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+let loginAudio = new Audio(loginSound);
 
 function getBucksFromLocalStorage() {
   const points = localStorage.getItem("points");
@@ -62,11 +65,10 @@ const Main = () => {
   } , [points]);
 
 return(
-  
   <App points={points} addPoints={addPoints} removePoints={removePoints}>
     <BrowserRouter basename="/chore-bucks">
       <Routes>
-        {isLoggedIn ? ( 
+        {isLoggedIn && loginAudio.play() ? ( 
         <Route path="/" element={<Layout points={points}/>}>
           <Route path="" element={<HeroPage />} />
           <Route path="/chores" element={<ChoresPage />} />

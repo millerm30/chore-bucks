@@ -21,12 +21,12 @@ const createRandomBackGroundColors = () => {
   return bgColor;
 };
 
+let audioAddChore = new Audio(success);
+let audioSuccess = new Audio(tada);
+let audioFailure = new Audio(failure);
+
 export function ChoresProvider({ children, addPoints}) {
     const [chores, setChores] = useState(getInitialChores);
-
-    let audioAddChore = new Audio(success);
-    let audioSuccess = new Audio(tada);
-    let audioFailure = new Audio(failure);
 
     useEffect(() => {
         const temp = JSON.stringify(chores)
