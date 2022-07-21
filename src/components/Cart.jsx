@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useShopping } from "../contexts/Shopping";
 import { GoTrashcan } from "react-icons/go";
 import { motion } from "framer-motion";
+import Confetti from "react-confetti";
 
 const CartItem = ({ wish, removeFromCartHandler }) => (
   <div
@@ -25,9 +26,23 @@ const CartItem = ({ wish, removeFromCartHandler }) => (
 
 const Cart = ({ points }) => {
   const { cart, removeFromCartHandler, purchaseCartHandler, cartTotal } = useShopping();
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <main className="text-center bg-blue-300">
+      <section className={isActive ? " isActive" : ""}>
+        {isActive && (
+        <Confetti
+          style={{ pointerEvents: "none" }}
+          numberOfPieces={isActive ? 500 : 0}
+          recycle={false}
+          onConfettiComplete={(confetti) => {
+            setIsActive(false);
+            confetti.reset();
+          }}
+        />
+        )}
+      </section>
       <section className="pt-10 mb-12">
         <h2 className="text-3xl font-semibold p-1">🧒 Shopping Cart 🚀</h2>
         <p className="mb-5">Complete your purchase!</p>
@@ -61,7 +76,11 @@ const Cart = ({ points }) => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             disabled={cart.length === 0}
-            onClick={purchaseCartHandler}
+            onClick={() => {
+              setIsActive(true);
+              purchaseCartHandler();
+            }
+            }
             className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
               cart.length === 0
                 ? "opacity-50 cursor-not-allowed"
