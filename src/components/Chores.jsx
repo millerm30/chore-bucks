@@ -12,6 +12,7 @@ let addChoreAudio = new Audio(addChoreSound);
 
 const Chores = () => {
   const {chores, removeChore, completeChore} = useChores();
+
   const navigate = useNavigate();
   const goToAddChoresLink = () => {
     navigate("/choresadd");

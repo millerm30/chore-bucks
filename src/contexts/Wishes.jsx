@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { v4 as uuid } from 'uuid';
-import toast from 'react-hot-toast';
-import { useShopping } from './Shopping';
+import React, { useContext, useState, useEffect } from "react";
+import { v4 as uuid } from "uuid";
+import toast from "react-hot-toast";
+import { useShopping } from "./Shopping";
 import success from "../sounds/success.mp3";
-import negative from '../sounds/icqdelete.mp3';
-import yay from '../sounds/yay.mp3';
+import negative from "../sounds/icqdelete.mp3";
+import yay from "../sounds/yay.mp3";
 
 const WishesContext = React.createContext();
 
