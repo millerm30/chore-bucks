@@ -18,7 +18,6 @@ const Chores = () => {
 
   return (
     <main className="text-center bg-blue-300">
-      <section className={isActive ? " isActive" : ""}>
         {isActive && (
         <Confetti
           style={{ pointerEvents: "none", width: "100%", height: "100%" }}
@@ -30,7 +29,6 @@ const Chores = () => {
           }}
         />
         )}
-      </section>
       <section className="pt-10 mb-6">
         <h2 className="text-3xl font-semibold p-1">🧒 Chore Area 🚀</h2>
         <p className="mb-5">Complete chores to build points!</p>

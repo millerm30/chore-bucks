@@ -10,7 +10,6 @@ const Cart = ({ points }) => {
 
   return (
     <main className="text-center bg-blue-300">
-      <section className={isActive ? " isActive" : ""}>
         {isActive && (
         <Confetti
           style={{ pointerEvents: "none", width: "100%", height: "100%" }}
@@ -22,7 +21,6 @@ const Cart = ({ points }) => {
           }}
         />
         )}
-      </section>
       <section className="pt-10 mb-12">
         <h2 className="text-3xl font-semibold p-1">🧒 Shopping Cart 🚀</h2>
         <p className="mb-5">Complete your purchase!</p>

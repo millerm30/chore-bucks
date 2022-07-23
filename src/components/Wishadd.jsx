@@ -17,7 +17,6 @@ const WishAdd = ({ addWish }) => {
   
   return (
     <section className="container mx-auto pt-10">
-      <section className={isActive ? " isActive" : ""}>
         {isActive && (
         <Confetti
           style={{ pointerEvents: "none", width: "100%", height: "100%" }}
@@ -29,7 +28,6 @@ const WishAdd = ({ addWish }) => {
           }}
         />
         )}
-      </section>
       <section>
         <h1 className="text-3xl font-semibold p-1 text-center">
           😉 Wish List! 👍
