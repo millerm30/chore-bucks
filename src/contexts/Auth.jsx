@@ -45,8 +45,8 @@ const useAuth = () => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
     window.location.pathname = "/chore-bucks";
-  };
-  return [ user, login ];
+    };
+    return [user, login];
 };
 
 const handleLogOut = () => {
@@ -58,7 +58,7 @@ export function UserProvider({ children }) {
   const [user, login] = useAuth();
 
   return (
-    <UserContext.Provider value={{ user, login, handleLogOut }}>
+    <UserContext.Provider value={{user, login, handleLogOut}}>
       {children}
       <Toaster />
     </UserContext.Provider>

@@ -4,6 +4,7 @@ import { WishesProvider } from "./contexts/Wishes";
 import { UserProvider } from "./contexts/Auth";
 
 export default function App({ children, points, addPoints, removePoints }) {
+
     return (
         <UserProvider>
             <ShoppingProvider points={points} removePoints={removePoints}>

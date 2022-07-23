@@ -32,7 +32,7 @@ function getLoggedInUser() {
   }
 };
 
-const Main = () => {
+const AppRouter = () => {
   const [points, setPoints] = useState(() => getBucksFromLocalStorage());
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const user = getLoggedInUser();
@@ -61,7 +61,7 @@ const Main = () => {
     localStorage.setItem("points", points);
   } , [points]);
 
-return(
+  return(
   <App points={points} addPoints={addPoints} removePoints={removePoints}>
     <BrowserRouter basename="/chore-bucks">
       <Routes>
@@ -80,6 +80,15 @@ return(
     </BrowserRouter>
   </App>
 );
+};
+
+const Main = () => {
+
+ return (
+    <AppRouter >
+      <App />
+    </AppRouter>
+  );
 };
 
 root.render(<Main />);
