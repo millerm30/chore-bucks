@@ -42,7 +42,7 @@ export function WishesProvider({ children }) {
       audioSuccess.play();
       addToCartHandler(wish.title, wish.points);
       setWishes(wishes.filter((i) => i.id !== wish.id));
-      toast.success(`${wish.title} added to shopping cart! 🚀`);
+      toast(`🚀 ${wish.title} added to shopping cart! 🚀`);
     };
 
     const removeWish = (wish) => {

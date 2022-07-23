@@ -36,10 +36,10 @@ export function ShoppingProvider({ points, removePoints, children }) {
         cart.forEach(() => removePoints(cart.reduce((acc, curr) => acc + curr.points, 0)));
         setCart([]);
         audioPurchase.play();
-        toast.success("🎉 Purchase successful. Great job! 🎉");
+        toast("🎉 Purchase successful. Great job! 🎉");
         } else {
         audioNomoney.play();
-        toast.error("👎 Not enough points to purchase! Keep working on your chores! 😉");
+        toast("👎 Not enough points to purchase! Keep working on your chores! 😉");
         }
     };
 

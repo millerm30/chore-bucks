@@ -47,9 +47,7 @@ export function ChoresProvider({ children, addPoints}) {
 
     const completeChore = (chore) => {
         audioSuccess.play();
-        toast(`${chore.title} Completed. Good Job!`, {
-            icon: "👏"
-        });
+        toast(`👏 ${chore.title} Completed. Good Job! 👏`);
         addPoints(chore.points)
         setChores(chores.filter((c) => c !== chore));
     };
