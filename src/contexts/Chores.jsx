@@ -1,8 +1,8 @@
 import React, {useContext, useState, useEffect} from "react";
 import toast from "react-hot-toast";
 import { v4 as uuid } from "uuid";
-import tada from "../sounds/tada.mp3"
 import success from "../sounds/success.mp3";
+import tada from "../sounds/tada.mp3";
 import failure from "../sounds/failure.mp3";
 
 const ChoresContext = React.createContext();

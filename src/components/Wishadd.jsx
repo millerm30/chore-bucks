@@ -20,9 +20,7 @@ const WishAdd = ({ addWish }) => {
       <section className={isActive ? " isActive" : ""}>
         {isActive && (
         <Confetti
-          width={window.innerWidth}
-          height={window.innerHeight}
-          style={{ pointerEvents: "none" }}
+          style={{ pointerEvents: "none", width: "100%", height: "100%" }}
           numberOfPieces={isActive ? 500 : 0}
           recycle={false}
           onConfettiComplete={(confetti) => {

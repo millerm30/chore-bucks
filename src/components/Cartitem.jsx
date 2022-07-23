@@ -1,5 +1,4 @@
 import React from "react";
-// import { useShopping } from "../contexts/Shopping";
 import { GoTrashcan } from "react-icons/go";
 
 export const CartItem = ({ wish, removeFromCartHandler }) => (

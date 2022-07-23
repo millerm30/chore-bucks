@@ -21,7 +21,7 @@ const Chores = () => {
       <section className={isActive ? " isActive" : ""}>
         {isActive && (
         <Confetti
-          style={{ pointerEvents: "none" }}
+          style={{ pointerEvents: "none", width: "100%", height: "100%" }}
           numberOfPieces={isActive ? 500 : 0}
           recycle={false}
           onConfettiComplete={(confetti) => {

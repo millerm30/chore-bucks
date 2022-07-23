@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import AppLogo from "../assets/appLogo.png";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useShopping } from "../contexts/Shopping";
@@ -30,7 +29,7 @@ const Header = ({ points }) => {
             >
             <AiOutlineShoppingCart className="text-4xl text-black pt-1 mx-auto" />
             </motion.button>
-          {cart.length > 0 && <h2 className="absolute ml-7 text-xs bg-red-500 border-2 border-white text-white px-1.5 py-0.5 rounded-xl">{cart.length}</h2>}
+          {cart.length > 0 && <h2 className="absolute text-xs ml-7 bg-red-500 border-white text-white px-1.5 py-0.5 rounded-xl">{cart.length}</h2>}
           <span className="flex pr-2">
             <p className="text-center font-semibold">{points}</p>
             <p className="ml-1">Points</p>
