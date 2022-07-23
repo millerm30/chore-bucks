@@ -1,9 +1,8 @@
 {
   "files": {
-    "main.css": "/chore-bucks/static/css/main.b4b07b94.css",
-    "main.js": "/chore-bucks/static/js/main.bb1922f0.js",
+    "main.css": "/chore-bucks/static/css/main.a5f338a8.css",
+    "main.js": "/chore-bucks/static/js/main.10ee5e2f.js",
     "static/media/purchase.mp3": "/chore-bucks/static/media/purchase.c200e530c68e3e64a443.mp3",
-    "static/media/login.mp3": "/chore-bucks/static/media/login.c05f5cbe041cfc1bc41c.mp3",
     "static/media/remove.mp3": "/chore-bucks/static/media/remove.a1bb4a5522a99eb23e04.mp3",
     "static/media/failure.mp3": "/chore-bucks/static/media/failure.7b134939934153701fac.mp3",
     "static/media/success.mp3": "/chore-bucks/static/media/success.a2774fd0d75bdfeed2da.mp3",
@@ -13,11 +12,11 @@
     "static/media/icqdelete.mp3": "/chore-bucks/static/media/icqdelete.794c891425fbe7ca29a4.mp3",
     "index.html": "/chore-bucks/index.html",
     "static/media/wave.svg": "/chore-bucks/static/media/wave.105e4dc8436087dd50d8.svg",
-    "main.b4b07b94.css.map": "/chore-bucks/static/css/main.b4b07b94.css.map",
-    "main.bb1922f0.js.map": "/chore-bucks/static/js/main.bb1922f0.js.map"
+    "main.a5f338a8.css.map": "/chore-bucks/static/css/main.a5f338a8.css.map",
+    "main.10ee5e2f.js.map": "/chore-bucks/static/js/main.10ee5e2f.js.map"
   },
   "entrypoints": [
-    "static/css/main.b4b07b94.css",
-    "static/js/main.bb1922f0.js"
+    "static/css/main.a5f338a8.css",
+    "static/js/main.10ee5e2f.js"
   ]
 }
