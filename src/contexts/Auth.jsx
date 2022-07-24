@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Toaster } from "react-hot-toast"
 
 const UserContext = React.createContext();
 
@@ -21,46 +20,41 @@ function getLoggedInUser() {
   }
 };
 
-const useAuth = () => {
+export function UserProvider({ children }) {
   const [user, setUser] = useState(getLoggedInUser);
-  
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+
   const login = (username, password) => {
     const user = users[username];
-
     if (!user) {
       toast("User not found", {
         icon: "💩",
       });
       return;
     }
-
     const passwordCorrect = user.password === password;
-
     if (!passwordCorrect) {
       toast("Password is incorrect", {
         icon: "🤨",
       });
       return;
     }
+    setIsLoggedIn(true);
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
-    window.location.pathname = "/chore-bucks";
-    };
-    return [user, login];
-};
+    window.location.pathname = ("/chore-bucks");
+  };
 
-const handleLogOut = () => {
-  localStorage.removeItem("user");
-  window.location.pathname = "/chore-bucks";
-};
-
-export function UserProvider({ children }) {
-  const [user, login] = useAuth();
+  const handleLogOut = () => {
+    localStorage.removeItem("user");
+    setUser(undefined);
+    setIsLoggedIn(false);
+    window.location.pathname = ("/chore-bucks");
+  };
 
   return (
-    <UserContext.Provider value={{user, login, handleLogOut}}>
+    <UserContext.Provider value={{user, login, handleLogOut, isLoggedIn}}>
       {children}
-      <Toaster />
     </UserContext.Provider>
   );
 };

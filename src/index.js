@@ -65,7 +65,7 @@ const AppRouter = () => {
   <App points={points} addPoints={addPoints} removePoints={removePoints}>
     <BrowserRouter basename="/chore-bucks">
       <Routes>
-        {isLoggedIn ? ( 
+        {isLoggedIn ? (
         <Route path="/" element={<Layout points={points}/>}>
           <Route path="" element={<HeroPage />} />
           <Route path="/chores" element={<ChoresPage />} />
@@ -83,12 +83,9 @@ const AppRouter = () => {
 };
 
 const Main = () => {
-
- return (
-    <AppRouter >
-      <App />
-    </AppRouter>
+  return (
+    <AppRouter />
   );
-};
+}
 
 root.render(<Main />);
