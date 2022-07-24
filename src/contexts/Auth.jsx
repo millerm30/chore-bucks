@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 const UserContext = React.createContext();
@@ -22,7 +22,24 @@ function getLoggedInUser() {
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(getLoggedInUser);
-  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const user = getLoggedInUser();
+    if (user !== undefined) {
+      return true;
+    }
+    return false;
+  }
+  );
+
+  useEffect(() => {
+    setIsLoggedIn(() => {
+      const user = getLoggedInUser();
+      if (user !== undefined) {
+        return true;
+      }
+      return false;
+    });
+  }, [setIsLoggedIn]);
 
   const login = (username, password) => {
     const user = users[username];
@@ -53,7 +70,7 @@ export function UserProvider({ children }) {
   };
 
   return (
-    <UserContext.Provider value={{user, login, handleLogOut, isLoggedIn}}>
+    <UserContext.Provider value={{user, isLoggedIn: user !== undefined, login, handleLogOut}}>
       {children}
     </UserContext.Provider>
   );

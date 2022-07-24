@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Switch } from "react-router-dom";
 import "./index.css";
 import "tw-elements";
 import Layout from "./components/Layout";
@@ -11,6 +11,8 @@ import ModalAdd from "./components/ChoresAddModal";
 import App from "./App";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
+import { UserProvider } from "./contexts/Auth";
+import { useUser } from "./contexts/Auth";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -22,38 +24,11 @@ function getBucksFromLocalStorage() {
   return 0;
 };
 
-function getLoggedInUser() {
-  const user = localStorage.getItem("user");
-
-  if (user === null) {
-    return undefined;
-  } else {
-    return JSON.parse(user);
-  }
-};
-
-const AppRouter = () => {
+const Router = () => {
   const [points, setPoints] = useState(() => getBucksFromLocalStorage());
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const user = getLoggedInUser();
-    if (user) {
-      return true;
-    }
-    return false;
-  }
-  );
-
-  useEffect(() => {
-    setIsLoggedIn(() => {
-      const user = getLoggedInUser();
-      if (user) {
-        return true;
-      }
-      return false;
-    }
-    );
-  }, [setIsLoggedIn]);
-
+  
+  const { isLoggedIn } = useUser();
+  
   const addPoints = (amount) => setPoints(points + amount);
   const removePoints = (amount) => setPoints(points - amount);
 
@@ -84,7 +59,9 @@ const AppRouter = () => {
 
 const Main = () => {
   return (
-    <AppRouter />
+    <UserProvider>
+      <Router />
+    </UserProvider>
   );
 }
 
