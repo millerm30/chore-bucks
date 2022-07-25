@@ -27,7 +27,7 @@ function getBucksFromLocalStorage() {
 const Router = () => {
   const [points, setPoints] = useState(() => getBucksFromLocalStorage());
   
-  const { isLoggedIn, user } = useUser();
+  const { isLoggedIn } = useUser();
   
   const addPoints = (amount) => setPoints(points + amount);
   const removePoints = (amount) => setPoints(points - amount);
@@ -35,7 +35,7 @@ const Router = () => {
   useEffect(() => {
     localStorage.setItem("points", points);
   } , [points]);
-
+  
   return(
   <App points={points} addPoints={addPoints} removePoints={removePoints}>
     <BrowserRouter basename="/chore-bucks">

@@ -8,6 +8,10 @@ const users = {
     username: "Guest",
     password: "Guest",
   },
+  "Mike": {
+    username: "Mike",
+    password: "Mike",
+  },
 };
 
 function getLoggedInUser() {
@@ -75,7 +79,7 @@ export function UserProvider({ children }) {
   };
 
   return (
-    <UserContext.Provider value={{user, isLoggedIn, login, handleLogOut}}>
+    <UserContext.Provider value={{user, isLoggedIn: user !== undefined, login, handleLogOut}}>
       {children}
     </UserContext.Provider>
   );
