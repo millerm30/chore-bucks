@@ -71,6 +71,7 @@ export function UserProvider({ children }) {
     localStorage.removeItem("user");
     setIsLoggedIn(!isLoggedIn);
     setUser(undefined);
+    window.location.pathname = ("/chore-bucks");
   };
 
   return (
