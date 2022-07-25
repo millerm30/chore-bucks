@@ -5,7 +5,7 @@ const UserContext = React.createContext();
 
 const users = {
   "Guest": {
-    displayName: "Guest",
+    username: "Guest",
     password: "Guest",
   },
 };
@@ -24,7 +24,7 @@ export function UserProvider({ children }) {
   const [user, setUser] = useState(getLoggedInUser);
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const user = getLoggedInUser();
-    if (user !== undefined) {
+    if (user) {
       return true;
     }
     return false;
@@ -34,7 +34,7 @@ export function UserProvider({ children }) {
   useEffect(() => {
     setIsLoggedIn(() => {
       const user = getLoggedInUser();
-      if (user !== undefined) {
+      if (user) {
         return true;
       }
       return false;
@@ -56,21 +56,25 @@ export function UserProvider({ children }) {
       });
       return;
     }
-    setIsLoggedIn(true);
-    setUser(user);
+    toast(`Welcome ${user.username}`, {
+      icon: "🎉",
+    });
     localStorage.setItem("user", JSON.stringify(user));
-    window.location.pathname = ("/chore-bucks");
+    setUser(user);
+    setIsLoggedIn(!isLoggedIn);
   };
 
   const handleLogOut = () => {
+    toast(`Goodbye ${user.username}`, {
+      icon: "💩",
+    });
     localStorage.removeItem("user");
+    setIsLoggedIn(!isLoggedIn);
     setUser(undefined);
-    setIsLoggedIn(false);
-    window.location.pathname = ("/chore-bucks");
   };
 
   return (
-    <UserContext.Provider value={{user, isLoggedIn: user !== undefined, login, handleLogOut}}>
+    <UserContext.Provider value={{user, isLoggedIn, login, handleLogOut}}>
       {children}
     </UserContext.Provider>
   );

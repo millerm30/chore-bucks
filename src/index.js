@@ -27,7 +27,7 @@ function getBucksFromLocalStorage() {
 const Router = () => {
   const [points, setPoints] = useState(() => getBucksFromLocalStorage());
   
-  const { isLoggedIn } = useUser();
+  const { isLoggedIn, user } = useUser();
   
   const addPoints = (amount) => setPoints(points + amount);
   const removePoints = (amount) => setPoints(points - amount);
