@@ -16,7 +16,6 @@ const users = {
 
 function getLoggedInUser() {
   const user = localStorage.getItem("user");
-
   if (user === null) {
     return undefined;
   } else {
@@ -26,24 +25,17 @@ function getLoggedInUser() {
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(getLoggedInUser);
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const user = getLoggedInUser();
-    if (user) {
-      return true;
-    }
-    return false;
-  }
-  );
+  const [isLoggedIn, setIsLoggedIn] = useState(getLoggedInUser(user !== undefined));
 
-  useEffect(() => {
-    setIsLoggedIn(() => {
-      const user = getLoggedInUser();
-      if (user) {
-        return true;
-      }
-      return false;
-    });
-  }, [setIsLoggedIn]);
+   useEffect(() => {
+     setIsLoggedIn(() => {
+       const user = getLoggedInUser();
+       if (user) {
+         return true;
+       }
+       return false;
+     });
+   }, [setIsLoggedIn]);
 
   const login = (username, password) => {
     const user = users[username];
