@@ -34,7 +34,7 @@ export function WishesProvider({ children }) {
 
     const addWish = (title, points) => {
       audioAddWish.play();
-      toast.success(`${title} added to wish list!`);
+      toast(`😃 ${title} added to wish list!`);
       setWishes([...wishes, { title, points, id: uuid(), style: {borderColor: createRandomBackGroundColors()} }]);
     };
 
@@ -47,7 +47,7 @@ export function WishesProvider({ children }) {
 
     const removeWish = (wish) => {
       audioFailure.play();
-      toast.error(`${wish.title} removed from wish list!`);
+      toast(`😛 ${wish.title} removed from wish list!`);
       setWishes(wishes.filter((i) => i !== wish));
     };
 

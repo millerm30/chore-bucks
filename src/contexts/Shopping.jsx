@@ -27,7 +27,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
 
     const removeFromCartHandler = (wish) => {
         audioRemove.play();
-        toast.error(`${wish.title} removed from shopping cart!`);
+        toast(`😭 ${wish.title} removed from shopping cart!`);
         setCart(cart.filter((i) => i !== wish));
     };
 

@@ -35,19 +35,19 @@ export function ChoresProvider({ children, addPoints}) {
 
     const addChore = (title, points) => {
         audioAddChore.play();
-        toast.success(`${title} added to chores list!`);
+        toast(`👍 ${title} added to chores list!`);
         setChores([...chores, { id: uuid(), title, points, style: {borderColor: createRandomBackGroundColors()} }]);
     };
 
     const removeChore = (chore) => {
         audioFailure.play();
-        toast.error(`${chore.title} removed from chores list!`);
+        toast.error(`🍩 ${chore.title} removed from chores list!`);
         setChores(chores.filter((c) => c !== chore));
     };
 
     const completeChore = (chore) => {
         audioSuccess.play();
-        toast(`👏 ${chore.title} Completed. Good Job! 👏`);
+        toast(`👏 ${chore.title} Completed. Good Job! 💸`);
         addPoints(chore.points)
         setChores(chores.filter((c) => c !== chore));
     };
