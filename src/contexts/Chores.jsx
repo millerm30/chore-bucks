@@ -41,7 +41,7 @@ export function ChoresProvider({ children, addPoints}) {
 
     const removeChore = (chore) => {
         audioFailure.play();
-        toast.error(`🍩 ${chore.title} removed from chores list!`);
+        toast(`🍩 ${chore.title} removed from chores list!`);
         setChores(chores.filter((c) => c !== chore));
     };
 
