@@ -1,12 +1,11 @@
 import React from "react";
 import { GoTrashcan } from "react-icons/go";
 
-export const CartItem = ({ wish, removeFromCartHandler }) => {
-  /*const [wishQuantity, setWishQuantity] = useState(1);
+export const CartItem = ({ wish, removeFromCartHandler, updateCartItem }) => {
 
   const calculateNewWishTotal = (wish) => {
-    return wish.points * wishQuantity;
-  };*/
+    return wish.points * wish.quantity;
+  };
 
   return (
     <div
@@ -22,15 +21,14 @@ export const CartItem = ({ wish, removeFromCartHandler }) => {
           <GoTrashcan />
         </button>
       </span>
-      <span className="container flex justify-end my-auto">
-        {/*}
+      <span className="container flex justify-between my-auto">
         <span>
           <label htmlFor="wishQuantity">Quantity:</label>
           <select 
             id="wishQuantity"
             className="border-2 border-gray-600 rounded ml-2"
-            value={wishQuantity}
-            onChange={(e) => setWishQuantity(e.target.value)}
+            value={wish.quantity}
+            onChange={(e) => updateCartItem({...wish, quantity: Number(e.target.value)})}
           >
             <option value="1">1</option>
             <option value="2">2</option>
@@ -39,9 +37,8 @@ export const CartItem = ({ wish, removeFromCartHandler }) => {
             <option value="5">5</option>
           </select>
         </span>
-        */}
         <span>
-          <h2 className="text-md">ChoreBucks: 💰{wish.points}</h2>
+          <h2 className="text-md">ChoreBucks: 💰{calculateNewWishTotal(wish)}</h2>
         </span>
       </span>
     </div>

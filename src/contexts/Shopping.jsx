@@ -22,7 +22,16 @@ export function ShoppingProvider({ points, removePoints, children }) {
     const [cartTotal, setcartTotal] = useState(0);
     
     const addToCartHandler = (itemTitle, itemPoints) => {
-        setCart([...cart, { title: itemTitle, points: itemPoints, id: uuid() }]);
+        setCart([...cart, { title: itemTitle, points: itemPoints, quantity: 1, id: uuid() }]);
+    };
+
+    const updateCartItem = (wish) => {
+        setCart(cart.map((w) => {
+            if (w.id === wish.id) {
+                return wish
+            }
+            return w
+        }))
     };
 
     const removeFromCartHandler = (wish) => {
@@ -32,8 +41,8 @@ export function ShoppingProvider({ points, removePoints, children }) {
     };
 
     const purchaseCartHandler = () => {
-        if (points >= cart.reduce((acc, curr) => acc + curr.points, 0)) {
-        cart.forEach(() => removePoints(cart.reduce((acc, curr) => acc + curr.points, 0)));
+        if (points >= cart.reduce((acc, curr) => acc + curr.points * curr.quantity, 0)) {
+        cart.forEach(() => removePoints(cart.reduce((acc, curr) => acc + curr.points * curr.quantity, 0)));
         setCart([]);
         audioPurchase.play();
         toast("🎉 Purchase successful. Great job! 🎉");
@@ -45,11 +54,11 @@ export function ShoppingProvider({ points, removePoints, children }) {
 
     useEffect(() => {
         localStorage.setItem("cartList", JSON.stringify(cart));
-        setcartTotal(cart.reduce((acc, curr) => acc + curr.points, 0));
+        setcartTotal(cart.reduce((acc, curr) => acc + curr.points * curr.quantity, 0));
     }, [cart, cartTotal]);
 
     return (
-        <ShoppingContext.Provider value={{ cart, addToCartHandler, removeFromCartHandler, purchaseCartHandler, cartTotal }}>
+        <ShoppingContext.Provider value={{ cart, addToCartHandler, removeFromCartHandler, purchaseCartHandler, cartTotal, updateCartItem }}>
         {children}
         </ShoppingContext.Provider>
     );
