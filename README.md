@@ -1,4 +1,5 @@
 # ChoreBucks Web App
+![App Logo](assets/todologo.jpg)
 
 This is my second project as a student of Get Coding. This web app is written in ReactJS and uses Tailwind for styling.
 This idea came from dealing with my own daughter and trying to find a way to make completing any chores she was given something that would provide interest for her to complete using technology as she lives and breaths all day!
