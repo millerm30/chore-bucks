@@ -16,10 +16,10 @@ const getInitialNewChoresLocalStorage = () => {
 };
 
 export default function MyModal() {
-  let [isOpen, setIsOpen] = useState(true)
   const { addChore } = useChores();
   const [choresList, setChoresList] = useState(getInitialNewChoresLocalStorage);
   const navigate = useNavigate();
+  const isOpen = true
 
   const goBack = () => {
     navigate("/chores");
@@ -58,7 +58,7 @@ export default function MyModal() {
   return (
     <>
       <main className="bg-blue-300">
-        <Transition appear show={isOpen} as={Fragment}>
+        <Transition appear show={(isOpen)} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={() => null}>
             <Transition.Child
               as={Fragment}
