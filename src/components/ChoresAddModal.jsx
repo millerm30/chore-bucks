@@ -84,7 +84,7 @@ export default function MyModal() {
                   leaveTo="opacity-0 scale-95"
                 >
                   <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-blue-300 p-6 text-left align-middle shadow-xl transition-all">
-                    <main className="text-center bg-blue-300">
+                    <div className="text-center bg-blue-300">
                       <section className="pt-2">
                         <h2 className="text-3xl font-semibold py-1">
                           🙂 Add chores! 🚀
@@ -183,7 +183,7 @@ export default function MyModal() {
                           </div>
                         </div>
                       </section>
-                    </main>
+                    </div>
                     <div className="mt-2">
                       <motion.button
                         whileHover={{ scale: 1.1 }}
