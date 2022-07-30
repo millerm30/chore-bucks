@@ -8,8 +8,8 @@ export const Card = ({title, points, style, remove, children}) => {
       animate={{ rotate: 360, scale: 1 }}
       transition={{
         type: "spring",
-        stiffness: 260,
-        damping: 20,
+        stiffness: 200,
+        damping: 12,
       }}
       className="bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-center border-2 rounded-lg"
       style={style}
