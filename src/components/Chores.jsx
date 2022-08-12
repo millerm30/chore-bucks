@@ -16,8 +16,18 @@ const Chores = () => {
     navigate("/choresadd");
   };
 
+  const style = {
+    mainContainer: `text-center bg-blue-300`,
+    headingSection: `pt-10 mb-6`,
+    headingOne: `text-3xl font-semibold p-1`,
+    choreButton: `bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg`,
+    paragraphOne: `italic pt-4`,
+    choresSection: `grid grid-cols-2 gap-5 mx-5 py-5 md:grid-cols-3 lg:grid-cols-4`,
+    completeChoreButton: `bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg`,
+  };
+
   return (
-    <main className="text-center bg-blue-300">
+    <main className={style.mainContainer}>
         {isActive && (
         <Confetti
           style={{ pointerEvents: "none", width: "100%", height: "100%" }}
@@ -29,25 +39,25 @@ const Chores = () => {
           }}
         />
         )}
-      <section className="pt-10 mb-6">
-        <h2 className="text-3xl font-semibold p-1">🧒 Chore Area 🚀</h2>
-        <p className="mb-5">Complete chores to build points!</p>
+      <section className={style.headingSection}>
+        <h2 className={style.headingOne}>🧒 Chore Area 🚀</h2>
+        <p>Complete chores to build points!</p>
       </section>
       <section>
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={goToAddChoresLink}
-          className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"
+          className={style.choreButton}
         >
           Add Chores
         </motion.button>
       </section>
       <Outlet />
       <section className="choresArea">
-        {chores.length === 0 && <p className="italic pt-4">No Chores to do!</p>}
+        {chores.length === 0 && <p className={style.paragraphOne}>No Chores to do!</p>}
         {
-          <section className="grid grid-cols-2 gap-5 mx-5 py-5 md:grid-cols-3 lg:grid-cols-4">
+          <section className={style.choresSection}>
             {chores.map((chore) => (
               <Card
                 key={chore.id}
@@ -63,7 +73,7 @@ const Chores = () => {
                     completeChore(chore);
                     setIsActive(!isActive);
                   }}
-                  className="bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"
+                  className={style.completeChoreButton}
                 >
                   Complete
                 </motion.button>

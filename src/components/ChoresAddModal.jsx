@@ -55,9 +55,37 @@ export default function MyModal() {
     localStorage.setItem("choresList", JSON.stringify(choresList));
   }, [choresList]);
 
+  const style = {
+    mainContainer: `bg-blue-300`,
+    transitionChild: `fixed inset-0 bg-black bg-opacity-25`,
+    mainDivider: `fixed inset-0 overflow-y-auto`,
+    secondDivider: `flex items-center justify-center p-4 text-center`,
+    dialogPanel: `w-full max-w-md transform overflow-hidden rounded-2xl bg-blue-300 p-6 text-left align-middle shadow-xl transition-all`,
+    dialogDivider: `text-center bg-blue-300`,
+    sectionOne: `pt-2`,
+    headingOne: `text-3xl font-semibold py-1`,
+    paragraphOne: `text-center`,
+    sectionTwo: `pt-5`,
+    form: `flex flex-col w-full mx-auto`,
+    chooseChoreLabel: `mb-1 text-left`,
+    chooseChoreSelect: `rounded-md py-2 border mb-2 border-blue-700 outline-none`,
+    pointsLabel: `mb-1 text-left`,
+    pointsValueInput: `rounded-md p-2 border border-blue-700 outline-none w-1/2`,
+    addChoreButton: `bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg`,
+    addNewChoreSection: `pb-5`,
+    addNewChoreHeadingContainer: `pt-5`,
+    headingTwo: `text-xl font-semibold p-1`,
+    addNewChoreInputContainer: `pt-2`,
+    addNewChoreForm: `flex flex-col w-full mx-auto`,
+    addNewChoreLabel: `mb-1 text-left`,
+    addNewChoreInput: `rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2`,
+    addNewChoreButton: `bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg`,
+    closeButton: `inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2`,
+  };
+
   return (
     <>
-      <main className="bg-blue-300">
+      <main className={style.mainContainer}>
         <Transition appear show={(isOpen)} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={() => null}>
             <Transition.Child
@@ -69,11 +97,11 @@ export default function MyModal() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-black bg-opacity-25" />
+              <div className={style.transitionChild} />
             </Transition.Child>
 
-            <div className="fixed inset-0 overflow-y-auto">
-              <div className="flex items-center justify-center p-4 text-center">
+            <div className={style.mainDivider}>
+              <div className={style.secondDivider}>
                 <Transition.Child
                   as={Fragment}
                   enter="ease-out duration-300"
@@ -83,29 +111,29 @@ export default function MyModal() {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-blue-300 p-6 text-left align-middle shadow-xl transition-all">
-                    <div className="text-center bg-blue-300">
-                      <section className="pt-2">
-                        <h2 className="text-3xl font-semibold py-1">
+                  <Dialog.Panel className={style.dialogPanel}>
+                    <div className={style.dialogDivider}>
+                      <section className={style.sectionOne}>
+                        <h2 className={style.headingOne}>
                           🙂 Add chores! 🚀
                         </h2>
-                        <p className="text-center">
+                        <p className={style.paragraphOne}>
                           Add your chores below to start earning points!
                         </p>
                       </section>
-                      <section className="pt-5">
+                      <section className={style.sectionTwo}>
                         <form
                           onSubmit={handleSubmit}
-                          className="flex flex-col w-full mx-auto"
+                          className={style.form}
                         >
-                          <label htmlFor="chores" className="mb-1 text-left">
+                          <label htmlFor="chores" className={style.chooseChoreLabel}>
                             Choose your chore:{""}
                           </label>
                           <select
                             value={chore}
                             name="chores"
                             onChange={handleChoresChange}
-                            className="rounded-md py-2 border mb-2 border-blue-700 outline-none"
+                            className={style.chooseChoreSelect}
                           >
                             {choresList.map((choice) => (
                               <option key={choice.id} value={choice.value}>
@@ -113,7 +141,7 @@ export default function MyModal() {
                               </option>
                             ))}
                           </select>
-                          <label htmlFor="chores" className="mb-1 text-left">
+                          <label htmlFor="chores" className={style.pointsLabel}>
                             Point value:
                           </label>
                           <input
@@ -124,14 +152,14 @@ export default function MyModal() {
                             value={point}
                             name="chores"
                             onChange={handlePointChange}
-                            className="rounded-md p-2 border border-blue-700 outline-none w-1/2"
+                            className={style.pointsValueInput}
                           ></input>
                           <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             type="submit"
                             disabled={!chore}
-                            className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
+                            className={`${style.addChoreButton} ${
                               !chore
                                 ? "opacity-50 cursor-not-allowed"
                                 : "cursor-pointer"
@@ -141,19 +169,19 @@ export default function MyModal() {
                           </motion.button>
                         </form>
                       </section>
-                      <section className="pb-5">
+                      <section className={style.addNewChoreSection}>
                         <div>
-                          <div className="pt-5">
-                            <h2 className="text-xl font-semibold p-1">
+                          <div className={style.addNewChoreHeadingContainer}>
+                            <h2 className={style.headingTwo}>
                               Don't see your chore above? <br></br>Add it
                               yourself!
                             </h2>
                           </div>
-                          <div className="pt-2">
-                            <form className="flex flex-col w-full mx-auto">
+                          <div className={style.addNewChoreInputContainer}>
+                            <form className={style.addNewChoreForm}>
                               <label
                                 htmlFor="choresNew"
-                                className="mb-1 text-left"
+                                className={style.addNewChoreLabel}
                               >
                                 Add new chore:
                               </label>
@@ -163,7 +191,7 @@ export default function MyModal() {
                                 placeholder="Enter new chore..."
                                 name="choresNew"
                                 onChange={(e) => setLabel(e.target.value)}
-                                className="rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2"
+                                className={style.addNewChoreInput}
                               ></input>
                               <motion.button
                                 whileHover={{ scale: 1.1 }}
@@ -171,7 +199,7 @@ export default function MyModal() {
                                 type="submit"
                                 disabled={!label}
                                 onClick={handleNewChore}
-                                className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
+                                className={`${style.addNewChoreButton} ${
                                   !label
                                     ? "opacity-50 cursor-not-allowed"
                                     : "cursor-pointer"
@@ -189,7 +217,7 @@ export default function MyModal() {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         type="button"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        className={style.closeButton}
                         onClick={goBack}
                       >
                         Close

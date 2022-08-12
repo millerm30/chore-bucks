@@ -23,11 +23,16 @@ const Scroll = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    const style = {
+      section: `py-5 bg-blue-300`,
+      arrowUp: `mx-auto text-2xl animate-bounce cursor-pointer`,
+    };
+
   return (
-    <section className="py-5 bg-blue-300">
+    <section className={style.section}>
         {showScroll ? (
             <FaArrowUp
-                className="mx-auto text-2xl animate-bounce cursor-pointer"
+                className={style.arrowUp}
                 onClick={scrollToTop}
             />
         ) : null}

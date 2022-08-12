@@ -14,9 +14,20 @@ const WishAdd = ({ addWish }) => {
       setTitle("")
       setPoints("")
   };
+
+  const style = {
+    section: `container mx-auto pt-10`,
+    heading: `text-3xl font-semibold p-1 text-center`,
+    paragraph: `text-center`,
+    form: `flex flex-col w-3/4 mx-auto md:w-1/3`,
+    wishInput: `rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2`,
+    pointsInput: `rounded-md py-2 px-2 border border-blue-700 outline-none w-1/2`,
+    label: `text-left mt-5`,
+    button: `bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg`,
+  };
   
   return (
-    <section className="container mx-auto pt-10">
+    <section className={style.section}>
         {isActive && (
         <Confetti
           style={{ pointerEvents: "none", width: "100%", height: "100%" }}
@@ -29,19 +40,19 @@ const WishAdd = ({ addWish }) => {
         />
         )}
       <section>
-        <h1 className="text-3xl font-semibold p-1 text-center">
+        <h1 className={style.heading}>
           😉 Wish List! 👍
         </h1>
-        <p className="text-center">
+        <p className={style.paragraph}>
           Add items to your wish list that you would like to build your points
           to purchase!
         </p>
       </section>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col w-3/4 mx-auto md:w-1/3"
+        className={style.form}
       >
-        <label className="text-left mt-5">Add Wish Item:</label>
+        <label className={style.label}>Add Wish Item:</label>
         <input
           onChange={(e) => setTitle(e.target.value)}
           value={title}
@@ -49,9 +60,9 @@ const WishAdd = ({ addWish }) => {
           maxLength="100"
           required
           placeholder="Enter your wish item..."
-          className="rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2"
+          className={style.wishInput}
         ></input>
-        <label className="text-left">Add Point Value:</label>
+        <label className={style.label}>Add Point Value:</label>
         <input
           onChange={(e) => setPoints(e.target.value)}
           value={points}
@@ -59,18 +70,14 @@ const WishAdd = ({ addWish }) => {
           min="0"
           required
           placeholder="Enter point value..."
-          className="rounded-md py-2 px-2 border border-blue-700 outline-none w-1/2"
+          className={style.pointsInput}
         ></input>
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           type="submit"
           disabled={!title || !points}
-          className={`bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg ${
-            !title || !points
-              ? "opacity-40 cursor-not-allowed"
-              : "cursor-pointer"
-          }`}
+          className={`${style.button} ${!title || !points ? "opacity-40 cursor-not-allowed" : "curson-pointer"}`}
           value="add wish"
         >
           Add Wish Item

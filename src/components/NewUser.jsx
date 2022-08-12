@@ -41,17 +41,34 @@ const Newuser = () => {
     }
     , [newUser]);
 
+    const style = {
+      mainDivider: `bg-blue-100 flex flex-col h-screen justify-center`,
+      heading: `text-center`,
+      form: `w-3/4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:w-1/2 lg:w-1/3 mx-auto`,
+      dividerOne: `mb-4`,
+      usernameLabel: `block text-gray-700 text-sm font-bold mb-2`,
+      usernameInput: `shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`,
+      dividerTwo: `mb-6`,
+      dividerThree: `flex justify-between`,
+      passwordLabel: `block text-gray-700 text-sm font-bold mb-2`,
+      spanBox: `flex items-start`,
+      buttonEye: `text-gray-700 text-2xl cursor-pointer mr-1`,
+      passwordInput: `shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline`,
+      dividerFour: `flex flex-col`,
+      buttonSignUp: `bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg`,
+    };
+
     return (
-      <div className="bg-blue-100 flex flex-col h-screen justify-center">
-        <h1 className="text-center">Registration Form</h1>
+      <div className={style.mainDivider}>
+        <h1 className={style.heading}>Registration Form</h1>
         <form
-          className=" w-3/4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:w-1/2 lg:w-1/3 mx-auto"
+          className="{style.form}"
           onSubmit={handleSubmit}
         >
-          <div className="mb-4">
+          <div className={style.dividerOne}>
             <label
               htmlFor="username"
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className={style.usernameLabel}
             >
               Username
             </label>
@@ -59,26 +76,26 @@ const Newuser = () => {
               onChange={handleNewUsernameChange}
               value={newUsername}
               name="userName"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className={style.usernameInput}
               id="username"
               type="text"
               placeholder="Username"
             />
           </div>
-          <div className="mb-6">
-            <div className="flex justify-between">
+          <div className={style.dividerTwo}>
+            <div className={style.dividerThree}>
               <span>
                 <label
                   htmlFor="password"
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className={style.passwordLabel}
                 >
                   Password
                 </label>
               </span>
-              <span className="flex items-start">
+              <span className={style.spanBox}>
                 <button
                   onClick={handleChangeEye}
-                  className="text-gray-700 text-2xl cursor-pointer mr-1"
+                  className={style.buttonEye}
                 >
                   {!showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                 </button>
@@ -89,16 +106,16 @@ const Newuser = () => {
               onChange={handleNewPasswordChange}
               value={newPassword}
               name="password"
-              className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className={style.passwordInput}
               id="password"
               type={showPassword ? "text" : "password"}
               placeholder="******************"
             />
           </div>
-          <div className="flex flex-col">
+          <div className={style.dividerFour}>
             <button
               disabled={!newUsername || !newPassword}
-              className={`bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg ${
+              className={`${style.buttonSignUp} ${
                 !newUsername || !newPassword
                   ? "opacity-40 cursor-not-allowed"
                   : "cursor-pointer"
