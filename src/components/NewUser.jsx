@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import AppImage from "../assets/chorebucks.png";
+import { FcCurrencyExchange } from "react-icons/fc";
 
 const getInitialUsersFromLocalStorage = () => {
     const user = localStorage.getItem("user");
@@ -33,7 +36,7 @@ const Newuser = () => {
         setNewUser([...newUser, { username: newUsername, password: newPassword }]);
         setNewUsername("");
         setNewPassword("");
-        window.location.pathname = ("/chore-Bucks");
+        window.location.pathname = ("/chore-bucks");
     }
 
     useEffect(() => {
@@ -42,8 +45,11 @@ const Newuser = () => {
     , [newUser]);
 
     const style = {
-      mainDivider: `bg-blue-100 flex flex-col h-screen justify-center`,
-      heading: `text-center`,
+      mainDivider: `bg-blue-100 h-screen`,
+      heading: `text-center mb-4`,
+      appLogoDivider: `flex justify-center py-6`,
+      currecnyLogo: `text-4xl`,
+      appLogo: `w-1/2 md:w-1/4 lg:w-1/4`,
       form: `w-3/4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:w-1/2 lg:w-1/3 mx-auto`,
       dividerOne: `mb-4`,
       usernameLabel: `block text-gray-700 text-sm font-bold mb-2`,
@@ -56,20 +62,19 @@ const Newuser = () => {
       passwordInput: `shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline`,
       dividerFour: `flex flex-col`,
       buttonSignUp: `bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg`,
+      paragraphTwo: `text-center text-black-500 text-xs pt-6`,
     };
 
     return (
       <div className={style.mainDivider}>
+        <div className={style.appLogoDivider}>
+          <FcCurrencyExchange className={style.currecnyLogo} />
+          <img src={AppImage} alt="" className={style.appLogo} />
+        </div>
         <h1 className={style.heading}>Registration Form</h1>
-        <form
-          className="{style.form}"
-          onSubmit={handleSubmit}
-        >
+        <form className={style.form} onSubmit={handleSubmit}>
           <div className={style.dividerOne}>
-            <label
-              htmlFor="username"
-              className={style.usernameLabel}
-            >
+            <label htmlFor="username" className={style.usernameLabel}>
               Username
             </label>
             <input
@@ -85,18 +90,12 @@ const Newuser = () => {
           <div className={style.dividerTwo}>
             <div className={style.dividerThree}>
               <span>
-                <label
-                  htmlFor="password"
-                  className={style.passwordLabel}
-                >
+                <label htmlFor="password" className={style.passwordLabel}>
                   Password
                 </label>
               </span>
               <span className={style.spanBox}>
-                <button
-                  onClick={handleChangeEye}
-                  className={style.buttonEye}
-                >
+                <button onClick={handleChangeEye} className={style.buttonEye}>
                   {!showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                 </button>
                 {!showPassword ? "show" : "hide"}
@@ -123,6 +122,9 @@ const Newuser = () => {
             >
               Sign Up
             </button>
+            <Link to="/">
+              <p className={style.paragraphTwo}>Back to Login</p>
+            </Link>
           </div>
         </form>
       </div>
