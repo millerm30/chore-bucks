@@ -2,11 +2,15 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: master
+    branches: addbackend
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
 
     steps:
       - name: Checkout repository
