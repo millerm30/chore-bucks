@@ -43,7 +43,7 @@
       "react-app/jest"
     ]
   },
-  "browserslistConfig": {
+  "browserslist": {
     "production": [
       ">0.2%",
       "not dead",
