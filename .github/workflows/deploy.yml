@@ -13,8 +13,8 @@ jobs:
       - name: Configure and Build
         run: |
           rm .gitignore && mv .deploy-gitignore .gitignore
-          cd backend && npm install --production cd ..
-          cd frontend && npm install --production && npm run build cd ..
+          cd backend && npm install --production && cd ..
+          cd frontend && npm install --production && npm run build && cd ..
       - name: Add node_modules and build output to git
         run: |
           git config --global user.email "${{secrets.HEROKU_EMAIL}}"
