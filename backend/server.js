@@ -12,16 +12,9 @@ const static_dir = path.join(__dirname, '../frontend/build');
 
 app.use('/', express.static(static_dir));
 
-app.get('/chores', (req, res) => {
-  res.sendFile(path.join(static_dir, '/chores'));
-});
-
-app.get('/wishlist', (req, res) => {
-  res.sendFile(path.join(static_dir, '/wishlist'));
-});
-
-app.get('/cart', (req, res) => {
-  res.sendFile(path.join(static_dir, '/cart'));
+isProduction && 
+  app.get('*', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
 });
 
 app.listen(PORT, () => {
