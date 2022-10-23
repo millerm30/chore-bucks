@@ -12,6 +12,18 @@ const static_dir = path.join(__dirname, '../frontend/build');
 
 app.use('/', express.static(static_dir));
 
+app.get('/chores', (req, res) => {
+  res.sendFile(path.join(static_dir, '/chores'));
+});
+
+app.get('/wishlist', (req, res) => {
+  res.sendFile(path.join(static_dir, '/wishlist'));
+});
+
+app.get('/cart', (req, res) => {
+  res.sendFile(path.join(static_dir, '/cart'));
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
