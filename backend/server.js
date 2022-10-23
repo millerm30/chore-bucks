@@ -4,7 +4,7 @@ const app = express();
 const shared = require ('shared');
 const path = require('path');
 
-const static_dir = path.join(__dirname, '/client/build');
+const static_dir = path.join(__dirname, '/frontend/build');
 
 app.use('/', express.static(static_dir));
 
