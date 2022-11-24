@@ -11,6 +11,7 @@ import ModalAdd from "./components/ChoresAddModal";
 import App from "./App";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import { UserProvider } from "./contexts/Auth";
 import { useUser } from "./contexts/Auth";
 
@@ -26,7 +27,6 @@ function getBucksFromLocalStorage() {
 
 const Router = () => {
   const [points, setPoints] = useState(() => getBucksFromLocalStorage());
-  
   const { isLoggedIn } = useUser();
   
   const addPoints = (amount) => setPoints(points + amount);
@@ -35,13 +35,13 @@ const Router = () => {
   useEffect(() => {
     localStorage.setItem("points", points);
   } , [points]);
-  
+
   return(
-  <App points={points} addPoints={addPoints} removePoints={removePoints}>
+  <App points={points} addPoints={addPoints} removePoints={removePoints} >
     <BrowserRouter basename="/">
       <Routes>
         {isLoggedIn ? (
-        <Route path="/" element={<Layout points={points}/>}>
+        <Route path="/" element={<Layout points={points} />}>
           <Route path="" element={<HeroPage />} />
           <Route path="/chores" element={<ChoresPage />} />
             <Route path="/choresadd" element={<ModalAdd />} />
@@ -51,6 +51,7 @@ const Router = () => {
         ) : (
           <Route path="/" element={<Login />} />
         )}
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   </App>

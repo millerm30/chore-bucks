@@ -9,7 +9,7 @@ import { FcCurrencyExchange } from "react-icons/fc";
 
 const Header = ({ points }) => {
   const { cart } = useShopping();
-  const { user } = useUser();
+  const { name } = useUser();
   const navigate = useNavigate();
   const goToShoppingCart = () => {
     navigate("/cart");
@@ -59,7 +59,7 @@ const Header = ({ points }) => {
       </div>
       <div className={style.userContainer}>
         <h2>Welcome!</h2>
-        <h2 className={style.headingTwo}>{user.username}</h2>
+        <h2 className={style.headingTwo}>{name}</h2>
       </div>
     </header>
   );

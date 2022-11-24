@@ -3,15 +3,16 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useUser } from "../contexts/Auth"
 import AppImage from "../assets/chorebucks.png";
 import { FcCurrencyExchange } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { login } = useUser();
   const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -25,7 +26,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(username, password);
+    login(email, password);
   };
 
   const style = {
@@ -35,8 +36,8 @@ const Login = () => {
     appLogo: `w-1/2 md:w-1/4 lg:w-1/4`,
     formDivider: `flex flex-col items-center justify-start`,
     form: `w-3/4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 md:w-1/2 lg:w-1/3 my-8`,
-    usernameLabel: `block text-gray-700 text-sm font-bold mb-2`,
-    usernameInput: `shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`,
+    useremailLabel: `block text-gray-700 text-sm font-bold mb-2`,
+    useremailInput: `shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`,
     userInfoDivider: `mb-4`,
     passInfoDividerOne: `mb-6`,
     passInfoDividerTwo: `flex justify-between`,
@@ -62,19 +63,19 @@ const Login = () => {
         >
           <div className={style.userInfoDivider}>
             <label
-              htmlFor="username"
-              className={style.usernameLabel}
+              htmlFor="email"
+              className={style.useremailLabel}
             >
-              Username
+              Email
             </label>
             <input
               onChange={handleUsernameChange}
-              value={username}
-              name="userName"
-              className={style.usernameInput}
-              id="username"
+              value={email}
+              name="email"
+              className={style.useremailInput}
+              id="email"
               type="text"
-              placeholder="Username"
+              placeholder="Email..."
             />
           </div>
           <div className={style.passInfoDividerOne}>
@@ -105,23 +106,27 @@ const Login = () => {
               id="password"
               type={showPassword ? "text" : "password"}
               placeholder="******************"
+              autoComplete="off"
             />
           </div>
           <div className="flex flex-col">
             <button
-              disabled={!username || !password}
+              disabled={!email || !password}
               className={`${style.signInButton} ${
-                !username || !password
+                !email || !password
                   ? "opacity-40 cursor-not-allowed"
                   : "cursor-pointer"
               }`}
             >
               Sign In
             </button>
-            <p className={style.paragraphOne}>
-              To login please use Guest as your username and password!
-            </p>
           </div>
+          <p className={style.paragraphTwo}>
+            Don't have an account?{" "}
+            <Link to="/register" className="text-blue-900">
+              Register
+            </Link>
+          </p>
         </form>
         <p className={style.paragraphTwo}>
           &copy;2022 Design By Michael Miller.
