@@ -24,6 +24,7 @@ export function UserProvider({ children }) {
         headers: { token: localStorage.token },
       });
       const parseData = await res.json();
+      localStorage.setItem("User Name", parseData.user_name);
       setName(parseData.user_name);
     } catch (err) {
       console.error(err.message);
@@ -32,7 +33,7 @@ export function UserProvider({ children }) {
 
   useEffect(() => {
     getProfile();
-  }, [name]);
+  }, [user]);
 
   useEffect(() => {
     setIsLoggedIn(() => {
@@ -45,7 +46,6 @@ export function UserProvider({ children }) {
   }, [setIsLoggedIn]);
 
   const login = async (email, password) => {
-    //e.preventDefault();
     try {
       const body = { email, password };
       const response = await fetch("http://localhost:3001/auth/login", {
@@ -57,6 +57,7 @@ export function UserProvider({ children }) {
       if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
         setUser(parseRes.token);
+        setIsLoggedIn(true);
         toast.success("Logged in successfully");
       } else {
         toast.error(parseRes);
@@ -76,8 +77,30 @@ export function UserProvider({ children }) {
     window.location = "/";
   };
 
+  const register = async (name, email, password) => {
+    try {
+      const body = { name, email, password };
+      const response = await fetch("http://localhost:3001/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+        const parseRes = await response.json();
+        if (parseRes.token) {
+        toast.success(`${name} registered successfully`);
+        setTimeout(() => {
+          window.location = "/";
+        }, 2000);
+      } else {
+        toast.error(parseRes);
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   return (
-    <UserContext.Provider value={{user, name, isLoggedIn: user !== undefined, login, handleLogOut}}>
+    <UserContext.Provider value={{user, name, isLoggedIn: user !== undefined, login, handleLogOut, register}}>
       {children}
     </UserContext.Provider>
   );

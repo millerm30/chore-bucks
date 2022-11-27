@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import AppImage from "../assets/chorebucks.png";
 import { FcCurrencyExchange } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { useUser } from "../contexts/Auth";
 
 const Newuser = () => {
-    const [ newUser, setNewUser ] = useState();
+    const { register } = useUser();
     const [ name, setName ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
@@ -28,13 +29,12 @@ const Newuser = () => {
         setShowPassword(!showPassword);
     };
 
-    const handleSubmit = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
-        //setNewUser([...newUser, { username: userName, password: userPassword }]);
+        register(name, email, password)
         setName("");
         setEmail("");
         setPassword("");
-        window.location.pathname = ("/chore-Bucks");
     }
 
     const style = {
@@ -67,7 +67,7 @@ const Newuser = () => {
           <img src={AppImage} alt="" className={style.appLogo} />
         </div>
         <div className={style.formDivider}>
-          <form className={style.form} onSubmit={handleSubmit}>
+          <form className={style.form} onSubmit={handleRegister}>
             <div className={style.userInfoDivider}>
               <label htmlFor="name" className={style.usernameLabel}>
                 Name
@@ -147,10 +147,10 @@ const Newuser = () => {
               </Link>
             </p>
           </form>
+          <p className={style.paragraphTwo}>
+            &copy;2022 Design By Michael Miller.
+          </p>
         </div>
-        <p className={style.paragraphTwo}>
-          &copy;2022 Design By Michael Miller.
-        </p>
       </div>
     );
 }

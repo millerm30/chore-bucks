@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaFacebook, FaTwitter, FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
+import { MdAlternateEmail } from "react-icons/md";
 
 const style = {
   footerContainer: `w-full h-14`,
@@ -19,6 +21,7 @@ const Footer = () => {
             <span>&copy;2022, Designed By Michael Miller</span>
           </div>
           <div className={style.socialDivider}>
+            <Link to="/contact"><MdAlternateEmail className={style.socialIcon} /></Link>
             <a href="http://www.facebook.com/millerm30" target="_blank" rel="noopener noreferrer"><FaFacebook className={style.socialIcon} /></a>
             <a href="http://www.twitter.com/millerm30" target="_blank" rel="noopener noreferrer"><FaTwitter className={style.socialIcon} /></a>
             <a href="http://www.instagram.com/millergm302022" target="_blank" rel="noopener noreferrer"><FaInstagram className={style.socialIcon} /></a>

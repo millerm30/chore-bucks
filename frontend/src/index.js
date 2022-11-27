@@ -12,6 +12,7 @@ import App from "./App";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import ContactForm from "./components/ContactForm";
 import { UserProvider } from "./contexts/Auth";
 import { useUser } from "./contexts/Auth";
 
@@ -47,6 +48,7 @@ const Router = () => {
             <Route path="/choresadd" element={<ModalAdd />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/cart" element={<Cart points={points}/>} />
+          <Route path="/contact" element={<ContactForm />} />
         </Route>
         ) : (
           <Route path="/" element={<Login />} />

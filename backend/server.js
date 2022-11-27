@@ -15,6 +15,9 @@ app.use('/auth', require('./routes/jwtAuth'));
 // Dashboard Route
 app.use('/dashboard', require('./routes/dashboard'));
 
+// Contact Us Route
+app.use('/contact', require('./routes/contactus'));
+
 // PORT //
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
