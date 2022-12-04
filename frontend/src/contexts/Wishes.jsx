@@ -14,12 +14,13 @@ let audioSuccess = new Audio(yay);
 export function WishesProvider({ children }) {
     const { addToCartHandler } = useShopping();
     const [wishes, setWishes] = useState([]);
-
+    const [newWishes, setNewWishes] = useState([]);
+    
     const getAllWishes = async () => {
       try {
         const getWishes = await fetch("http://localhost:3001/wishes/getwishes", {
           method: "GET",
-          headers: { token: localStorage.token },
+          headers: { "Content-Type": "application/json", token: localStorage.token },
         })
         const response = await getWishes.json();
         setWishes(response);
@@ -27,11 +28,7 @@ export function WishesProvider({ children }) {
         console.error(error.message);
       }
     };
-
-    useEffect (() => {
-      getAllWishes();
-    }, [addToCartHandler]);
-
+    
     const addWish = async (title, points) => {
       try {
         const body = { title, points };
@@ -66,12 +63,17 @@ export function WishesProvider({ children }) {
           }
         );
         setWishes(wishes.filter((i) => i.id !== wish));
+        setNewWishes(...newWishes, wish);
         toast(`😢 wish removed from wish list!`);
         audioFailure.play();
       } catch (error) {
         console.error(error.message);
       }
     };
+
+    useEffect(() => {
+      getAllWishes();
+    }, [newWishes, addToCartHandler]);
     
     return (
         <WishesContext.Provider value={{ wishes, addWish, completeWish, removeWish }}>

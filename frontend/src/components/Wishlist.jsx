@@ -18,10 +18,9 @@ const WishList = () => {
   return (
     <main className={style.main}>
       <Wishadd addWish={addWish} />
-      {wishes.length === 0 && (
-        <p className={style.paragraph}>No Wish List Items!</p>
-      )}
-      {
+      {wishes.length === 0 ? (
+        <p className={style.paragraph}>No wishes yet</p>
+      ) : (
         <section className={style.section}>
           {wishes.map((wish) => (
             <Card key={wish.wish_id} title={wish.wish_name} points={wish.wish_value} remove={<GoTrashcan onClick={() => removeWish(wish.wish_id)}/>}>
@@ -35,7 +34,7 @@ const WishList = () => {
             </Card>
           ))}
         </section>
-      }
+      )};
     </main>
   );
 }
