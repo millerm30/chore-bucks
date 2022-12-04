@@ -55,6 +55,7 @@ const WishAdd = ({ addWish }) => {
         <label className={style.label}>Add Wish Item:</label>
         <input
           onChange={(e) => setTitle(e.target.value)}
+          name="wish_name"
           value={title}
           type="text"
           maxLength="100"
@@ -65,6 +66,7 @@ const WishAdd = ({ addWish }) => {
         <label className={style.label}>Add Point Value:</label>
         <input
           onChange={(e) => setPoints(e.target.value)}
+          name="wish_value"
           value={points}
           type="number"
           min="0"

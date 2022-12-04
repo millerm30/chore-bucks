@@ -24,7 +24,7 @@ const WishList = () => {
       {
         <section className={style.section}>
           {wishes.map((wish) => (
-            <Card key={wish.id} title={wish.title} points={wish.points} style={wish.style} remove={<GoTrashcan onClick={() => removeWish(wish)}/>}>
+            <Card key={wish.wish_id} title={wish.wish_name} points={wish.wish_value} remove={<GoTrashcan onClick={() => removeWish(wish.wish_id)}/>}>
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}

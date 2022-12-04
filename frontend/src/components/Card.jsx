@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const styles = {
-  motionDivider: `bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-center border-2 rounded-lg`,
+  motionDivider: `bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-center border border-blue-700 rounded-lg`,
   cardDivider: `container h-full flex flex-col justify-between`,
   button: `text-2xl text-red-600 block mr-0 ml-auto py-1`,
   headingOne: `text-2xl font-semibold p-1 text-center`,
@@ -10,7 +10,7 @@ const styles = {
   spanBox: `mx-auto`,
 };
 
-export const Card = ({title, points, style, remove, children}) => {
+export const Card = ({title, points, remove, children}) => {
   return (
     <motion.div
       initial={{ scale: 0 }}
@@ -21,7 +21,7 @@ export const Card = ({title, points, style, remove, children}) => {
         damping: 12,
       }}
       className={styles.motionDivider}
-      style={style}
+      
     >
       <div className={styles.cardDivider}>
         <span>
