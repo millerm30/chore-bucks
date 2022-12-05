@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useUser } from "../contexts/Auth";
 
 const Newuser = () => {
-    const { register } = useUser();
+    const { register, registerStatus } = useUser();
     const [ name, setName ] = useState("");
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
@@ -137,7 +137,7 @@ const Newuser = () => {
                     : "cursor-pointer"
                 }`}
               >
-                Register
+                {registerStatus}
               </button>
             </div>
             <p className={style.paragraphTwo}>

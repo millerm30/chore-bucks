@@ -16,6 +16,8 @@ export function UserProvider({ children }) {
   const [user, setUser] = useState(getLoggedInUser);
   const [isLoggedIn, setIsLoggedIn] = useState(getLoggedInUser(user !== undefined));
   const [name, setName] = useState("");
+  const [loginStatus, setLoginStatus] = useState('Sign In');
+  const [registerStatus, setRegisterStatus] = useState('Sign Up');
 
   const getProfile = async () => {
     try {
@@ -46,6 +48,7 @@ export function UserProvider({ children }) {
   }, [setIsLoggedIn]);
 
   const login = async (email, password) => {
+    setLoginStatus('Loading...');
     try {
       const body = { email, password };
       const response = await fetch("http://localhost:3001/auth/login", {
@@ -59,6 +62,7 @@ export function UserProvider({ children }) {
         setUser(parseRes.token);
         setIsLoggedIn(true);
         toast.success("Logged in successfully");
+        setLoginStatus('Sign In');
       } else {
         toast.error(parseRes);
       }
@@ -78,6 +82,7 @@ export function UserProvider({ children }) {
   };
 
   const register = async (name, email, password) => {
+    setRegisterStatus('Loading...');
     try {
       const body = { name, email, password };
       const response = await fetch("http://localhost:3001/auth/register", {
@@ -91,6 +96,7 @@ export function UserProvider({ children }) {
         setTimeout(() => {
           window.location = "/";
         }, 2000);
+        setRegisterStatus('Sign Up');
       } else {
         toast.error(parseRes);
       }
@@ -100,7 +106,7 @@ export function UserProvider({ children }) {
   };
 
   return (
-    <UserContext.Provider value={{user, name, isLoggedIn: user !== undefined, login, handleLogOut, register}}>
+    <UserContext.Provider value={{user, name, isLoggedIn: user !== undefined, login, handleLogOut, register, loginStatus, registerStatus}}>
       {children}
     </UserContext.Provider>
   );

@@ -15,6 +15,7 @@ export function WishesProvider({ children }) {
     const { addToCartHandler } = useShopping();
     const [wishes, setWishes] = useState([]);
     const [newWishes, setNewWishes] = useState([]);
+    const [wishStatus, setWishStatus] = useState("Add Wish Item");
     
     const getAllWishes = async () => {
       try {
@@ -30,6 +31,7 @@ export function WishesProvider({ children }) {
     };
     
     const addWish = async (title, points) => {
+      setWishStatus("Adding...");
       try {
         const body = { title, points };
         const response = await fetch("http://localhost:3001/wishes/createwish", {
@@ -41,6 +43,7 @@ export function WishesProvider({ children }) {
         setWishes([...wishes, parseRes]);
         toast(`😃 ${title} added to wish list!`);
         audioAddWish.play();
+        setWishStatus("Add Wish Item");
       } catch (error) {
         console.error(error.message);
       }
@@ -76,7 +79,7 @@ export function WishesProvider({ children }) {
     }, [newWishes, addToCartHandler]);
     
     return (
-        <WishesContext.Provider value={{ wishes, addWish, completeWish, removeWish }}>
+        <WishesContext.Provider value={{ wishes, addWish, completeWish, removeWish, wishStatus }}>
         {children}
         </WishesContext.Provider>
     );

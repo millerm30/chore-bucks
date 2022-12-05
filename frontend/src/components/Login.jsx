@@ -6,7 +6,7 @@ import { FcCurrencyExchange } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { login } = useUser();
+  const { login, loginStatus } = useUser();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -118,7 +118,7 @@ const Login = () => {
                   : "cursor-pointer"
               }`}
             >
-              Sign In
+              {loginStatus}
             </button>
           </div>
           <p className={style.paragraphTwo}>

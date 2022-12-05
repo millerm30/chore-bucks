@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Confetti from "react-confetti";
+import { useWishes } from "../contexts/Wishes";
 
 const WishAdd = ({ addWish }) => {
   const [title, setTitle] = useState("");
   const [points, setPoints] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const { wishStatus } = useWishes();
 
   const handleSubmit = (e) => {
       e.preventDefault()
@@ -82,7 +84,7 @@ const WishAdd = ({ addWish }) => {
           className={`${style.button} ${!title || !points ? "opacity-40 cursor-not-allowed" : "curson-pointer"}`}
           value="add wish"
         >
-          Add Wish Item
+          {wishStatus}
         </motion.button>
       </form>
     </section>
