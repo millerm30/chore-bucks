@@ -21,6 +21,12 @@ app.use('/chores', require('./routes/chores'));
 // Wishes Route
 app.use('/wishes', require('./routes/wishes'));
 
+// Wallet Route
+app.use('/wallet', require('./routes/wallet'));
+
+// Cart Route
+app.use('/cart', require('./routes/cart'));
+
 // Contact Us Route
 app.use('/contact', require('./routes/contactus'));
 
