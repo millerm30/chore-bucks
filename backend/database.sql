@@ -14,7 +14,6 @@ CREATE TABLE predefined_chores (
     predefined_id uuid PRIMARY KEY DEFAULT 
     uuid_generate_v4(),
     chore_name VARCHAR(255) NOT NULL,
-    chore_value INT NOT NULL,
     user_id uuid,
     FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
@@ -25,6 +24,7 @@ CREATE TABLE selected_chores (
     selected_id uuid PRIMARY KEY DEFAULT 
     uuid_generate_v4(),
     user_id uuid NOT NULL,
+    chore_value INT NOT NULL,
     predefined_id uuid NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (predefined_id) REFERENCES predefined_chores (predefined_id)
@@ -56,7 +56,8 @@ CREATE TABLE shopping_cart (
 -- Wallet Table --
 
 CREATE TABLE wallet (
-  wallet_id uuid PRIMARY KEY DEFAULT,
+  wallet_id uuid PRIMARY KEY DEFAULT
+  uuid_generate_v4(),
   user_id uuid NOT NULL,
   balance INT,
   FOREIGN KEY (user_id) REFERENCES users (user_id)
