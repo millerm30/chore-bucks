@@ -14,25 +14,6 @@ let audioFailure = new Audio(failure);
 export function ChoresProvider({ children, addPoints}) {
   const [chores, setChores] = useState([]);
 
-  const getInitialDefinedChores = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:3001/chores/predefinedchores",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
-      return data;
-      //console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const addChore = (title, points) => {
     audioAddChore.play();
     toast(`👍 ${title} added to chores list!`);
@@ -52,9 +33,7 @@ export function ChoresProvider({ children, addPoints}) {
     setChores(chores.filter((c) => c !== chore));
   };
 
-  useEffect(() => {
-    getInitialDefinedChores()
-  }, []);
+ 
 
   return (
     <ChoresContext.Provider value={{ chores, addChore, removeChore, completeChore }}>

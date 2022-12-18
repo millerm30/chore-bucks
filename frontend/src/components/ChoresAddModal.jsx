@@ -1,23 +1,14 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useChores } from "../contexts/Chores";
-import choresChoices from "./Chorelist";
 import toast from "react-hot-toast";
-import { v4 as uuid } from 'uuid';
 import { Dialog, Transition } from '@headlessui/react'
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 
-const getInitialNewChoresLocalStorage = () => {
-  const temp = localStorage.getItem("choresList");
-  if (temp) {
-    return JSON.parse(temp);
-  }
-  return choresChoices;
-};
-
 export default function MyModal() {
   const { addChore } = useChores();
-  const [choresList, setChoresList] = useState(getInitialNewChoresLocalStorage);
+  const [choresList, setChoresList] = useState([]);
+  const [newChoresList, setNewChoresList] = useState([]);
   const navigate = useNavigate();
   const isOpen = true
 
@@ -27,7 +18,25 @@ export default function MyModal() {
 
   const [chore, setChore] = useState("");
   const [point, setPoint] = useState("");
-  const [label, setLabel] = useState("");
+  const [choreName, setChoreName] = useState("");
+
+  const getInitialDefinedChores = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/chores/predefinedchores",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      setChoresList(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleChoresChange = (e) => {
     setChore(e.target.value);
@@ -37,11 +46,22 @@ export default function MyModal() {
     setPoint(e.target.value);
   };
 
-  const handleNewChore = (e) => {
+  const handleNewChore = async (e) => {
     e.preventDefault();
-    setChoresList([...choresList,{ label: label, value: label, id: uuid()}]);
-    setLabel("");
-    toast(`${label} added to chore list!`, { icon: "👍" });
+    try {
+      const body = { choreName };
+      const response = await fetch("http://localhost:3001/chores/addpredefinedchore", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", token: localStorage.token },
+        body: JSON.stringify(body),
+      });
+      const parseRes = await response.json();
+      setNewChoresList([...newChoresList, parseRes]);
+      toast(`${choreName} added to chore list!`, { icon: "👍" });
+      setChoreName("");
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -51,9 +71,9 @@ export default function MyModal() {
     setPoint("");
   };
 
-  useEffect(() => {
-    localStorage.setItem("choresList", JSON.stringify(choresList));
-  }, [choresList]);
+   useEffect(() => {
+     getInitialDefinedChores();
+   }, [newChoresList]);
 
   const style = {
     mainContainer: `bg-blue-300`,
@@ -127,7 +147,7 @@ export default function MyModal() {
                           className={style.form}
                         >
                           <label htmlFor="chores" className={style.chooseChoreLabel}>
-                            Choose your chore:{""}
+                            Choose your chore:
                           </label>
                           <select
                             value={chore}
@@ -135,9 +155,12 @@ export default function MyModal() {
                             onChange={handleChoresChange}
                             className={style.chooseChoreSelect}
                           >
-                            {choresList.map((choice) => (
-                              <option key={choice.id} value={choice.value}>
-                                {choice.label}
+                            {choresList.map((chore) => (
+                              <option 
+                              key={chore.predefined_id} 
+                              value={chore.chore_name}
+                              >
+                                {chore.chore_name}
                               </option>
                             ))}
                           </select>
@@ -186,21 +209,21 @@ export default function MyModal() {
                                 Add new chore:
                               </label>
                               <input
-                                value={label}
+                                value={choreName}
                                 maxLength="100"
                                 placeholder="Enter new chore..."
                                 name="choresNew"
-                                onChange={(e) => setLabel(e.target.value)}
+                                onChange={(e) => setChoreName(e.target.value)}
                                 className={style.addNewChoreInput}
                               ></input>
                               <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                                 type="submit"
-                                disabled={!label}
+                                disabled={!choreName}
                                 onClick={handleNewChore}
                                 className={`${style.addNewChoreButton} ${
-                                  !label
+                                  !choreName
                                     ? "opacity-50 cursor-not-allowed"
                                     : "cursor-pointer"
                                 }`}
