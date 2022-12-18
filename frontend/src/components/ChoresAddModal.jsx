@@ -154,7 +154,7 @@ export default function MyModal() {
                             name="chores"
                             onChange={handleChoresChange}
                             className={style.chooseChoreSelect}
-                          >
+                          > <option value="">Please select a chore...</option>
                             {choresList.map((chore) => (
                               <option 
                               key={chore.predefined_id} 
