@@ -55,8 +55,9 @@ const Chores = () => {
       </section>
       <Outlet />
       <section className="choresArea">
-        {chores.length === 0 && <p className={style.paragraphOne}>No Chores to do!</p>}
-        {
+        {chores.length === 0 ? (
+          <p className={style.paragraphOne}>No Chores to do!</p>
+        ) : (
           <section className={style.choresSection}>
             {chores.map((chore) => (
               <Card
@@ -80,10 +81,10 @@ const Chores = () => {
               </Card>
             ))}
           </section>
-        }
+        )}
       </section>
     </main>
   );
-}
+};
 
 export default Chores;
