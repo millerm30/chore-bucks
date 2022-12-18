@@ -88,7 +88,7 @@ const WishAdd = ({ addWish }) => {
         </motion.button>
       </form>
     </section>
-  );
+  )
 }
 
 export default WishAdd
