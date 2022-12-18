@@ -13,8 +13,7 @@ import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ContactForm from "./components/ContactForm";
-import { UserProvider } from "./contexts/Auth";
-import { useUser } from "./contexts/Auth";
+import { UserProvider, useUser } from "./contexts/Auth";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

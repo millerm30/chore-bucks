@@ -33,4 +33,4 @@ router.post('/addbalance', authorization, async (req, res) => {
   }
 });
 
-moldule.exports = router;
+module.exports = router;

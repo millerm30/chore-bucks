@@ -17,17 +17,17 @@ router.get('/getcart', authorization, async (req, res) => {
   }
 });
 
-// Add an item to the shopping cart in the database
+// Add the wish to the shopping cart table in the database
 
-router.post('/addtocart', authorization, async (req, res) => {
+router.post('/addtoshoppingcart', authorization, async (req, res) => {
   const userId = req.user.id;
-  const { item } = req.body;
+  const { item, points } = req.body;
   try {
     const addToCart = await pool.query(
-      'INSERT INTO shopping_cart (user_id, item) VALUES ($1, $2)',
-      [userId, item]
+      'INSERT INTO shopping_cart (user_id, item, points) VALUES($1, $2, $3) RETURNING *',
+      [userId, item, points]
     );
-    res.json(addToCart.rows);
+    res.json(addToCart.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
@@ -49,5 +49,5 @@ router.post('/removefromcart', authorization, async (req, res) => {
   }
 });
 
-moldule.exports = router;
+module.exports = router;
 
