@@ -40,7 +40,7 @@ export function WishesProvider({ children }) {
           body: JSON.stringify(body),
         });
         const parseRes = await response.json();
-        setWishes([...wishes, parseRes]);
+        setNewWishes(parseRes);
         toast(`😃 ${title} added to wish list!`);
         audioAddWish.play();
         setWishStatus("Add Wish Item");
@@ -66,7 +66,7 @@ export function WishesProvider({ children }) {
           }
         );
         setWishes(wishes.filter((i) => i.id !== wish));
-        setNewWishes(...newWishes, wish);
+        setNewWishes(wishes.filter((i) => i.id !== wish));
         toast(`😢 wish removed from wish list!`);
         audioFailure.play();
       } catch (error) {
@@ -76,7 +76,7 @@ export function WishesProvider({ children }) {
 
     useEffect(() => {
       getAllWishes();
-    }, [newWishes, addToCartHandler]);
+    }, [newWishes]);
     
     return (
         <WishesContext.Provider value={{ wishes, addWish, completeWish, removeWish, wishStatus }}>
