@@ -34,7 +34,7 @@ const WishList = () => {
             </Card>
           ))}
         </section>
-      )};
+      )}
     </main>
   );
 }
