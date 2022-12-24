@@ -35,7 +35,6 @@ router.post("/addpredefinedchore", authorization, async (req, res) => {
 
 router.get("/getallchores", authorization, async (req, res) => {
   const userId = req.user.id;
-  console.log(userId)
   try {
     const getChores = await pool.query(
       "SELECT * FROM selected_chores WHERE user_id = $1",
@@ -47,13 +46,13 @@ router.get("/getallchores", authorization, async (req, res) => {
         [chore.predefined_id]
       );
       return {
-        seleceted_id: chore.seleceted_id,
-        chore_name: getPredefinedChores.chore_name,
+        selected_id: chore.selected_id,
+        chore_name: getPredefinedChores.rows[0].chore_name,
         chore_value: chore.chore_value
       }
     });
-    console.log(getChoresMap)
-    res.json(getChoresMap);
+    const getChoresResult = await Promise.all(getChoresMap);
+    res.json(getChoresResult);
   } catch (err) {
     console.error(err.message);
   }
@@ -62,15 +61,30 @@ router.get("/getallchores", authorization, async (req, res) => {
 // Add a predefined chore with the userId and the user inputed chore value to the new selected_chores table
 
 router.post("/addtodochore", authorization, async (req, res) => {
-  const { predefined_id, points } = req.body;
-  console.log(predefined_id, points);
+  const { chore_name, points } = req.body;
   const userId = req.user.id;
   try {
     const newChore = await pool.query(
       "INSERT INTO selected_chores (predefined_id, user_id, chore_value) VALUES ($1, $2, $3) RETURNING *",
-      [predefined_id, userId, points]
+      [chore_name, userId, points]
     );
     res.json(newChore.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// Remove a chore from the selected_chores table
+
+router.delete("/deletechore/:id", authorization, async (req, res) => {
+  try {
+    const chore = req.params.id;
+    const userId = req.user.id;
+    const removeChore = await pool.query(
+      "DELETE FROM selected_chores WHERE selected_id = $1 AND user_id = $2",
+      [chore, userId]
+    );
+    res.json(removeChore.rows);
   } catch (err) {
     console.error(err.message);
   }
