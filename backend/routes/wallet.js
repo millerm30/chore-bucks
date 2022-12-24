@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const authorization = require('../middleware/authorization');
-const pool = require('../db');
+const pool = require('../database/db');
 
 // Get the chore bucks balance for the logged in user from the database
 

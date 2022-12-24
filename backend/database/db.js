@@ -1,6 +1,6 @@
-import { Pool } from "pg";
-import { config } from "dotenv";
-config();
+const Pool = require("pg").Pool;
+const dotenv = require("dotenv");
+dotenv.config();
 
 //Create Postgre Database Connection
 const pool = new Pool({
@@ -107,4 +107,4 @@ pool.query(
   }
 );
 
-export default pool;
+module.exports = pool;
