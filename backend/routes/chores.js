@@ -34,13 +34,26 @@ router.post("/addpredefinedchore", authorization, async (req, res) => {
 // Get list of predefined chores and the new chores added by the logged in user
 
 router.get("/getallchores", authorization, async (req, res) => {
-  const userId = req.user.id
+  const userId = req.user.id;
+  console.log(userId)
   try {
     const getChores = await pool.query(
-      "SELECT * FROM predefined_chores WHERE user_id = $1",
+      "SELECT * FROM selected_chores WHERE user_id = $1",
       [userId]
     );
-    res.json(getChores.rows);
+    const getChoresMap = getChores.rows.map(async (chore) => {
+      const getPredefinedChores = await pool.query(
+        "SELECT * FROM predefined_chores WHERE predefined_id = $1", 
+        [chore.predefined_id]
+      );
+      return {
+        seleceted_id: chore.seleceted_id,
+        chore_name: getPredefinedChores.chore_name,
+        chore_value: chore.chore_value
+      }
+    });
+    console.log(getChoresMap)
+    res.json(getChoresMap);
   } catch (err) {
     console.error(err.message);
   }
@@ -55,7 +68,7 @@ router.post("/addtodochore", authorization, async (req, res) => {
   try {
     const newChore = await pool.query(
       "INSERT INTO selected_chores (predefined_id, user_id, chore_value) VALUES ($1, $2, $3) RETURNING *",
-      [predefined_id, points, userId]
+      [predefined_id, userId, points]
     );
     res.json(newChore.rows[0]);
   } catch (err) {
