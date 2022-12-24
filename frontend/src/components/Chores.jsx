@@ -61,11 +61,11 @@ const Chores = () => {
           <section className={style.choresSection}>
             {chores.map((chore) => (
               <Card
-                key={chore.id}
+                key={chore.selected_id}
                 style={chore.style}
-                title={chore.title}
-                points={chore.points}
-                remove={<GoTrashcan onClick={() => removeChore(chore)} />}
+                title={chore.chore_name}
+                points={chore.chore_value}
+                remove={<GoTrashcan onClick={() => removeChore(chore.selected_id)} />}
               >
                 <motion.button
                   whileHover={{ scale: 1.1 }}

@@ -6,9 +6,10 @@ import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 
 export default function MyModal() {
-  const { addChore } = useChores();
+  const { addChore, choreStatus } = useChores();
   const [choresList, setChoresList] = useState([]);
   const [newChoresList, setNewChoresList] = useState([]);
+  const [addNewChoreStatus, setAddNewChoreStatus] = useState("Add New Chore");
   const navigate = useNavigate();
   const isOpen = true
 
@@ -47,6 +48,7 @@ export default function MyModal() {
   };
 
   const handleNewChore = async (e) => {
+    setAddNewChoreStatus("Adding...");
     e.preventDefault();
     try {
       const body = { choreName };
@@ -59,6 +61,7 @@ export default function MyModal() {
       setNewChoresList([...newChoresList, parseRes]);
       toast(`${choreName} added to chore list!`, { icon: "👍" });
       setChoreName("");
+      setAddNewChoreStatus("Add New Chore");
     } catch (error) {
       console.error(error.message);
     }
@@ -158,7 +161,7 @@ export default function MyModal() {
                             {choresList.map((chore) => (
                               <option 
                               key={chore.predefined_id} 
-                              value={chore.chore_name}
+                              value={chore.predefined_id}
                               >
                                 {chore.chore_name}
                               </option>
@@ -188,7 +191,7 @@ export default function MyModal() {
                                 : "cursor-pointer"
                             }`}
                           >
-                            Add Chore
+                            {choreStatus}
                           </motion.button>
                         </form>
                       </section>
@@ -228,7 +231,7 @@ export default function MyModal() {
                                     : "cursor-pointer"
                                 }`}
                               >
-                                Add New Chore
+                                {addNewChoreStatus}
                               </motion.button>
                             </form>
                           </div>
