@@ -70,6 +70,7 @@ export default function MyModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     addChore(chore, Number(point));
+    toast(`${chore} added to chore list!`, { icon: "👍" });
     setChore("");
     setPoint("");
   };
@@ -159,7 +160,7 @@ export default function MyModal() {
                             className={style.chooseChoreSelect}
                           > <option value="">Please select a chore...</option>
                             {choresList.map((chore) => (
-                              <option 
+                              <option
                               key={chore.predefined_id} 
                               value={chore.predefined_id}
                               >

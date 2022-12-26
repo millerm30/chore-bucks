@@ -23,16 +23,15 @@ export function ChoresProvider({ children, addPoints}) {
       });
       const response = await getChores.json();
       setChores(response)
-      console.log(response);
     } catch (error) {
       console.error(error.message);
     }
   };
 
-  const addChore = async ( chore_name, points ) => {
+  const addChore = async ( predefined_id, points ) => {
     setChoreStatus("Adding...");
     try {
-      const body = { chore_name, points };
+      const body = { predefined_id, points };
       console.log(body);
        const response = await fetch(
          "http://localhost:3001/chores/addtodochore",
@@ -47,7 +46,7 @@ export function ChoresProvider({ children, addPoints}) {
        );
       audioAddChore.play();
       const parseRes = await response.json();
-      setChores([...chores, parseRes]);
+      setNewChores([...newChores, parseRes]);
       setChoreStatus("Add Chore Item");
      } catch (error) {
        console.error(error.message);
@@ -60,7 +59,6 @@ export function ChoresProvider({ children, addPoints}) {
         method: "DELETE",
         headers: { token: localStorage.token },
       });
-      setChores(chores.filter((c) => c !== chore));
       setNewChores(newChores.filter((c) => c !== chore));
       audioFailure.play();
       toast(`🍩 Chore removed from chores list!`);

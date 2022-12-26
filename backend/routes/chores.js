@@ -61,12 +61,12 @@ router.get("/getallchores", authorization, async (req, res) => {
 // Add a predefined chore with the userId and the user inputed chore value to the new selected_chores table
 
 router.post("/addtodochore", authorization, async (req, res) => {
-  const { chore_name, points } = req.body;
+  const { predefined_id, points } = req.body;
   const userId = req.user.id;
   try {
     const newChore = await pool.query(
       "INSERT INTO selected_chores (predefined_id, user_id, chore_value) VALUES ($1, $2, $3) RETURNING *",
-      [chore_name, userId, points]
+      [predefined_id, userId, points]
     );
     res.json(newChore.rows[0]);
   } catch (err) {
