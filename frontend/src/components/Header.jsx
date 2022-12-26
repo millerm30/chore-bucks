@@ -15,6 +15,9 @@ const Header = ({ points }) => {
     navigate("/cart");
   };
 
+
+
+
   const style = {
     headerContainer: `container flex flex-col mx-auto min-w-full py-0.5 bg-gray-100`,
     dividerOne: `container flex justify-between min-w-full`,

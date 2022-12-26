@@ -14,18 +14,19 @@ router.get('/getbalance', authorization, async (req, res) => {
     res.json(getBalance.rows);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
 // Add chore bucks to the logged in user's balance in the database
 
-router.post('/addbalance', authorization, async (req, res) => {
+router.put('/addbalance', authorization, async (req, res) => {
   const userId = req.user.id;
-  const { amount } = req.body;
+  const { chore_value } = req.body;
   try {
     const addBalance = await pool.query(
-      'UPDATE wallet SET balance = balance + $1 WHERE user_id = $2',
-      [amount, userId]
+      'INSERT INTO wallet (user_id, balance) VALUES ($1, $2) ON CONFLICT (user_id) DO UPDATE SET balance = wallet.balance + $2 RETURNING *',
+      [userId, chore_value]
     );
     res.json(addBalance.rows);
   } catch (err) {

@@ -17,25 +17,31 @@ import { UserProvider, useUser } from "./contexts/Auth";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-function getBucksFromLocalStorage() {
-  const points = localStorage.getItem("points");
-  if (points) {
-    return Number(points);
+const getBucksFromDataBase = async () => {
+  try {
+  const response = await fetch("http://localhost:3001/wallet/getbalance", {
+    method: "GET",
+    headers: { "content-type": "application/json", token: localStorage.token },
+  });
+  const parseRes = await response.json();
+  return parseRes.length === 0 || undefined ? 0 : Number(parseRes[0].balance);
+  } catch (err) {
+    console.error(err.message);
   }
-  return 0;
-};
+}
 
 const Router = () => {
-  const [points, setPoints] = useState(() => getBucksFromLocalStorage());
+  const [points, setPoints] = useState(0);
   const { isLoggedIn } = useUser();
+  getBucksFromDataBase().then(value => setPoints(value));
   
   const addPoints = (amount) => setPoints(points + amount);
   const removePoints = (amount) => setPoints(points - amount);
 
   useEffect(() => {
-    localStorage.setItem("points", points);
+    getBucksFromDataBase();
   } , [points]);
-
+   
   return(
   <App points={points} addPoints={addPoints} removePoints={removePoints} >
     <BrowserRouter basename="/">

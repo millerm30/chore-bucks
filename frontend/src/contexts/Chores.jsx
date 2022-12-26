@@ -67,11 +67,29 @@ export function ChoresProvider({ children, addPoints}) {
     }
   };
 
-  const completeChore = (chore) => {
-    audioSuccess.play();
-    toast(`👏 ${chore.title} Completed. Good Job! 💸`);
-    addPoints(chore.points)
-    setChores(chores.filter((c) => c !== chore));
+  // create a completeChore function that will add the chore_value to the users points balance in their wallet
+
+  const completeChore = async (chore) => {
+    try {
+      const body = { chore_value: chore.chore_value };
+      const response = await fetch(`http://localhost:3001/wallet/addbalance`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.token,
+        },
+        body: JSON.stringify(body),
+      });
+      const parseRes = await response.json();
+      setNewChores([...chores, parseRes]);
+      audioSuccess.play();
+      toast(`👏 ${chore.chore_name} Completed. Good Job! 💸`);
+      addPoints(chore.chore_value)
+      setChores(chores.filter((c) => c !== chore));
+    }
+    catch (error) {
+      console.error(error.message);
+    }
   };
 
   useEffect(() => {
