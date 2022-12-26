@@ -15,9 +15,6 @@ const Header = ({ points }) => {
     navigate("/cart");
   };
 
-
-
-
   const style = {
     headerContainer: `container flex flex-col mx-auto min-w-full py-0.5 bg-gray-100`,
     dividerOne: `container flex justify-between min-w-full`,
@@ -55,7 +52,7 @@ const Header = ({ points }) => {
             </h2>
           )}
           <span className={style.spanBox}>
-            <p className={style.paragraphOne}>{points}</p>
+            <p className={style.paragraphOne}>{String(points)}</p>
             <p className={style.paragraphTwo}>Points</p>
           </span>
         </div>
