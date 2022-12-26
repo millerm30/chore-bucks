@@ -28,7 +28,7 @@ const getBucksFromDataBase = async () => {
   } catch (err) {
     console.error(err.message);
   }
-}
+};
 
 const Router = () => {
   const [points, setPoints] = useState(0);
@@ -40,7 +40,7 @@ const Router = () => {
 
   useEffect(() => {
     getBucksFromDataBase();
-  } , [points]);
+  }, [points]);
    
   return(
   <App points={points} addPoints={addPoints} removePoints={removePoints} >
