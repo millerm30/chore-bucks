@@ -67,7 +67,8 @@ export function WishesProvider({ children }) {
         );
         setWishes(wishes.filter((i) => i.id !== wish));
         setNewWishes(wishes.filter((i) => i.id !== wish));
-        toast(`😢 wish removed from wish list!`);
+        const wishName = wishes.find((wishesObj) => wishesObj.wish_id === wish).wish_name;
+        toast(`😢 ${wishName} removed from wish list!`);
         audioFailure.play();
       } catch (error) {
         console.error(error.message);

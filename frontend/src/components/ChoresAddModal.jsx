@@ -70,7 +70,8 @@ export default function MyModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     addChore(chore, Number(point));
-    toast(`${chore} added to chore list!`, { icon: "👍" });
+    const choreName = choresList.find((choreObj) => choreObj.predefined_id === chore).chore_name;
+    toast(`${choreName} added to chore list!`, { icon: "👍" });
     setChore("");
     setPoint("");
   };
