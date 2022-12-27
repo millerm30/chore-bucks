@@ -80,10 +80,23 @@ export function ChoresProvider({ children, addPoints}) {
         body: JSON.stringify(body),
       });
       const parseRes = await response.json();
-      setChores([...chores, parseRes])
+      //setChores([...chores, parseRes])
       audioSuccess.play();
       toast(`👏 ${chore.chore_name} Completed. Good Job! 💸`);
       addPoints(chore.chore_value)
+      // second api call the change the selected chore completed to true.
+      const updateBody = { selected_id: chore.selected_id, completed: true };
+      console.log(updateBody)
+      const updateResponse = await fetch(`http://localhost:3001/chores/completechore/${chore.selected_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.token,
+          },
+          body: JSON.stringify(updateBody),
+        });
+      const updateParseRes = await updateResponse.json();
+      setChores([...chores, updateParseRes])
       setChores(chores.filter((c) => c !== chore));
     }
     catch (error) {

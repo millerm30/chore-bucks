@@ -26,6 +26,7 @@ CREATE TABLE selected_chores (
     user_id uuid NOT NULL,
     chore_value INT NOT NULL,
     predefined_id uuid NOT NULL,
+    completed BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (predefined_id) REFERENCES predefined_chores (predefined_id)
 );

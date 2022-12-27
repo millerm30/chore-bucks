@@ -50,7 +50,8 @@ router.get("/getallchores", authorization, async (req, res) => {
       return {
         selected_id: chore.selected_id,
         chore_name: getPredefinedChores.rows[0].chore_name,
-        chore_value: chore.chore_value
+        chore_value: chore.chore_value,
+        completed: chore.completed,
       }
     });
     const getChoresResult = await Promise.all(getChoresMap);
@@ -87,6 +88,22 @@ router.delete("/deletechore/:id", authorization, async (req, res) => {
       [chore, userId]
     );
     res.json(removeChore.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// Complete a chore from the selected_chores table for chores to be completed and set the completed status to true
+
+router.put("/completechore/:id", authorization, async (req, res) => {
+  try {
+    const chore = req.params.id;
+    const userId = req.user.id;
+    const completeChore = await pool.query(
+      "UPDATE selected_chores SET completed = true WHERE selected_id = $1 AND user_id = $2",
+      [chore, userId]
+    );
+    res.json(completeChore.rows);
   } catch (err) {
     console.error(err.message);
   }

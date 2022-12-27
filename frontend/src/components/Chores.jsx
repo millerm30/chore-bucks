@@ -59,7 +59,7 @@ const Chores = () => {
           <p className={style.paragraphOne}>No Chores to do!</p>
         ) : (
           <section className={style.choresSection}>
-            {chores.map((chore) => (
+            {chores.filter((chore) => chore.completed === false).map((chore) => (
               <Card
                 key={chore.selected_id}
                 style={chore.style}
