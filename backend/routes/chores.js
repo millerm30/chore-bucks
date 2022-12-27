@@ -2,13 +2,15 @@ const router = require("express").Router();
 const authorization = require("../middleware/authorization");
 const pool = require("../database/db");
 
-// Get list of predefined chores from database
+// Get list of predefined chores and user added chores from database
 
-router.get("/predefinedchores", async (req, res) => {
+router.get("/predefinedchores", authorization, async (req, res) => {
+  const userId = req.user.id;
   try {
     const getPredefinedChores = await pool.query(
-      "SELECT * FROM predefined_chores"
-    )
+      "SELECT * FROM predefined_chores WHERE user_id = $1 OR user_id IS NULL",
+      [userId]
+    );
     res.json(getPredefinedChores.rows);
   } catch (err) {
     console.error(err.message);
@@ -31,7 +33,7 @@ router.post("/addpredefinedchore", authorization, async (req, res) => {
   }
 });
 
-// Get list of predefined chores and the new chores added by the logged in user
+// Get list of chores to be completed from database selected_chores table
 
 router.get("/getallchores", authorization, async (req, res) => {
   const userId = req.user.id;
@@ -58,7 +60,7 @@ router.get("/getallchores", authorization, async (req, res) => {
   }
 });
 
-// Add a predefined chore with the userId and the user inputed chore value to the new selected_chores table
+// Add a chore with the userId and the user inputed chore value to the new selected_chores table for chores to be completed
 
 router.post("/addtodochore", authorization, async (req, res) => {
   const { predefined_id, points } = req.body;
@@ -74,7 +76,7 @@ router.post("/addtodochore", authorization, async (req, res) => {
   }
 });
 
-// Remove a chore from the selected_chores table
+// Remove a chore from the selected_chores table for chores to be completed
 
 router.delete("/deletechore/:id", authorization, async (req, res) => {
   try {

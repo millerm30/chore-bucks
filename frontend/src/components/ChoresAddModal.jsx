@@ -29,6 +29,7 @@ export default function MyModal() {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
+            token: localStorage.token,
           },
         }
       );
