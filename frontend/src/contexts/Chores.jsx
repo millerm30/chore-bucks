@@ -67,7 +67,6 @@ export function ChoresProvider({ children, addPoints}) {
     }
   };
 
-  // I need to work on this function that when the chore is completed it will add the points to the wallet (which is working) and then remove the chore from the list of chores to complete database side (which is not working yet)
   const completeChore = async (chore) => {
     try {
       const body = { chore_value: chore.chore_value };
