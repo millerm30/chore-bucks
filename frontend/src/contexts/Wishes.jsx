@@ -51,12 +51,37 @@ export function WishesProvider({ children }) {
       }
     };
 
+    // still a work in progress
+    const completeWish = async (wish) => {
+      try {
+        const body = { wish_id: wish.wish_id };
+        console.log(body);
+        const response = await fetch("http://localhost:3001/cart/addtoshoppingcart", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", token: localStorage.token },
+          body: JSON.stringify(body),
+        });
+        console.log(response);
+        const parseRes = await response.json();
+        setNewWishes(parseRes);
+        addToCartHandler(wish.title, wish.points);
+        setWishes(wishes.filter((i) => i.id !== wish.id));
+        toast(`🚀 ${wish.title} added to shopping cart! 🚀`);
+        audioSuccess.play();
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    //The old completeWish function
+    /*
     const completeWish = (wish) => {
       audioSuccess.play();
       addToCartHandler(wish.title, wish.points);
       setWishes(wishes.filter((i) => i.id !== wish.id));
       toast(`🚀 ${wish.title} added to shopping cart! 🚀`);
     };
+    */
 
     const removeWish = async (wish) => {
       try {

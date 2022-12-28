@@ -31,6 +31,7 @@ router.put('/addbalance', authorization, async (req, res) => {
     res.json(addBalance.rows);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 

@@ -14,6 +14,7 @@ router.get("/predefinedchores", authorization, async (req, res) => {
     res.json(getPredefinedChores.rows);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
@@ -30,6 +31,7 @@ router.post("/addpredefinedchore", authorization, async (req, res) => {
     res.json(newChore.rows[0]);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
@@ -58,6 +60,7 @@ router.get("/getallchores", authorization, async (req, res) => {
     res.json(getChoresResult);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
@@ -74,6 +77,7 @@ router.post("/addtodochore", authorization, async (req, res) => {
     res.json(newChore.rows[0]);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
@@ -90,6 +94,7 @@ router.delete("/deletechore/:id", authorization, async (req, res) => {
     res.json(removeChore.rows);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
@@ -106,6 +111,7 @@ router.put("/completechore/:id", authorization, async (req, res) => {
     res.json(completeChore.rows);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 

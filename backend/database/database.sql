@@ -47,7 +47,7 @@ CREATE TABLE wishes (
 CREATE TABLE shopping_cart (
     cart_id uuid PRIMARY KEY DEFAULT 
     uuid_generate_v4(),
-    item_quantity INT NOT NULL,
+    item_quantity INT NOT NULL DEFAULT 1,
     user_id uuid NOT NULL,
     wish_id uuid NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (user_id),
