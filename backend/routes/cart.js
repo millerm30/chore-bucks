@@ -11,14 +11,27 @@ router.get('/getcart', authorization, async (req, res) => {
       'SELECT * FROM shopping_cart WHERE user_id = $1',
       [userId]
     );
-    res.json(getCart.rows);
+    const getCartMap = getCart.rows.map(async (wish) => {
+      const getCartList = await pool.query(
+        'SELECT * FROM wishes WHERE wish_id = $1',
+        [wish.wish_id]
+      );
+      return {
+        wish_id: wish.wish_id,
+        wish_name: getCartList.rows[0].wish_name,
+        wish_value: getCartList.rows[0].wish_value,
+      }
+    });
+    const getCartResult = await Promise.all(getCartMap);
+    res.json(getCartResult);
   } catch (err) {
     console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
 
 // Add the wish to the shopping cart table in the database
-
+// This function needs work to be completed.
 router.post('/addtoshoppingcart', authorization, async (req, res) => {
   const userId = req.user.id;
   const { item, points } = req.body;
@@ -35,13 +48,13 @@ router.post('/addtoshoppingcart', authorization, async (req, res) => {
 
 // Remove an item from the shopping cart in the database
 
-router.post('/removefromcart', authorization, async (req, res) => {
-  const userId = req.user.id;
-  const { item } = req.body;
+router.delete('/removefromcart/:id', authorization, async (req, res) => {
   try {
+    const wish = req.params.id;
+    const userId = req.user.id;
     const removeFromCart = await pool.query(
-      'DELETE FROM shopping_cart WHERE user_id = $1 AND item = $2',
-      [userId, item]
+      'DELETE FROM shopping_cart WHERE user_id = $1 AND wish_id = $2',
+      [userId, wish]
     );
     res.json(removeFromCart.rows);
   } catch (err) {

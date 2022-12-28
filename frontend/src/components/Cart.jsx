@@ -51,7 +51,7 @@ const Cart = ({ points }) => {
           <div className={style.cartItemContainer}>
             {cart.map((wish) => (
               <CartItem
-                key={wish.id}
+                key={wish.wish_id}
                 wish={wish}
                 removeFromCartHandler={removeFromCartHandler}
                 updateCartItem={updateCartItem}

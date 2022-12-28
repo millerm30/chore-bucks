@@ -3,8 +3,9 @@ import { GoTrashcan } from "react-icons/go";
 
 export const CartItem = ({ wish, removeFromCartHandler, updateCartItem }) => {
 
+  //This function will need some work to make it work with the backend
   const calculateNewWishTotal = (wish) => {
-    return wish.points * wish.quantity;
+    return wish.wish_value;
   };
 
   const style = {
@@ -20,9 +21,9 @@ export const CartItem = ({ wish, removeFromCartHandler, updateCartItem }) => {
   return (
     <div key={wish.id} className={style.mainContainer}>
       <span className={style.spanBoxOne}>
-        <h2 className={style.headingOne}>Wish: {wish.title}</h2>
+        <h2 className={style.headingOne}>Wish: {wish.wish_name}</h2>
         <button
-          onClick={() => removeFromCartHandler(wish)}
+          onClick={() => removeFromCartHandler(wish.wish_id)}
           className={style.button}
         >
           <GoTrashcan />
