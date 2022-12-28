@@ -4,6 +4,7 @@ import { useShopping } from "./Shopping";
 import success from "../sounds/success.mp3";
 import negative from "../sounds/icqdelete.mp3";
 import yay from "../sounds/yay.mp3";
+import { useUser } from "./Auth";
 
 const WishesContext = React.createContext();
 
@@ -16,6 +17,7 @@ export function WishesProvider({ children }) {
     const [wishes, setWishes] = useState([]);
     const [newWishes, setNewWishes] = useState([]);
     const [wishStatus, setWishStatus] = useState("Add Wish Item");
+    const { user } = useUser();
     
     const getAllWishes = async () => {
       try {
@@ -77,7 +79,7 @@ export function WishesProvider({ children }) {
 
     useEffect(() => {
       getAllWishes();
-    }, [newWishes]);
+    }, [newWishes, user]);
     
     return (
         <WishesContext.Provider value={{ wishes, addWish, completeWish, removeWish, wishStatus }}>

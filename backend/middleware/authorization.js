@@ -11,7 +11,6 @@ module.exports = (req, res, next) => {
     req.user = payload.user;
     next();
   } catch (err) {
-    console.error(err.message);
     return res.status(401).json('Not Authorized');
   }
 };

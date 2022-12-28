@@ -10,6 +10,7 @@ import Confetti from "react-confetti";
 const Chores = () => {
   const { chores, removeChore, completeChore } = useChores();
   const [isActive, setIsActive] = useState(false);
+  const { completeChoreStatus } = useChores();
 
   const navigate = useNavigate();
   const goToAddChoresLink = () => {
@@ -28,7 +29,7 @@ const Chores = () => {
 
   return (
     <main className={style.mainContainer}>
-        {isActive && (
+      {isActive && (
         <Confetti
           style={{ pointerEvents: "none", width: "100%", height: "100%" }}
           numberOfPieces={isActive ? 500 : 0}
@@ -38,7 +39,7 @@ const Chores = () => {
             confetti.reset();
           }}
         />
-        )}
+      )}
       <section className={style.headingSection}>
         <h2 className={style.headingOne}>🧒 Chore Area 🚀</h2>
         <p>Complete chores to build points!</p>
@@ -59,27 +60,33 @@ const Chores = () => {
           <p className={style.paragraphOne}>No Chores to do!</p>
         ) : (
           <section className={style.choresSection}>
-            {chores.filter((chore) => chore.completed === false).map((chore) => (
-              <Card
-                key={chore.selected_id}
-                style={chore.style}
-                title={chore.chore_name}
-                points={chore.chore_value}
-                remove={<GoTrashcan onClick={() => removeChore(chore.selected_id)} />}
-              >
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => {
-                    completeChore(chore);
-                    setIsActive(!isActive);
-                  }}
-                  className={style.completeChoreButton}
+            {chores
+              .filter((chore) => chore.completed === false)
+              .map((chore) => (
+                <Card
+                  key={chore.selected_id}
+                  style={chore.style}
+                  title={chore.chore_name}
+                  points={chore.chore_value}
+                  remove={
+                    <GoTrashcan
+                      onClick={() => removeChore(chore.selected_id)}
+                    />
+                  }
                 >
-                  Complete
-                </motion.button>
-              </Card>
-            ))}
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => {
+                      completeChore(chore);
+                      setIsActive(!isActive);
+                    }}
+                    className={style.completeChoreButton}
+                  >
+                    {completeChoreStatus}
+                  </motion.button>
+                </Card>
+              ))}
           </section>
         )}
       </section>

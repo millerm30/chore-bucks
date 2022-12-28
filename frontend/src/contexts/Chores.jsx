@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import success from "../sounds/success.mp3";
 import tada from "../sounds/tada.mp3";
 import failure from "../sounds/failure.mp3";
+import { useUser } from "./Auth";
 
 const ChoresContext = React.createContext();
 
@@ -14,6 +15,8 @@ export function ChoresProvider({ children, addPoints}) {
   const [chores, setChores] = useState([]);
   const [newChores, setNewChores] = useState([]);
   const [choreStatus, setChoreStatus] = useState("Add Chore Item");
+  const [completeChoreStatus, setCompleteChoreStatus] = useState("Complete Chore");
+  const { user } = useUser();
 
   const getChoresToComeplete = async () => {
     try {
@@ -68,9 +71,11 @@ export function ChoresProvider({ children, addPoints}) {
   };
 
   const completeChore = async (chore) => {
+    setCompleteChoreStatus("Completing...");
     try {
       const body = { chore_value: chore.chore_value };
-      const response = await fetch(`http://localhost:3001/wallet/addbalance`, {
+      console.log(body);
+      await fetch(`http://localhost:3001/wallet/addbalance`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -78,14 +83,11 @@ export function ChoresProvider({ children, addPoints}) {
         },
         body: JSON.stringify(body),
       });
-      const parseRes = await response.json();
-      //setChores([...chores, parseRes])
       audioSuccess.play();
       toast(`👏 ${chore.chore_name} Completed. Good Job! 💸`);
       addPoints(chore.chore_value)
-      // second api call the change the selected chore completed to true.
+
       const updateBody = { selected_id: chore.selected_id, completed: true };
-      console.log(updateBody)
       const updateResponse = await fetch(`http://localhost:3001/chores/completechore/${chore.selected_id}`, {
         method: "PUT",
         headers: {
@@ -97,6 +99,7 @@ export function ChoresProvider({ children, addPoints}) {
       const updateParseRes = await updateResponse.json();
       setChores([...chores, updateParseRes])
       setChores(chores.filter((c) => c !== chore));
+      setCompleteChoreStatus("Complete Chore");
     }
     catch (error) {
       console.error(error.message);
@@ -105,10 +108,10 @@ export function ChoresProvider({ children, addPoints}) {
 
   useEffect(() => {
     getChoresToComeplete();
-  }, [newChores]);
+  }, [newChores, user]);
 
   return (
-    <ChoresContext.Provider value={{ chores, choreStatus, setChoreStatus, addChore, removeChore, completeChore }}>
+    <ChoresContext.Provider value={{ chores, choreStatus, setChoreStatus, completeChoreStatus, addChore, removeChore, completeChore }}>
       {children}
     </ChoresContext.Provider>
   );
