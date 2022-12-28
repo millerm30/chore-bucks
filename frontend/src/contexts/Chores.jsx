@@ -74,7 +74,6 @@ export function ChoresProvider({ children, addPoints}) {
     setCompleteChoreStatus("Completing...");
     try {
       const body = { chore_value: chore.chore_value };
-      console.log(body);
       await fetch(`http://localhost:3001/wallet/addbalance`, {
         method: "PUT",
         headers: {
