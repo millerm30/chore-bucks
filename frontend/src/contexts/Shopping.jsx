@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 import remove from "../sounds/remove.mp3";
 import purchse from "../sounds/purchase.mp3";
 import nomoney from "../sounds/nomoney.mp3";
+import { useUser } from "./Auth";
 
 const ShoppingContext = React.createContext();
 
@@ -14,6 +15,7 @@ let audioNomoney = new Audio(nomoney);
 export function ShoppingProvider({ points, removePoints, children }) {
   const [cart, setCart] = useState([]);
   const [cartTotal, setcartTotal] = useState(0);
+  const { user } = useUser();
 
   const addToCartHandler = (itemTitle, itemPoints) => {
     setCart([
@@ -93,7 +95,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
 
   useEffect(() => {
     getInitalCart();
-  }, [cartTotal]);
+  }, [cartTotal, user]);
 
   /* Old code
     useEffect(() => {
