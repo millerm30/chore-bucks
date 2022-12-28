@@ -56,7 +56,7 @@ const Chores = () => {
       </section>
       <Outlet />
       <section className="choresArea">
-        {chores.length === 0 ? (
+        {chores.every((chore) => chore.completed === true) ? (
           <p className={style.paragraphOne}>No Chores to do!</p>
         ) : (
           <section className={style.choresSection}>
