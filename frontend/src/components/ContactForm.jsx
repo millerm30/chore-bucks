@@ -9,6 +9,7 @@ const ContactForm = () => {
     message: ''
   });
   const [ status, setStatus ] = useState('Submit');
+  const [ errors, setErrors ] = useState({});
 
   const { name, email, message } = inputs;
 
@@ -16,32 +17,52 @@ const ContactForm = () => {
     setInputs({ ...inputs, [e.target.name]: e.target.value })
   };
 
-   const handleSubmit = async (e) => {
-     e.preventDefault();
-     setStatus("Sending...");
-     const { name, email, message } = inputs;
-     let details = {
-       name,
-       email,
-       message,
-     };
-     let response = await fetch("http://localhost:3001/contact/email", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json;charset=utf-8",
-         token: localStorage.token,
-       },
-       body: JSON.stringify(details),
-     });
-     setStatus("Submit");
-     setInputs({
-       name: "",
-       email: "",
-       message: "",
-     });
-     let result = await response.json();
-     toast.success(result.status + ", Thanks for contacting us!📧");
-   };
+  const validate = () => {
+    const newErrors = {};
+
+    if (!name) {
+      newErrors.name = toast.error(errors.name = "Name is required");
+    }
+    if (!email) {
+      newErrors.email = toast.error(errors.email = "Email is required");
+    }
+    if (!message) {
+      newErrors.message = toast.error(errors.message = "Message is required");
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      if (validate()) {
+        setStatus("Sending...");
+        const { name, email, message } = inputs;
+        let details = {
+          name,
+          email,
+          message,
+        };
+        let response = await fetch("http://localhost:3001/contact/email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            token: localStorage.token,
+          },
+          body: JSON.stringify(details),
+        });
+        setStatus("Submit");
+        setInputs({
+          name: "",
+          email: "",
+          message: "",
+        });
+        let result = await response.json();
+        toast.success(result.status + ", Thanks for contacting us!📧");
+      }
+    };
+
 
   return (
     <main className="bg-blue-300">
@@ -61,7 +82,6 @@ const ContactForm = () => {
             name="name"
             value={name}
             onChange={(e) => onChange(e)}
-            required
             placeholder="Enter your name..."
           />
           <label
@@ -76,7 +96,6 @@ const ContactForm = () => {
             name="email"
             value={email}
             onChange={(e) => onChange(e)}
-            required
             placeholder="Enter your email..."
           />
           <label
@@ -91,14 +110,12 @@ const ContactForm = () => {
             value={message}
             onChange={(e) => onChange(e)}
             rows="5"
-            required
             placeholder="Enter your message..."
           ></textarea>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            disabled={name === "" || email === "" || message === ""}
-            className="bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg"
             type="submit"
           >
             {status}

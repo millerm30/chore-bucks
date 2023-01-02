@@ -4,20 +4,29 @@ import toast from "react-hot-toast";
 const UserContext = React.createContext();
 
 function getLoggedInUser() {
-  const user = localStorage.getItem("token");
-  if (user === null) {
-    return undefined;
-  } else {
-    return user;
-  }
+  return localStorage.getItem("token") || undefined;
 };
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(getLoggedInUser);
   const [isLoggedIn, setIsLoggedIn] = useState(getLoggedInUser(user !== undefined));
   const [name, setName] = useState("");
-  const [loginStatus, setLoginStatus] = useState('Sign In');
-  const [registerStatus, setRegisterStatus] = useState('Sign Up');
+  const loginStatuses = {
+    INITIAL: 'Sign In',
+    LOADING: 'Loading...',
+    SUCCESS: 'Success!',
+    ERROR: 'Error',
+  }
+
+  const resgisterStatuses = {
+    INITIAL: 'Sign Up',
+    LOADING: 'Loading...',
+    SUCCESS: 'Success!',
+    ERROR: 'Error',
+  }
+
+  const [loginStatus, setLoginStatus] = useState(loginStatuses.INITIAL);
+  const [registerStatus, setRegisterStatus] = useState(resgisterStatuses.INITIAL);
 
   const getProfile = async () => {
     try {
@@ -34,22 +43,17 @@ export function UserProvider({ children }) {
   };
 
   useEffect(() => {
-    if (user)
-    getProfile();
+    if (user) {
+      getProfile();
+    }
   }, [user]);
 
   useEffect(() => {
-    setIsLoggedIn(() => {
-      const user = getLoggedInUser();
-      if (user) {
-        return true;
-      }
-      return false;
-    });
+    setIsLoggedIn(!!getLoggedInUser)
   }, [setIsLoggedIn]);
 
   const login = async (email, password) => {
-    setLoginStatus('Loading...');
+    setLoginStatus(loginStatuses.LOADING);
     try {
       const body = { email, password };
       const response = await fetch("http://localhost:3001/auth/login", {
@@ -62,13 +66,17 @@ export function UserProvider({ children }) {
         localStorage.setItem("token", parseRes.token);
         setUser(parseRes.token);
         setIsLoggedIn(true);
+        setLoginStatus(loginStatuses.SUCCESS);
         toast.success("Logged in successfully");
-        setLoginStatus('Sign In');
+        setLoginStatus(loginStatuses.INITIAL);
       } else {
+        setLoginStatus(loginStatuses.ERROR);
         toast.error(parseRes);
+        setLoginStatus(loginStatuses.INITIAL);
       }
     } catch (err) {
       console.error(err.message);
+      toast.error(err.message);
     }
   };
 
@@ -77,13 +85,14 @@ export function UserProvider({ children }) {
       icon: "💩",
     });
     localStorage.removeItem("token");
+    localStorage.removeItem("User Name");
     setIsLoggedIn(!isLoggedIn);
     setUser(undefined);
     window.location = "/";
   };
 
   const register = async (name, email, password) => {
-    setRegisterStatus('Loading...');
+    setRegisterStatus(resgisterStatuses.LOADING);
     try {
       const body = { name, email, password };
       const response = await fetch("http://localhost:3001/auth/register", {
@@ -93,13 +102,16 @@ export function UserProvider({ children }) {
       });
         const parseRes = await response.json();
         if (parseRes.token) {
+        setRegisterStatus(resgisterStatuses.SUCCESS);
         toast.success(`${name} registered successfully`);
         setTimeout(() => {
           window.location = "/";
         }, 2000);
-        setRegisterStatus('Sign Up');
+        setRegisterStatus(resgisterStatuses.INITIAL);
       } else {
+        setRegisterStatus(resgisterStatuses.ERROR);
         toast.error(parseRes);
+        setRegisterStatus(resgisterStatuses.INITIAL);
       }
     } catch (err) {
       console.error(err.message);
