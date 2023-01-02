@@ -16,21 +16,10 @@ const WishAdd = ({ addWish }) => {
       setTitle("")
       setPoints("")
   };
-
-  const style = {
-    section: `container mx-auto pt-10`,
-    heading: `text-3xl font-semibold p-1 text-center`,
-    paragraph: `text-center`,
-    form: `flex flex-col w-3/4 mx-auto md:w-1/3`,
-    wishInput: `rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2`,
-    pointsInput: `rounded-md py-2 px-2 border border-blue-700 outline-none w-1/2`,
-    label: `text-left mt-5`,
-    button: `bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg`,
-  };
   
   return (
-    <section className={style.section}>
-        {isActive && (
+    <section className="container mx-auto pt-10">
+      {isActive && (
         <Confetti
           style={{ pointerEvents: "none", width: "100%", height: "100%" }}
           numberOfPieces={isActive ? 500 : 0}
@@ -40,21 +29,21 @@ const WishAdd = ({ addWish }) => {
             confetti.reset();
           }}
         />
-        )}
+      )}
       <section>
-        <h1 className={style.heading}>
+        <h1 className="text-3xl font-semibold p-1 text-center">
           😉 Wish List! 👍
         </h1>
-        <p className={style.paragraph}>
+        <p className="text-center">
           Add items to your wish list that you would like to build your points
           to purchase!
         </p>
       </section>
       <form
         onSubmit={handleSubmit}
-        className={style.form}
+        className="flex flex-col w-3/4 mx-auto md:w-1/3"
       >
-        <label className={style.label}>Add Wish Item:</label>
+        <label className="text-left mt-5">Add Wish Item:</label>
         <input
           onChange={(e) => setTitle(e.target.value)}
           name="wish_name"
@@ -63,9 +52,9 @@ const WishAdd = ({ addWish }) => {
           maxLength="100"
           required
           placeholder="Enter your wish item..."
-          className={style.wishInput}
+          className="rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2"
         ></input>
-        <label className={style.label}>Add Point Value:</label>
+        <label className="text-left mt-5">Add Point Value:</label>
         <input
           onChange={(e) => setPoints(e.target.value)}
           name="wish_value"
@@ -74,21 +63,25 @@ const WishAdd = ({ addWish }) => {
           min="0"
           required
           placeholder="Enter point value..."
-          className={style.pointsInput}
+          className="rounded-md py-2 px-2 border border-blue-700 outline-none w-1/2"
         ></input>
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           type="submit"
           disabled={!title || !points}
-          className={`${style.button} ${!title || !points ? "opacity-40 cursor-not-allowed" : "curson-pointer"}`}
+          className={`${"bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"} ${
+            !title || !points
+              ? "opacity-40 cursor-not-allowed"
+              : "curson-pointer"
+          }`}
           value="add wish"
         >
           {wishStatus}
         </motion.button>
       </form>
     </section>
-  )
+  );
 }
 
 export default WishAdd

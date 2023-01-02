@@ -7,37 +7,32 @@ const Scroll = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll)
     return () => {
-        window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("scroll", handleScroll)
     }
-    }, []);
+  }, []);
 
-    const handleScroll = () => {
-        if (window.scrollY > 100) {
-            setShowScroll(true)
-        } else {
-            setShowScroll(false)
-        }
-    };
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setShowScroll(true)
+    } else {
+      setShowScroll(false)
+    }
+  };
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-
-    const style = {
-      section: `py-5 bg-blue-300`,
-      arrowUp: `mx-auto text-2xl animate-bounce cursor-pointer`,
-    };
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <section className={style.section}>
-        {showScroll ? (
-            <FaArrowUp
-                className={style.arrowUp}
-                onClick={scrollToTop}
-            />
-        ) : null}
+    <section className="py-5 bg-blue-300">
+      {showScroll ? (
+        <FaArrowUp
+          className="mx-auto text-2xl animate-bounce cursor-pointer"
+          onClick={scrollToTop}
+        />
+      ) : null}
     </section>
-  )
+  );
 }
 
 export default Scroll

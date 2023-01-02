@@ -8,35 +8,30 @@ export const CartItem = ({ wish, removeFromCartHandler, updateCartItem }) => {
     return wish.wish_value;
   };
 
-  const style = {
-    mainContainer: `container flex flex-col w-4/5 justify-between items-center py-3 mx-auto border-b-2 border-gray-600`,
-    spanBoxOne: `container flex justify-between py-2`,
-    headingOne: `text-left text-lg`,
-    button: `text-2xl text-red-600`,
-    spanBoxTwo: `container flex justify-between my-auto`,
-    selectInput: `border-2 border-gray-600 rounded ml-2`,
-    headingTwo: `text-md`,
-  };
-
   return (
-    <div key={wish.id} className={style.mainContainer}>
-      <span className={style.spanBoxOne}>
-        <h2 className={style.headingOne}>Wish: {wish.wish_name}</h2>
+    <div
+      key={wish.id}
+      className="container flex flex-col w-4/5 justify-between items-center py-3 mx-auto border-b-2 border-gray-600"
+    >
+      <span className="container flex justify-between py-2">
+        <h2 className="text-left text-lg">Wish: {wish.wish_name}</h2>
         <button
           onClick={() => removeFromCartHandler(wish.wish_id)}
-          className={style.button}
+          className="text-2xl text-red-600"
         >
           <GoTrashcan />
         </button>
       </span>
-      <span className={style.spanBoxTwo}>
+      <span className="container flex justify-between my-auto">
         <span>
           <label htmlFor="wishQuantity">Quantity:</label>
-          <select 
+          <select
             id="wishQuantity"
-            className={style.selectInput}
+            className="border-2 border-gray-600 rounded ml-2"
             value={wish.quantity}
-            onChange={(e) => updateCartItem({...wish, quantity: Number(e.target.value)})}
+            onChange={(e) =>
+              updateCartItem({ ...wish, quantity: Number(e.target.value) })
+            }
           >
             <option value="1">1</option>
             <option value="2">2</option>
@@ -46,7 +41,9 @@ export const CartItem = ({ wish, removeFromCartHandler, updateCartItem }) => {
           </select>
         </span>
         <span>
-          <h2 className={style.headingTwo}>ChoreBucks: 💰{calculateNewWishTotal(wish)}</h2>
+          <h2 className="text-md">
+            ChoreBucks: 💰{calculateNewWishTotal(wish)}
+          </h2>
         </span>
       </span>
     </div>

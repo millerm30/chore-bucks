@@ -5,32 +5,31 @@ import { useWishes } from "../contexts/Wishes";
 import Card from "./Card";
 import { motion } from "framer-motion";
 
-const style = {
-  main: `bg-blue-300`,
-  section: `grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-3 lg:grid-cols-4`,
-  paragraph: `text-center italic pt-4`,
-  button: `bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg`,
-};
-
 const WishList = () => {
   const { wishes, addWish, completeWish, removeWish } = useWishes();
 
   return (
-    <main className={style.main}>
+    <main className="bg-blue-300">
       <Wishadd addWish={addWish} />
       {wishes.length === 0 ? (
-        <p className={style.paragraph}>No wishes yet</p>
+        <p className="text-center italic pt-4">No wishes yet</p>
       ) : (
-        <section className={style.section}>
+        <section className="grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-3 lg:grid-cols-4">
           {wishes.map((wish) => (
-            <Card key={wish.wish_id} title={wish.wish_name} points={wish.wish_value} remove={<GoTrashcan onClick={() => removeWish(wish.wish_id)}/>}>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => completeWish(wish)}
-                  className={style.button}>
-                  Add To Cart
-                </motion.button>
+            <Card
+              key={wish.wish_id}
+              title={wish.wish_name}
+              points={wish.wish_value}
+              remove={<GoTrashcan onClick={() => removeWish(wish.wish_id)} />}
+            >
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => completeWish(wish)}
+                className="bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg"
+              >
+                Add To Cart
+              </motion.button>
             </Card>
           ))}
         </section>

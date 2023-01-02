@@ -63,7 +63,6 @@ const ContactForm = () => {
       }
     };
 
-
   return (
     <main className="bg-blue-300">
       <section className="container mx-auto pt-10">
