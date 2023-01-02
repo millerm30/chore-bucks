@@ -34,6 +34,7 @@ export function UserProvider({ children }) {
   };
 
   useEffect(() => {
+    if (user)
     getProfile();
   }, [user]);
 

@@ -94,6 +94,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
   };
 
   useEffect(() => {
+    if (user)
     getInitalCart();
   }, [cartTotal, user]);
 

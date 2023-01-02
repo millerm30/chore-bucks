@@ -33,14 +33,15 @@ const getBucksFromDataBase = async () => {
 const Router = () => {
   const [points, setPoints] = useState(0);
   const { isLoggedIn } = useUser();
-  getBucksFromDataBase().then(value => setPoints(value));
   
   const addPoints = (amount) => setPoints(points + amount);
   const removePoints = (amount) => setPoints(points - amount);
 
   useEffect(() => {
-    getBucksFromDataBase();
-  }, [points]);
+    if (isLoggedIn) {
+      getBucksFromDataBase().then((value) => setPoints(value));
+    }
+  }, [isLoggedIn]);
    
   return(
   <App points={points} addPoints={addPoints} removePoints={removePoints} >

@@ -103,6 +103,7 @@ export function WishesProvider({ children }) {
     };
 
     useEffect(() => {
+      if (user)
       getAllWishes();
     }, [newWishes, user]);
     
