@@ -45,7 +45,7 @@ CREATE TABLE wishes (
 -- Shopping Cart Table --
 
 CREATE TABLE shopping_cart (
-    cart_id uuid PRIMARY KEY DEFAULT 
+    item_id uuid PRIMARY KEY DEFAULT -- possible change to item_it --
     uuid_generate_v4(),
     item_quantity INT NOT NULL DEFAULT 1,
     user_id uuid NOT NULL,
@@ -61,6 +61,7 @@ CREATE TABLE wallet (
   uuid_generate_v4(),
   user_id uuid NOT NULL,
   balance INT,
+  ADD CONSTRAINT wallet_user_id_key UNIQUE (user_id)
   FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 

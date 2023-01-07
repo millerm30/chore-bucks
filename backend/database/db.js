@@ -27,7 +27,9 @@ pool.query(
     if (err) {
       console.log(err);
     } else {
-      if (res.rows.length === 0) {
+      const tableNames = ["users", "predefined_chores", "selected_chores", "wishes", "shopping_cart", "wallet"];
+      if (!tableNames.every(tableName => res.rows.map(row => row.table_name).includes(tableName)))
+      {
       console.log("No Tables Found");
       pool.query(
         `CREATE TABLE IF NOT EXISTS users (
@@ -95,7 +97,7 @@ pool.query(
 
     pool.query(
       `CREATE TABLE IF NOT EXISTS shopping_cart (
-        cart_id uuid PRIMARY KEY DEFAULT 
+        item_id uuid PRIMARY KEY DEFAULT 
         uuid_generate_v4(),
         item_quantity INT NOT NULL DEFAULT 1,
         user_id uuid NOT NULL,
@@ -116,6 +118,7 @@ pool.query(
         uuid_generate_v4(),
         user_id uuid NOT NULL,
         balance INT,
+        CONSTRAINT wallet_user_id_key UNIQUE (user_id),
         FOREIGN KEY (user_id) REFERENCES users (user_id)
       )`,
       (err, res) => {
