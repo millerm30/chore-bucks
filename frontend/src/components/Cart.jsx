@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useShopping } from "../contexts/Shopping";
 import { motion } from "framer-motion";
 import Confetti from "react-confetti";
@@ -7,27 +7,6 @@ import CartItem from "./Cartitem";
 const Cart = ({ points }) => {
   const { cart, removeFromCartHandler, purchaseCartHandler, cartTotal, updateCartItem } = useShopping();
   const [isActive, setIsActive] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-
-  useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/cart/getcart", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            token: localStorage.token,
-          },
-        });
-        const data = await response.json();
-        setCartItems(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    fetchCartItems();
-  }, [cart]);
 
   return (
     <main className="text-center bg-blue-300">
@@ -50,12 +29,11 @@ const Cart = ({ points }) => {
         <h2 className="text-2xl font-semi-bold p-1">
           Available Chore Bucks 💰{points}
         </h2>
-        {cartItems.length === 0 ? (
+        {cart.length === 0 ? (
           <p className="italic pt-4">No items added to your cart!</p>
         ) : (
           <div className="w-4/5 mx-auto mt-10 pb-5 rounded-lg bg-white md:w-1/2 lg:w-1/3">
-            {cartItems.map((item, index) => (console.log(item.wish_id)))}
-            {cartItems.map((item) => (
+            {cart.map((item) => (
               <CartItem
                 key={item.wish_id}
                 wish={item}
@@ -66,7 +44,7 @@ const Cart = ({ points }) => {
           </div>
         )}
         <div className="container flex flex-col justify-center w-3/4 items-center py-3 mx-auto md:w-1/2 lg:w-1/3">
-          {cartItems.length === 0 ? null : (
+          {cart.length === 0 ? null : (
             <span className="container flex justify-between w-4/5">
               <h2 className="text-left text-md">Cart Total:</h2>
               <h2 className="text-md">💰 {cartTotal}</h2>

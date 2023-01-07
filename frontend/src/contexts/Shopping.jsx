@@ -15,12 +15,14 @@ export function ShoppingProvider({ points, removePoints, children }) {
   const [cart, setCart] = useState([]);
   const [cartTotal, setcartTotal] = useState(Number(0));
   const { user } = useUser();
+  const [cartItems, setCartItems] = useState([cart]);
   
   const addToCartHandler = useCallback(
     (wish) => {
       setCart([...cart, wish]);
+      setcartTotal(cartTotal + wish.wish_value);
     },
-    [cart]
+    [cart, cartTotal]
   );
   
   const updateCartItem = (item) => {
@@ -57,6 +59,8 @@ export function ShoppingProvider({ points, removePoints, children }) {
       headers: { token: localStorage.token },
     });
     setCart(cart.filter((i) => i.wish_id !== item));
+    setCartItems([...cart, item])
+    setcartTotal(cartTotal - item.wish_value);
     audioRemove.play();
   } catch (error) {
     console.error(error.message);
@@ -86,18 +90,8 @@ export function ShoppingProvider({ points, removePoints, children }) {
   useEffect(() => {
     if (user) {
       getInitalCart();
-      setcartTotal(
-        cart.reduce((acc, curr) => acc + curr.points * curr.quantity, 0)
-      );
     }
   }, [cartTotal, user]);
-
-  /* Old code
-    useEffect(() => {
-        localStorage.setItem("cartList", JSON.stringify(cart));
-        setcartTotal(cart.reduce((acc, curr) => acc + curr.points * curr.quantity, 0));
-    }, [cart, cartTotal]);
-    */
 
   return (
     <ShoppingContext.Provider
@@ -108,7 +102,9 @@ export function ShoppingProvider({ points, removePoints, children }) {
         purchaseCartHandler,
         cartTotal,
         updateCartItem,
-        setCart
+        setCart,
+        cartItems,
+        setCartItems,
       }}
     >
       {children}
