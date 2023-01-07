@@ -6,7 +6,7 @@ import Card from "./Card";
 import { motion } from "framer-motion";
 
 const WishList = () => {
-  const { wishes, addWish, completeWish, removeWish } = useWishes();
+  const { wishes, addWish, completeWish, removeWish, completeStatus } = useWishes();
 
   return (
     <main className="bg-blue-300">
@@ -28,7 +28,7 @@ const WishList = () => {
                 onClick={() => completeWish(wish)}
                 className="bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg"
               >
-                Add To Cart
+                {completeStatus}
               </motion.button>
             </Card>
           ))}

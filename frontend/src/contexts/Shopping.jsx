@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
-import { v4 as uuid } from "uuid";
 import remove from "../sounds/remove.mp3";
 import purchse from "../sounds/purchase.mp3";
 import nomoney from "../sounds/nomoney.mp3";
@@ -14,23 +13,23 @@ let audioNomoney = new Audio(nomoney);
 
 export function ShoppingProvider({ points, removePoints, children }) {
   const [cart, setCart] = useState([]);
-  const [cartTotal, setcartTotal] = useState(0);
+  const [cartTotal, setcartTotal] = useState(Number(0));
   const { user } = useUser();
-
-  const addToCartHandler = (itemTitle, itemPoints) => {
-    setCart([
-      ...cart,
-      { title: itemTitle, points: itemPoints, quantity: 1, id: uuid() },
-    ]);
-  };
-
-  const updateCartItem = (wish) => {
+  
+  const addToCartHandler = useCallback(
+    (wish) => {
+      setCart([...cart, wish]);
+    },
+    [cart]
+  );
+  
+  const updateCartItem = (item) => {
     setCart(
-      cart.map((w) => {
-        if (w.id === wish.id) {
-          return wish;
+      cart.map((i) => {
+        if (i.id === item.id) {
+          return item;
         }
-        return w;
+        return i;
       })
     );
   };
@@ -51,27 +50,18 @@ export function ShoppingProvider({ points, removePoints, children }) {
     }
   };
 
-  // This function still needs a little work to complete the name of the ish on delete from cart for the toast!
-  const removeFromCartHandler = async (wish) => {
-    try {
-      await fetch(`http://localhost:3001/cart/removefromcart/${wish}`, {
-        method: "DELETE",
-        headers: { token: localStorage.token },
-      });
-      setCart(cart.filter((i) => i !== wish));
-      audioRemove.play();
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-
-  /* Old code
-  const removeFromCartHandler = (wish) => {
+ const removeFromCartHandler = async (item) => {
+   try {
+    await fetch(`http://localhost:3001/cart/removefromcart/${item}`, {
+      method: "DELETE",
+      headers: { token: localStorage.token },
+    });
+    setCart(cart.filter((i) => i.wish_id !== item));
     audioRemove.play();
-    toast(`😭 ${wish.title} removed from shopping cart!`);
-    setCart(cart.filter((i) => i !== wish));
-  };
-  */
+  } catch (error) {
+    console.error(error.message);
+  }
+ };
 
   const purchaseCartHandler = () => {
     if (
@@ -94,8 +84,12 @@ export function ShoppingProvider({ points, removePoints, children }) {
   };
 
   useEffect(() => {
-    if (user)
-    getInitalCart();
+    if (user) {
+      getInitalCart();
+      setcartTotal(
+        cart.reduce((acc, curr) => acc + curr.points * curr.quantity, 0)
+      );
+    }
   }, [cartTotal, user]);
 
   /* Old code
@@ -114,6 +108,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
         purchaseCartHandler,
         cartTotal,
         updateCartItem,
+        setCart
       }}
     >
       {children}

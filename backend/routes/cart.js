@@ -2,8 +2,6 @@ const router = require('express').Router();
 const authorization = require('../middleware/authorization');
 const pool = require('../database/db');
 
-// Get list of shopping cart items from the database
-
 router.get('/getcart', authorization, async (req, res) => {
   const userId = req.user.id;
   try {
@@ -30,23 +28,19 @@ router.get('/getcart', authorization, async (req, res) => {
   }
 });
 
-// Add the wish to the shopping cart table in the database
-// This function needs work to be completed.
 router.post('/addtoshoppingcart', authorization, async (req, res) => {
   const userId = req.user.id;
-  const { item, points } = req.body;
+  const { wish_id } = req.body;
   try {
     const addToCart = await pool.query(
-      'INSERT INTO shopping_cart (user_id, item, points) VALUES($1, $2, $3) RETURNING *',
-      [userId, item, points]
+      'INSERT INTO shopping_cart (user_id, wish_id) VALUES($1, $2) RETURNING *',
+      [userId, wish_id]
     );
     res.json(addToCart.rows[0]);
   } catch (err) {
     console.error(err.message);
   }
 });
-
-// Remove an item from the shopping cart in the database
 
 router.delete('/removefromcart/:id', authorization, async (req, res) => {
   try {

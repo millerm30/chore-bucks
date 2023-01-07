@@ -10,7 +10,7 @@ export const CartItem = ({ wish, removeFromCartHandler, updateCartItem }) => {
 
   return (
     <div
-      key={wish.id}
+      key={wish.wish_id}
       className="container flex flex-col w-4/5 justify-between items-center py-3 mx-auto border-b-2 border-gray-600"
     >
       <span className="container flex justify-between py-2">

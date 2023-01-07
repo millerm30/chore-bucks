@@ -13,10 +13,11 @@ let audioFailure = new Audio(negative);
 let audioSuccess = new Audio(yay);
 
 export function WishesProvider({ children }) {
-    const { addToCartHandler } = useShopping();
+    const { addToCartHandler, cart, cartTotal } = useShopping();
     const [wishes, setWishes] = useState([]);
     const [newWishes, setNewWishes] = useState([]);
     const [wishStatus, setWishStatus] = useState("Add Wish Item");
+    const [completeStatus, setCompleteStatus] = useState("Add To Cart");
     const { user } = useUser();
     
     const getAllWishes = async () => {
@@ -51,37 +52,26 @@ export function WishesProvider({ children }) {
       }
     };
 
-    // still a work in progress
     const completeWish = async (wish) => {
+      setCompleteStatus("Adding to cart...");
       try {
         const body = { wish_id: wish.wish_id };
-        console.log(body);
         const response = await fetch("http://localhost:3001/cart/addtoshoppingcart", {
           method: "POST",
           headers: { "Content-Type": "application/json", token: localStorage.token },
           body: JSON.stringify(body),
         });
-        console.log(response);
         const parseRes = await response.json();
         setNewWishes(parseRes);
-        addToCartHandler(wish.title, wish.points);
+        addToCartHandler([...cart, wish]);
         setWishes(wishes.filter((i) => i.id !== wish.id));
-        toast(`🚀 ${wish.title} added to shopping cart! 🚀`);
+        toast(`🚀 ${wish.wish_name} added to shopping cart! 🚀`);
         audioSuccess.play();
+        setCompleteStatus("Add To Cart");
       } catch (error) {
         console.error(error.message);
       }
     };
-
-    //The old completeWish function
-    /*
-    const completeWish = (wish) => {
-      audioSuccess.play();
-      addToCartHandler(wish.title, wish.points);
-      setWishes(wishes.filter((i) => i.id !== wish.id));
-      toast(`🚀 ${wish.title} added to shopping cart! 🚀`);
-    };
-    */
 
     const removeWish = async (wish) => {
       try {
@@ -105,12 +95,22 @@ export function WishesProvider({ children }) {
     useEffect(() => {
       if (user)
       getAllWishes();
-    }, [newWishes, user]);
+    }, [newWishes, user, cartTotal]);
     
     return (
-        <WishesContext.Provider value={{ wishes, addWish, completeWish, removeWish, wishStatus }}>
+      <WishesContext.Provider
+        value={{
+          wishes,
+          addWish,
+          completeWish,
+          newWishes,
+          removeWish,
+          wishStatus,
+          completeStatus,
+        }}
+      >
         {children}
-        </WishesContext.Provider>
+      </WishesContext.Provider>
     );
 };
 
