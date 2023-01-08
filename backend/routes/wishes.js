@@ -44,7 +44,6 @@ router.delete("/deletewish/:id", authorization, async (req, res) => {
   }
 });
 
-// if the wish is added to the cart set the completed state to true
 router.put("/updatewish/:id", authorization, async (req, res) => {
   const { completed } = req.body;
   try {
@@ -60,7 +59,5 @@ router.put("/updatewish/:id", authorization, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
-
 
 module.exports = router;

@@ -66,23 +66,23 @@ export function ShoppingProvider({ points, removePoints, children }) {
     }
   };
 
-  const purchaseCartHandler = () => {
-    if (
-      points >= cart.reduce((acc, curr) => acc + curr.points * curr.quantity, 0)
-    ) {
-      cart.forEach(() =>
-        removePoints(
-          cart.reduce((acc, curr) => acc + curr.points * curr.quantity, 0)
-        )
-      );
-      setCart([]);
-      audioPurchase.play();
-      toast("🎉 Purchase successful. Great job! 🎉");
+ const purchaseCartHandler = async () => {
+    if (points >= cartTotal) {
+      try {
+        await fetch("http://localhost:3001/cart/checkout", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: localStorage.token,
+          },
+        });
+        console.log("cartTotal", cartTotal);
+      } catch (error) {
+        console.error(error.message);
+      }
     } else {
       audioNomoney.play();
-      toast(
-        "👎 Not enough points to purchase! Keep working on your chores! 😉"
-      );
+      toast.error("You do not have enough points!");
     }
   };
 

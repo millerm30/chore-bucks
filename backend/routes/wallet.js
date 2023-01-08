@@ -2,8 +2,6 @@ const router = require('express').Router();
 const authorization = require('../middleware/authorization');
 const pool = require('../database/db');
 
-// Get the chore bucks balance for the logged in user from the database
-
 router.get('/getbalance', authorization, async (req, res) => {
   const userId = req.user.id;
   try {
@@ -17,8 +15,6 @@ router.get('/getbalance', authorization, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-
-// Add chore bucks to the logged in user's balance in the database
 
 router.put('/addbalance', authorization, async (req, res) => {
   const userId = req.user.id;

@@ -85,5 +85,56 @@ router.get('/getcarttotal', authorization, async (req, res) => {
   }
 });
 
+// This needs a little work to finish.
+router.get('/checkout', authorization, async (req, res) => {
+  const userId = req.user.id;
+  try {
+    const getCart = await pool.query(
+      'SELECT * FROM shopping_cart WHERE user_id = $1',
+      [userId]
+    );
+    const getCartMap = getCart.rows.map(async (wish) => {
+      const getCartList = await pool.query(
+        'SELECT * FROM wishes WHERE wish_id = $1',
+        [wish.wish_id]
+      );
+      return {
+        wish_id: wish.wish_id,
+        wish_name: getCartList.rows[0].wish_name,
+        wish_value: getCartList.rows[0].wish_value,
+      }
+    });
+    const getCartResult = await Promise.all(getCartMap);
+    const total = getCartResult.reduce((acc, cur) => {
+      return acc + cur.wish_value;
+    }, 0);
+    const getBalance = await pool.query(
+      'SELECT * FROM wallet WHERE user_id = $1',
+      [userId]
+    );
+    const userBalance = getBalance.rows[0].balance;
+    if (total > userBalance) {
+      res.json(false);
+    } else {
+      const newBalance = userBalance - total;
+      const updateBalance = await pool.query(
+        'UPDATE wallet SET balance = $1 WHERE user_id = $2',
+        [newBalance, userId]
+      );
+      const clearCart = await pool.query(
+        'DELETE FROM shopping_cart WHERE user_id = $1',
+        [userId]
+      );
+      res.json(true);
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+
+
+
 module.exports = router;
 
