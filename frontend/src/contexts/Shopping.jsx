@@ -59,21 +59,21 @@ export function ShoppingProvider({ points, removePoints, children }) {
     }
   };
 
- const removeFromCartHandler = async (item) => {
-   try {
-    await fetch(`http://localhost:3001/cart/removefromcart/${item}`, {
-      method: "DELETE",
-      headers: { token: localStorage.token },
-    });
-    setCart(cart.filter((i) => i.wish_id !== item));
-    setCartTotal(cartTotal - item.wish_value);
-    setCartItem(cartItem.filter((i) => i.wish_id !== item));
-    audioRemove.play();
-    calculateCartTotal();
-  } catch (error) {
-    console.error(error.message);
-  }
- };
+  const removeFromCartHandler = async (item) => {
+    try {
+      await fetch(`http://localhost:3001/cart/removefromcart/${item}`, {
+        method: "DELETE",
+        headers: { token: localStorage.token },
+      });
+      setCart(cart.filter((i) => i.wish_id !== item));
+      setCartTotal(cartTotal - item.wish_value);
+      setCartItem(cartItem.filter((i) => i.wish_id !== item));
+      audioRemove.play();
+      calculateCartTotal();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   const purchaseCartHandler = () => {
     if (
@@ -122,6 +122,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
     <ShoppingContext.Provider
       value={{
         cart,
+        cartItem,
         addToCartHandler,
         removeFromCartHandler,
         purchaseCartHandler,
