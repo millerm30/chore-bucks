@@ -115,6 +115,7 @@ export function WishesProvider({ children }) {
           removeWish,
           wishStatus,
           completeStatus,
+          getAllWishes,
         }}
       >
         {children}

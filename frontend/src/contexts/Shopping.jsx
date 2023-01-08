@@ -67,7 +67,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
   };
 
   // This is a work in progress
-  const purchaseCartHandler = async (item) => {
+  const purchaseCartHandler = async () => {
     if (points >= cartTotal) {
       try {
         await fetch("http://localhost:3001/cart/checkout", {

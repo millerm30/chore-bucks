@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Wishadd from "./Wishadd";
 import { GoTrashcan, GoCheck } from "react-icons/go";
 import { useWishes } from "../contexts/Wishes";
@@ -6,7 +6,12 @@ import Card from "./Card";
 import { motion } from "framer-motion";
 
 const WishList = () => {
-  const { wishes, addWish, completeWish, removeWish, completeStatus } = useWishes();
+  const { wishes, addWish, completeWish, removeWish, completeStatus, getAllWishes } = useWishes();
+
+  useEffect(() => {
+    getAllWishes();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className="bg-blue-300">

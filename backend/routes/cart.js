@@ -125,6 +125,17 @@ router.get('/checkout', authorization, async (req, res) => {
         'DELETE FROM shopping_cart WHERE user_id = $1',
         [userId]
       );
+      // all also need all the wishes set back to false in the databse for the user.
+      const getWishes = await pool.query(
+        'SELECT * FROM wishes WHERE user_id = $1',
+        [userId]
+      );
+      const getWishesMap = getWishes.rows.map(async (wish) => {
+        const updateWishes = await pool.query(
+          'UPDATE wishes SET completed = $1 WHERE wish_id = $2',
+          [false, wish.wish_id]
+        );
+      });
       res.json(true);
     }
   } catch (err) {
