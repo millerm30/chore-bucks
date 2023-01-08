@@ -62,16 +62,26 @@ export function WishesProvider({ children }) {
           body: JSON.stringify(body),
         });
         const parseRes = await response.json();
-        setNewWishes(parseRes);
-        addToCartHandler(wish);
-        setWishes(wishes.filter((i) => i.id !== wish.id));
+        addToCartHandler(parseRes);
         toast(`🚀 ${wish.wish_name} added to shopping cart! 🚀`);
         audioSuccess.play();
+        
+        const updateBody = { wish_id: wish.wish_id, completed: true };
+        const updateResponse = await fetch(`http://localhost:3001/wishes/updatewish/${wish.wish_id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json", token: localStorage.token },
+          body: JSON.stringify(updateBody),
+        });
+        const parseUpdateRes = await updateResponse.json();
+        setNewWishes(parseUpdateRes);
+        setWishes(wishes.filter((i) => i.id !== wish.id));
         setCompleteStatus("Add To Cart");
       } catch (error) {
         console.error(error.message);
       }
     };
+
+    console.log(wishes)
 
     const removeWish = async (wish) => {
       try {

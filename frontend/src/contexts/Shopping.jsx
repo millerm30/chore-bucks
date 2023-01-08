@@ -70,6 +70,17 @@ export function ShoppingProvider({ points, removePoints, children }) {
       setCartItem(cartItem.filter((i) => i.wish_id !== item));
       audioRemove.play();
       calculateCartTotal();
+
+      const updateBody = { item, completed: false };
+      await fetch(`http://localhost:3001/wishes/updatewish/${item}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.token,
+        },
+        body: JSON.stringify(updateBody),
+      });
+      console.log(updateBody);
     } catch (error) {
       console.error(error.message);
     }

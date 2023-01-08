@@ -56,7 +56,6 @@ router.delete('/removefromcart/:id', authorization, async (req, res) => {
   }
 });
 
-// calculate the total of all the items in the cart and return the total
 router.get('/getcarttotal', authorization, async (req, res) => {
   const userId = req.user.id;
   try {

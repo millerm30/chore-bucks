@@ -1,6 +1,6 @@
 import React from "react";
 import Wishadd from "./Wishadd";
-import { GoTrashcan } from "react-icons/go";
+import { GoTrashcan, GoCheck } from "react-icons/go";
 import { useWishes } from "../contexts/Wishes";
 import Card from "./Card";
 import { motion } from "framer-motion";
@@ -20,13 +20,24 @@ const WishList = () => {
               key={wish.wish_id}
               title={wish.wish_name}
               points={wish.wish_value}
-              remove={<GoTrashcan onClick={() => removeWish(wish.wish_id)} />}
+              remove={
+                !wish.completed ? (
+                  <GoTrashcan onClick={() => removeWish(wish.wish_id)} />
+                ) : (
+                  <GoCheck />
+                )
+              }
             >
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => completeWish(wish)}
-                className="bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg"
+                disabled={wish.completed}
+                className={`${"bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg"} ${
+                  wish.completed
+                    ? "opacity-40 cursor-not-allowed"
+                    : "curson-pointer"
+                }`}
               >
                 {completeStatus}
               </motion.button>

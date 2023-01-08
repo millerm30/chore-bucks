@@ -2,8 +2,6 @@ const router = require("express").Router();
 const authorization = require("../middleware/authorization");
 const pool = require("../database/db");
 
-// Get list of predefined chores and user added chores from database
-
 router.get("/predefinedchores", authorization, async (req, res) => {
   const userId = req.user.id;
   try {
@@ -17,8 +15,6 @@ router.get("/predefinedchores", authorization, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
-// Add new chore to predefined chores table wtih the logged in user
 
 router.post("/addpredefinedchore", authorization, async (req, res) => {
   try {
@@ -34,8 +30,6 @@ router.post("/addpredefinedchore", authorization, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
-// Get list of chores to be completed from database selected_chores table
 
 router.get("/getallchores", authorization, async (req, res) => {
   const userId = req.user.id;
@@ -64,8 +58,6 @@ router.get("/getallchores", authorization, async (req, res) => {
   }
 });
 
-// Add a chore with the userId and the user inputed chore value to the new selected_chores table for chores to be completed
-
 router.post("/addtodochore", authorization, async (req, res) => {
   const { predefined_id, points } = req.body;
   const userId = req.user.id;
@@ -81,8 +73,6 @@ router.post("/addtodochore", authorization, async (req, res) => {
   }
 });
 
-// Remove a chore from the selected_chores table for chores to be completed
-
 router.delete("/deletechore/:id", authorization, async (req, res) => {
   try {
     const chore = req.params.id;
@@ -97,8 +87,6 @@ router.delete("/deletechore/:id", authorization, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
-// Complete a chore from the selected_chores table for chores to be completed and set the completed status to true
 
 router.put("/completechore/:id", authorization, async (req, res) => {
   try {

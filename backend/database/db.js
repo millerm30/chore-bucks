@@ -86,6 +86,7 @@ pool.query(
         wish_name VARCHAR(255) NOT NULL,
         wish_value INT NOT NULL,
         user_id uuid,
+        completed BOOLEAN DEFAULT FALSE,
         FOREIGN KEY (user_id) REFERENCES users (user_id)
       )`,
       (err, res) => {

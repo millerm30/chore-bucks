@@ -2,8 +2,6 @@ const router = require("express").Router();
 const authorization = require("../middleware/authorization");
 const pool = require("../database/db");
 
-// Create a wish for the logged in user
-
 router.post("/createwish", authorization, async (req, res) => {
   try {
     const { title, points } = req.body;
@@ -17,8 +15,6 @@ router.post("/createwish", authorization, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
-// Get all wishes for the logged in user
 
 router.get("/getwishes", authorization, async (req, res) => {
   const userId = req.user.id
@@ -34,8 +30,6 @@ router.get("/getwishes", authorization, async (req, res) => {
   }
 });
 
-// Delete a wish for the logged in user
-
 router.delete("/deletewish/:id", authorization, async (req, res) => {
   try {
     const wish = req.params.id;
@@ -49,5 +43,24 @@ router.delete("/deletewish/:id", authorization, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// if the wish is added to the cart set the completed state to true
+router.put("/updatewish/:id", authorization, async (req, res) => {
+  const { completed } = req.body;
+  try {
+    const wish = req.params.id;
+    const userId = req.user.id;
+    const completeChore = await pool.query(
+      "UPDATE wishes SET completed = $1 WHERE wish_id = $2 AND user_id = $3",
+      [completed, wish, userId]
+    );
+    res.json(completeChore.rows);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+
 
 module.exports = router;
