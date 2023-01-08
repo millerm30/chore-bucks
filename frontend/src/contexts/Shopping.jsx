@@ -93,8 +93,10 @@ export function ShoppingProvider({ points, removePoints, children }) {
   };
 
   useEffect(() => {
-    getInitalCart();
-  }, []);
+    if (user) {
+      getInitalCart();
+    }
+  }, [user]);
 
   return (
     <ShoppingContext.Provider
