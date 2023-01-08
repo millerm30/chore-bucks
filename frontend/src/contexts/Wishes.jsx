@@ -81,8 +81,6 @@ export function WishesProvider({ children }) {
       }
     };
 
-    console.log(wishes)
-
     const removeWish = async (wish) => {
       try {
         await fetch(

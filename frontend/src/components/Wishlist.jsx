@@ -24,7 +24,9 @@ const WishList = () => {
                 !wish.completed ? (
                   <GoTrashcan onClick={() => removeWish(wish.wish_id)} />
                 ) : (
-                  <GoCheck />
+                  <GoCheck 
+                    className="text-green-700"
+                  />
                 )
               }
             >
@@ -39,7 +41,7 @@ const WishList = () => {
                     : "curson-pointer"
                 }`}
               >
-                {completeStatus}
+                {wish.completed ? "Completed" : `${completeStatus}`}
               </motion.button>
             </Card>
           ))}
