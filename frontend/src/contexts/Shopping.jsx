@@ -66,7 +66,8 @@ export function ShoppingProvider({ points, removePoints, children }) {
     }
   };
 
- const purchaseCartHandler = async () => {
+  // This is a work in progress
+  const purchaseCartHandler = async (item) => {
     if (points >= cartTotal) {
       try {
         await fetch("http://localhost:3001/cart/checkout", {
@@ -76,7 +77,11 @@ export function ShoppingProvider({ points, removePoints, children }) {
             token: localStorage.token,
           },
         });
-        console.log("cartTotal", cartTotal);
+        setCart([]);
+        setCartItem([]);
+        removePoints(cartTotal);
+        audioPurchase.play();
+        toast.success("You have purchased your cart!");
       } catch (error) {
         console.error(error.message);
       }
