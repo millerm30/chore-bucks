@@ -13,13 +13,14 @@ let audioNomoney = new Audio(nomoney);
 
 export function ShoppingProvider({ points, removePoints, children }) {
   const [cart, setCart] = useState([]);
-  const [cartTotal, setcartTotal] = useState(0);
+  const [cartTotal, setCartTotal] = useState(Number(0));
   const { user } = useUser();
   const [cartItem, setCartItem] = useState([]);
 
   const addToCartHandler = (wish) => {
     setCart([...cart, wish]);
     setCartItem([...cartItem, wish]);
+    calculateCartTotal();
   };
   
   const updateCartItem = (item) => {
@@ -64,9 +65,10 @@ export function ShoppingProvider({ points, removePoints, children }) {
       headers: { token: localStorage.token },
     });
     setCart(cart.filter((i) => i.wish_id !== item));
-    setcartTotal(cartTotal - item.wish_value);
+    setCartTotal(cartTotal - item.wish_value);
     setCartItem(cartItem.filter((i) => i.wish_id !== item));
     audioRemove.play();
+    calculateCartTotal();
   } catch (error) {
     console.error(error.message);
   }
@@ -89,6 +91,23 @@ export function ShoppingProvider({ points, removePoints, children }) {
       toast(
         "👎 Not enough points to purchase! Keep working on your chores! 😉"
       );
+    }
+  };
+
+  const calculateCartTotal = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/cart/getcarttotal", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.token,
+        },
+      });
+      const parseRes = await response.json();
+      const convertResponseToNumber = Number(parseRes);
+      setCartTotal(convertResponseToNumber);
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
