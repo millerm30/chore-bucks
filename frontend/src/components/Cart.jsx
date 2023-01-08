@@ -5,7 +5,7 @@ import Confetti from "react-confetti";
 import CartItem from "./Cartitem";
 
 const Cart = ({ points }) => {
-  const { cart, getInitalCart, removeFromCartHandler, purchaseCartHandler, cartTotal, updateCartItem } = useShopping();
+  const { cart, getInitalCart, removeFromCartHandler, purchaseCartHandler, cartTotal } = useShopping();
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -43,7 +43,6 @@ const Cart = ({ points }) => {
                 key={item.wish_id}
                 wish={item}
                 removeFromCartHandler={removeFromCartHandler}
-                updateCartItem={updateCartItem}
               />
             ))}
           </div>

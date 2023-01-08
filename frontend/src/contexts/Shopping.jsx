@@ -23,25 +23,6 @@ export function ShoppingProvider({ points, removePoints, children }) {
     setCartTotal(cartTotal + wish.wish_value);
     calculateCartTotal();
   };
-  
-  const updateCartItem = (item) => {
-    setCart(
-      cart.map((i) => {
-        if (i.id === item.id) {
-          return item;
-        }
-        return i;
-      })
-    );
-    setCartItem(
-    cartItem.map((i) => {
-      if (i.id === item.id) {
-        return item;
-      }
-      return i;
-    })
-  );
-  };
    
   const getInitalCart = async () => {
     try {
@@ -138,7 +119,6 @@ export function ShoppingProvider({ points, removePoints, children }) {
         removeFromCartHandler,
         purchaseCartHandler,
         cartTotal,
-        updateCartItem,
         setCart,
         getInitalCart,
       }}
