@@ -13,7 +13,7 @@ let audioFailure = new Audio(negative);
 let audioSuccess = new Audio(yay);
 
 export function WishesProvider({ children }) {
-    const { addToCartHandler, cart, cartTotal } = useShopping();
+    const { addToCartHandler, cartTotal } = useShopping();
     const [wishes, setWishes] = useState([]);
     const [newWishes, setNewWishes] = useState([]);
     const [wishStatus, setWishStatus] = useState("Add Wish Item");
@@ -63,7 +63,7 @@ export function WishesProvider({ children }) {
         });
         const parseRes = await response.json();
         setNewWishes(parseRes);
-        addToCartHandler([...cart, wish]);
+        addToCartHandler(wish);
         setWishes(wishes.filter((i) => i.id !== wish.id));
         toast(`🚀 ${wish.wish_name} added to shopping cart! 🚀`);
         audioSuccess.play();

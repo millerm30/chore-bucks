@@ -20,6 +20,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
   const addToCartHandler = (wish) => {
     setCart([...cart, wish]);
     setCartItem([...cartItem, wish]);
+    setCartTotal(cartTotal + wish.wish_value);
     calculateCartTotal();
   };
   
