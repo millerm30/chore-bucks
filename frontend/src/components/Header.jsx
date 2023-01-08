@@ -11,6 +11,7 @@ const Header = ({ points }) => {
   const { cart } = useShopping();
   const { name } = useUser();
   const navigate = useNavigate();
+
   const goToShoppingCart = () => {
     navigate("/cart");
   };

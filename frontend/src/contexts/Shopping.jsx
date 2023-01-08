@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import remove from "../sounds/remove.mp3";
 import purchse from "../sounds/purchase.mp3";
@@ -13,17 +13,14 @@ let audioNomoney = new Audio(nomoney);
 
 export function ShoppingProvider({ points, removePoints, children }) {
   const [cart, setCart] = useState([]);
-  const [cartTotal, setcartTotal] = useState(Number(0));
+  const [cartTotal, setcartTotal] = useState(0);
   const { user } = useUser();
-  const [cartItems, setCartItems] = useState([cart]);
-  
-  const addToCartHandler = useCallback(
-    (wish) => {
-      setCart([...cart, wish]);
-      setcartTotal(cartTotal + wish.wish_value);
-    },
-    [cart, cartTotal]
-  );
+  const [cartItem, setCartItem] = useState([]);
+
+  const addToCartHandler = (wish) => {
+    setCart([...cart, wish]);
+    setCartItem([...cartItem, wish]);
+  };
   
   const updateCartItem = (item) => {
     setCart(
@@ -34,8 +31,16 @@ export function ShoppingProvider({ points, removePoints, children }) {
         return i;
       })
     );
+    setCartItem(
+    cartItem.map((i) => {
+      if (i.id === item.id) {
+        return item;
+      }
+      return i;
+    })
+  );
   };
-
+   
   const getInitalCart = async () => {
     try {
       const response = await fetch("http://localhost:3001/cart/getcart", {
@@ -59,8 +64,8 @@ export function ShoppingProvider({ points, removePoints, children }) {
       headers: { token: localStorage.token },
     });
     setCart(cart.filter((i) => i.wish_id !== item));
-    setCartItems([...cart, item])
     setcartTotal(cartTotal - item.wish_value);
+    setCartItem(cartItem.filter((i) => i.wish_id !== item));
     audioRemove.play();
   } catch (error) {
     console.error(error.message);
@@ -88,10 +93,8 @@ export function ShoppingProvider({ points, removePoints, children }) {
   };
 
   useEffect(() => {
-    if (user) {
-      getInitalCart();
-    }
-  }, [cartTotal, user]);
+    getInitalCart();
+  }, []);
 
   return (
     <ShoppingContext.Provider
@@ -103,8 +106,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
         cartTotal,
         updateCartItem,
         setCart,
-        cartItems,
-        setCartItems,
+        getInitalCart,
       }}
     >
       {children}

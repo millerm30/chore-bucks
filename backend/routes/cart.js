@@ -22,6 +22,7 @@ router.get('/getcart', authorization, async (req, res) => {
     });
     const getCartResult = await Promise.all(getCartMap);
     res.json(getCartResult);
+    console.log(getCartResult);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

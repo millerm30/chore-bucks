@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useShopping } from "../contexts/Shopping";
 import { motion } from "framer-motion";
 import Confetti from "react-confetti";
 import CartItem from "./Cartitem";
 
 const Cart = ({ points }) => {
-  const { cart, removeFromCartHandler, purchaseCartHandler, cartTotal, updateCartItem } = useShopping();
+  const { cart, getInitalCart, removeFromCartHandler, purchaseCartHandler, cartTotal, updateCartItem } = useShopping();
   const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    getInitalCart();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className="text-center bg-blue-300">
