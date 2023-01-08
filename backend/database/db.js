@@ -2,7 +2,6 @@ const Pool = require("pg").Pool;
 const dotenv = require("dotenv");
 dotenv.config();
 
-//Create Postgre Database Connection
 const pool = new Pool({
   user: process.env.USER,
   host: process.env.HOST,
@@ -11,7 +10,6 @@ const pool = new Pool({
   port: process.env.PORT,
 });
 
-//Check if Database is connected
 pool.query("SELECT NOW()", (err, res) => {
   if (err) {
     console.log(err);
@@ -20,7 +18,6 @@ pool.query("SELECT NOW()", (err, res) => {
   }
 });
 
-// Check if Tables are created and if they are return the tables and if not create them with the following code
 pool.query(
   `SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'`,
   (err, res) => {

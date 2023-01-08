@@ -66,7 +66,3 @@ CREATE TABLE wallet (
   FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
--- Use the following constraint to ensure that the user_id is unique for the wallet table --
--- This is currently not an automatic setup in the db.js file --
--- ALTER TABLE wallet ADD CONSTRAINT wallet_user_id_key UNIQUE (user_id); --
-
