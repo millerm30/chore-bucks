@@ -1,6 +1,17 @@
 const router = require('express').Router();
 const authorization = require('../middleware/authorization');
 const pool = require('../database/db');
+const nodemailer = require("nodemailer");
+const shared = require("shared");
+const path = require("path");
+
+const contactEmail = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.CONTACT_EMAIL,
+    pass: process.env.CONTACT_PASSWORD,
+  },
+});
 
 router.get('/getcart', authorization, async (req, res) => {
   const userId = req.user.id;
@@ -85,7 +96,6 @@ router.get('/getcarttotal', authorization, async (req, res) => {
   }
 });
 
-// This needs a little work to finish.
 router.get('/checkout', authorization, async (req, res) => {
   const userId = req.user.id;
   try {
@@ -125,7 +135,6 @@ router.get('/checkout', authorization, async (req, res) => {
         'DELETE FROM shopping_cart WHERE user_id = $1',
         [userId]
       );
-      // all also need all the wishes set back to false in the databse for the user.
       const getWishes = await pool.query(
         'SELECT * FROM wishes WHERE user_id = $1',
         [userId]
@@ -136,6 +145,114 @@ router.get('/checkout', authorization, async (req, res) => {
           [false, wish.wish_id]
         );
       });
+      // I want to send the user an email with the list of wishes they bought, the total amount spent and the new balance they have left
+      const email = await pool.query(
+        'SELECT * FROM users WHERE user_id = $1',
+        [userId]
+      );
+      const emailResult = email.rows[0].user_email, userName = email.rows[0].user_name;
+      const mailOptions = {
+        from: process.env.CONTACT_EMAIL,
+        to: emailResult,
+        subject: "Wish List Purchase",
+        html: `
+        <style>
+          body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+          }
+          .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+          }
+          .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+          }
+          .header h1 {
+            font-size: 22px;
+            margin: 0;
+          }
+          .header p {
+            font-size: 16px;
+            margin: 0;
+            color: #777;
+          }
+          .receipt-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+          }
+          .receipt-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #777;
+          }
+          .receipt-items {
+            margin-bottom: 20px;
+          }
+          .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+          }
+          .receipt-item p {
+            margin: 0;
+            font-size: 14px;
+          }
+          .total {
+            font-size: 18px;
+            font-weight: bold;
+          }
+        </style>
+        <div class="container">
+          <div class="header">
+            <img src="cid:logo" alt="Logo">
+            <h1>Wish List Purchase</h1>
+          </div>
+          <div class="receipt-info">
+            <p>Receipt Number: ${Math.floor(Math.random() * 1000000000)}</p>
+            <p>Date: ${new Date().toLocaleDateString()}</p>
+          </div>
+          <div class="receipt-items">
+            ${getCartResult
+              .map(
+                (wish) =>
+                  `<div class="receipt-item">
+                    <p>${wish.wish_name}</p>
+                    <p>$${wish.wish_value}</p>
+                  </div>`
+              )
+              .join("")}
+          </div>
+          <hr>
+          <p class="total">Total: $${total}</p>
+          <hr>
+          <p>Thank you for your purchase ${userName}!</p>
+          <p>Here is your new balance: $${newBalance}</p>
+        </div>
+        `,
+        attachments: [
+          {
+            filename: "chorebucks.png",
+            path: path.join(__dirname, "../../shared/chorebucks.png"),
+            cid: "logo",
+          },
+        ],
+      };
+      contactEmail.sendMail(mailOptions, (err, info) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
       res.json(true);
     }
   } catch (err) {
@@ -143,9 +260,6 @@ router.get('/checkout', authorization, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-
-
-
 
 module.exports = router;
 
