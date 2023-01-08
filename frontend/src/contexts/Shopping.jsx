@@ -61,7 +61,6 @@ export function ShoppingProvider({ points, removePoints, children }) {
         },
         body: JSON.stringify(updateBody),
       });
-      console.log(updateBody);
     } catch (error) {
       console.error(error.message);
     }
