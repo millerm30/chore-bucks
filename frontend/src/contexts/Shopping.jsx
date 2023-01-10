@@ -80,7 +80,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
         setCartItem([]);
         removePoints(cartTotal);
         audioPurchase.play();
-        toast.success("Congrats! Check your email for your receipt to give to your parents 🙂");
+        toast.success("Congrats! Check your email for your receipt 🙂");
       } catch (error) {
         console.error(error.message);
       }

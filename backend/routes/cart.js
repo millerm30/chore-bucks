@@ -145,7 +145,6 @@ router.get('/checkout', authorization, async (req, res) => {
           [false, wish.wish_id]
         );
       });
-      // I want to send the user an email with the list of wishes they bought, the total amount spent and the new balance they have left
       const email = await pool.query(
         'SELECT * FROM users WHERE user_id = $1',
         [userId]
@@ -162,80 +161,33 @@ router.get('/checkout', authorization, async (req, res) => {
             margin: 0;
             padding: 0;
           }
-          .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-          }
-          .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-          }
-          .header h1 {
-            font-size: 22px;
-            margin: 0;
-          }
-          .header p {
-            font-size: 16px;
-            margin: 0;
-            color: #777;
-          }
-          .receipt-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-          }
-          .receipt-info p {
-            margin: 0;
-            font-size: 14px;
-            color: #777;
-          }
-          .receipt-items {
-            margin-bottom: 20px;
-          }
-          .receipt-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-          }
-          .receipt-item p {
-            margin: 0;
-            font-size: 14px;
-          }
-          .total {
-            font-size: 18px;
-            font-weight: bold;
-          }
         </style>
-        <div class="container">
-          <div class="header">
+        <div style="max-width:600px;margin:0 auto;padding:20px;box-sizing:border-box">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
             <img src="cid:logo" alt="Logo">
-            <h1>Wish List Purchase</h1>
+            <h1 style="font-size:22px;margin:0">Wish List Purchase</h1>
           </div>
-          <div class="receipt-info">
-            <p>Receipt Number: ${Math.floor(Math.random() * 1000000000)}</p>
-            <p>Date: ${new Date().toLocaleDateString()}</p>
+          <div style="display:flex;justify-content:space-between;margin-bottom:20px">
+            <p style="margin:0;font-size:14px;color:#777">Receipt Number: ${Math.floor(Math.random() * 1000000000)}</p>
+            <p style="margin:0;font-size:14px;color:#777">Date: ${new Date().toLocaleDateString()}</p>
           </div>
-          <div class="receipt-items">
+          <div style="margin-bottom:20px">
             ${getCartResult
               .map(
                 (wish) =>
-                  `<div class="receipt-item">
-                    <p>${wish.wish_name}</p>
-                    <p>$${wish.wish_value}</p>
+                  `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                    <p style="margin:0;font-size:14px">${wish.wish_name}</p>
+                    <p style="margin:0;font-size:14px">$${wish.wish_value}</p>
                   </div>`
               )
               .join("")}
           </div>
           <hr>
-          <p class="total">Total: $${total}</p>
+          <p style="font-size:18px;font-weight:bold">Total: $${total}</p>
           <hr>
           <p>Thank you for your purchase ${userName}!</p>
           <p>Here is your new balance: $${newBalance}</p>
+          <p>Provide your receipt to your parents to order your wishlist!</p>
         </div>
         `,
         attachments: [
