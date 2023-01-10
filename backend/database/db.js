@@ -34,7 +34,8 @@ pool.query(
         uuid_generate_v4(),
         user_name VARCHAR(255) NOT NULL,
         user_email VARCHAR(255) NOT NULL,
-        user_password VARCHAR(255) NOT NULL
+        user_password VARCHAR(255) NOT NULL,
+        date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )`,
       (err, res) => {
         if (err) {
@@ -66,6 +67,8 @@ pool.query(
         chore_value INT NOT NULL,
         predefined_id uuid NOT NULL,
         completed BOOLEAN DEFAULT FALSE,
+        date_added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        date_completed TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users (user_id),
         FOREIGN KEY (predefined_id) REFERENCES predefined_chores (predefined_id)
       )`,
@@ -84,6 +87,7 @@ pool.query(
         wish_value INT NOT NULL,
         user_id uuid,
         completed BOOLEAN DEFAULT FALSE,
+        date_added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users (user_id)
       )`,
       (err, res) => {

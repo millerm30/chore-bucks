@@ -93,7 +93,7 @@ router.put("/completechore/:id", authorization, async (req, res) => {
     const chore = req.params.id;
     const userId = req.user.id;
     const completeChore = await pool.query(
-      "UPDATE selected_chores SET completed = true WHERE selected_id = $1 AND user_id = $2",
+      "UPDATE selected_chores SET completed = true, date_completed = now() WHERE selected_id = $1 AND user_id = $2",
       [chore, userId]
     );
     res.json(completeChore.rows);
