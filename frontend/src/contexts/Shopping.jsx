@@ -66,7 +66,6 @@ export function ShoppingProvider({ points, removePoints, children }) {
     }
   };
 
-  // This is a work in progress
   const purchaseCartHandler = async () => {
     if (points >= cartTotal) {
       try {
@@ -81,7 +80,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
         setCartItem([]);
         removePoints(cartTotal);
         audioPurchase.play();
-        toast.success("You have purchased your cart!");
+        toast.success("Congrats! Check your email for your receipt to give to your parents 🙂");
       } catch (error) {
         console.error(error.message);
       }
