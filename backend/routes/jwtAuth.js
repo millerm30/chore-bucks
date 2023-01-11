@@ -48,7 +48,7 @@ router.post("/login", validInfo, async (req, res) => {
       email,
     ]);
     if (user.rows.length === 0) {
-      return res.status(401).json("Password or Email is incorrect");
+      return res.status(401).json("Email incorrect or not registered");
     }
 
     //Check if incoming password is the same as the database password
@@ -57,7 +57,7 @@ router.post("/login", validInfo, async (req, res) => {
       user.rows[0].user_password
     );
     if (!validPassword) {
-      return res.status(401).json("Password or Email is incorrect");
+      return res.status(401).json("Password is incorrect");
     }
 
     //Give them the jwt token
