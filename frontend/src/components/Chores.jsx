@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 import Confetti from "react-confetti";
+import { Link } from "react-router-dom";
 
 const Chores = () => {
   const { chores, removeChore, completeChore } = useChores();
@@ -19,6 +20,11 @@ const Chores = () => {
 
   return (
     <main className="text-center bg-blue-300">
+      <Link to="/choresview">
+        
+          View Chores
+       
+      </Link>
       {isActive && (
         <Confetti
           style={{ pointerEvents: "none", width: "100%", height: "100%" }}

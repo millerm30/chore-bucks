@@ -13,6 +13,7 @@ import Cart from "./components/Cart";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ContactForm from "./components/ContactForm";
+import ChoresView from "./components/ChoresView";
 import { UserProvider, useUser } from "./contexts/Auth";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -53,6 +54,7 @@ const Router = () => {
           <Route path="/chores" element={<ChoresPage />} />
             <Route path="/choresadd" element={<ModalAdd />} />
           <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/choresview" element={<ChoresView />} />
           <Route path="/cart" element={<Cart points={points}/>} />
           <Route path="/contact" element={<ContactForm />} />
         </Route>

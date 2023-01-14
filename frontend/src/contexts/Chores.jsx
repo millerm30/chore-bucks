@@ -17,6 +17,7 @@ export function ChoresProvider({ children, addPoints}) {
   const [choreStatus, setChoreStatus] = useState("Add Chore Item");
   const [completeChoreStatus, setCompleteChoreStatus] = useState("Complete Chore");
   const { user } = useUser();
+  const [ choreViews, setChoreViews ] = useState([]);
 
   const getChoresToComeplete = async () => {
     try {
@@ -105,13 +106,27 @@ export function ChoresProvider({ children, addPoints}) {
     }
   };
 
+  const getChoreViews = async () => {
+    try {
+      const getChores = await fetch("http://localhost:3001/chores/choreviews", {
+        method: "GET",
+        headers: {"Content-Type": "application/json", token: localStorage.token },
+      });
+      const response = await getChores.json();
+      setChoreViews(response)
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     if (user)
     getChoresToComeplete();
+    getChoreViews();
   }, [newChores, user]);
 
   return (
-    <ChoresContext.Provider value={{ chores, choreStatus, setChoreStatus, completeChoreStatus, addChore, removeChore, completeChore }}>
+    <ChoresContext.Provider value={{ chores, choreStatus, setChoreStatus, completeChoreStatus, addChore, removeChore, completeChore, choreViews }}>
       {children}
     </ChoresContext.Provider>
   );
