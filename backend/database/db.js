@@ -115,4 +115,70 @@ const createTables = async () => {
   }
 };
 
+pool.query(
+  `SELECT trigger_name FROM information_schema.triggers WHERE trigger_schema = 'public'`,
+  (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const triggerNames = ["set_date_completed_trigger"];
+      if (!triggerNames.every(triggerName => res.rows.map(row => row.trigger_name).includes(triggerName)))
+      {
+      console.log("No Triggers Found");
+      createTriggers();
+    } else {
+      console.log("Triggers Found");
+      console.log(res.rows);
+    }
+  }
+});
+
+pool.query(
+  `SELECT routine_name FROM information_schema.routines WHERE routine_schema = 'public'`,
+  (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const functionNames = ["set_date_completed"];
+      if (!functionNames.every(functionName => res.rows.map(row => row.routine_name).includes(functionName)))
+      {
+      console.log("No Functions Found");
+      createFunctions();
+    } else {
+      console.log("Functions Found");
+      console.log(res.rows);
+    }
+  }
+});
+
+const createFunctions = async () => {
+  try {
+    await pool.query(
+      `CREATE OR REPLACE FUNCTION set_date_completed() RETURNS TRIGGER AS $$
+      BEGIN
+        NEW.date_completed = NOW();
+        RETURN NEW;
+      END;
+      $$ LANGUAGE plpgsql;`,
+    );
+    console.log("Function Created");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const createTriggers = async () => {
+  try {
+    pool.query(
+      `CREATE TRIGGER set_date_completed_trigger
+      BEFORE UPDATE ON selected_chores
+      FOR EACH ROW
+      EXECUTE PROCEDURE set_date_completed();`,
+    );
+    console.log("Trigger Created");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = pool;
