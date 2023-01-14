@@ -6,7 +6,7 @@ CREATE TABLE users (
     user_name VARCHAR(255) NOT NULL,
     user_email VARCHAR(255) NOT NULL,
     user_password VARCHAR(255) NOT NULL,
-    data_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 );
 
 -- Predefined Chores Table --
