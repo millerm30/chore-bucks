@@ -4,6 +4,7 @@ const pool = require('../database/db');
 const nodemailer = require("nodemailer");
 const shared = require("shared");
 const path = require("path");
+const { Pool } = require('pg');
 
 const contactEmail = nodemailer.createTransport({
   service: "gmail",
@@ -127,14 +128,21 @@ router.get('/checkout', authorization, async (req, res) => {
       res.json(false);
     } else {
       const newBalance = userBalance - total;
-      const updateBalance = await pool.query(
-        'UPDATE wallet SET balance = $1 WHERE user_id = $2',
-        [newBalance, userId]
-      );
-      const clearCart = await pool.query(
-        'DELETE FROM shopping_cart WHERE user_id = $1',
-        [userId]
-      );
+      await pool.query('BEGIN');
+      try {
+        const updateBalance = await pool.query(
+          "UPDATE wallet SET balance = $1 WHERE user_id = $2",
+          [newBalance, userId]
+        );
+        const clearCart = await pool.query(
+          "DELETE FROM shopping_cart WHERE user_id = $1",
+          [userId]
+        );
+        await pool.query('COMMIT');
+      } catch (err) {
+        await pool.query('ROLLBACK');
+        throw err;
+      }
       const getWishes = await pool.query(
         'SELECT * FROM wishes WHERE user_id = $1',
         [userId]
@@ -145,6 +153,7 @@ router.get('/checkout', authorization, async (req, res) => {
           [false, wish.wish_id]
         );
       });
+      
       const email = await pool.query(
         'SELECT * FROM users WHERE user_id = $1',
         [userId]
