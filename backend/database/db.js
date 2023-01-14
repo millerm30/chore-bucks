@@ -28,7 +28,17 @@ pool.query(
       if (!tableNames.every(tableName => res.rows.map(row => row.table_name).includes(tableName)))
       {
       console.log("No Tables Found");
-      pool.query(
+      createTables();
+    } else {
+      console.log("Tables Found");
+      console.log(res.rows);
+    }
+  }
+});
+
+const createTables = async () => {
+  try {  
+      await pool.query(
         `CREATE TABLE IF NOT EXISTS users (
         user_id uuid PRIMARY KEY DEFAULT 
         uuid_generate_v4(),
@@ -37,12 +47,7 @@ pool.query(
         user_password VARCHAR(255) NOT NULL,
         date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )`,
-      (err, res) => {
-        if (err) {
-          console.log(err);
-        }
-      }
-    );
+      );
 
     pool.query(
       `CREATE TABLE IF NOT EXISTS predefined_chores (
@@ -52,11 +57,6 @@ pool.query(
         user_id uuid,
         FOREIGN KEY (user_id) REFERENCES users (user_id)
       )`,
-      (err, res) => {
-        if (err) {
-          console.log(err);
-        }
-      }
     );
 
     pool.query(
@@ -72,11 +72,6 @@ pool.query(
         FOREIGN KEY (user_id) REFERENCES users (user_id),
         FOREIGN KEY (predefined_id) REFERENCES predefined_chores (predefined_id)
       )`,
-      (err, res) => {
-        if (err) {
-          console.log(err);
-        }
-      }
     );
 
     pool.query(
@@ -90,11 +85,6 @@ pool.query(
         date_added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users (user_id)
       )`,
-      (err, res) => {
-        if (err) {
-          console.log(err);
-        }
-      }
     );
 
     pool.query(
@@ -107,11 +97,6 @@ pool.query(
         FOREIGN KEY (user_id) REFERENCES users (user_id),
         FOREIGN KEY (wish_id) REFERENCES wishes (wish_id)
       )`,
-      (err, res) => {
-        if (err) {
-          console.log(err);
-        }
-      }
     );
 
     pool.query(
@@ -123,20 +108,11 @@ pool.query(
         CONSTRAINT wallet_user_id_key UNIQUE (user_id),
         FOREIGN KEY (user_id) REFERENCES users (user_id)
       )`,
-      (err, res) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Tables Created");
-        }
-      }
     );
-      } else {
-        console.log("Tables Found");
-        console.log(res.rows);
-      }
-    }
+    console.log("Tables Created");
+  } catch (err) {
+    console.log(err);
   }
-);
+};
 
 module.exports = pool;
