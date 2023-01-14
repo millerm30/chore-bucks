@@ -174,9 +174,11 @@ router.get('/checkout', authorization, async (req, res) => {
         <div style="max-width:600px;margin:0 auto;padding:20px;box-sizing:border-box">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
             <img src="cid:logo" alt="Logo">
+          </div>
+          <div>
             <h1 style="font-size:22px;margin:0">Wish List Purchase</h1>
           </div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:20px">
+          <div style="margin-bottom:20px">
             <p style="margin:0;font-size:14px;color:#777">Receipt Number: ${Math.floor(Math.random() * 1000000000)}</p>
             <p style="margin:0;font-size:14px;color:#777">Date: ${new Date().toLocaleDateString()}</p>
           </div>
