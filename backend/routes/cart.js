@@ -176,8 +176,7 @@ router.get('/checkout', authorization, async (req, res) => {
               .map(
                 (wish) =>
                   `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-                    <p style="margin:0;font-size:14px">${wish.wish_name}</p>
-                    <p style="margin:0;font-size:14px">$${wish.wish_value}</p>
+                    <p style="margin:0;font-size:14px">${wish.wish_name} | $${wish.wish_value}</p>
                   </div>`
               )
               .join("")}
