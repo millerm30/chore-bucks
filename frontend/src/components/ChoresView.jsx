@@ -12,9 +12,9 @@ const ChoresView = () => {
           <table className="table mt-5 text-center">
             <thead>
               <tr>
-                <th>Chore</th>
-                <th>Points</th>
-                <th>Complete</th>
+                <th>Chore Name</th>
+                <th>Point Value</th>
+                <th>Completed Date</th>
               </tr>
             </thead>
             <tbody>

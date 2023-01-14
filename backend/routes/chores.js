@@ -110,7 +110,20 @@ router.get('/choreviews', authorization, async (req, res) => {
     "SELECT predefined_chores.chore_name, selected_chores.chore_value, selected_chores.date_completed, selected_chores.selected_id FROM selected_chores JOIN predefined_chores ON selected_chores.predefined_id = predefined_chores.predefined_id WHERE selected_chores.user_id = $1",
       [userId]
     );
-    res.json(getChoreViews.rows);
+    const choreViews = getChoreViews.rows.map((row) => {
+      const date = new Date(row.date_completed);
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+      };
+      row.date_completed = date.toLocaleString("en-US", options);
+      return row;
+    });
+    res.json(choreViews);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
