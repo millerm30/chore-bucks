@@ -111,7 +111,7 @@ router.get('/choreviews', authorization, async (req, res) => {
       [userId]
     );
     const choreViews = getChoreViews.rows.map((row) => {
-      const date = new Date(row.date_completed);
+      const date = new Date();
       const options = {
         year: "numeric",
         month: "long",
