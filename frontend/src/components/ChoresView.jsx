@@ -79,13 +79,13 @@ const ChoresView = () => {
                   </th>
                 </tr>
                 <tr>
-                  <th className="px-8 py-2 text-left bg-gray-300 w-1/3">
+                  <th className="px-8 py-2 text-left bg-white w-1/3">
                     Chore Name
                   </th>
-                  <th className="px-8 py-2 text-center bg-gray-300">
+                  <th className="px-8 py-2 text-center bg-white">
                     Point Value
                   </th>
-                  <th className="px-8 py-2 text-right bg-gray-300">
+                  <th className="px-8 py-2 text-right bg-white">
                     Completed Date
                   </th>
                 </tr>
@@ -113,16 +113,16 @@ const ChoresView = () => {
               </tbody>
               <tfoot className="text-sm">
                 <tr>
-                  <td className="px-8 py-2 font-semibold text-left bg-gray-300">
+                  <td className="px-8 py-2 font-semibold text-left bg-white">
                     Points Earned
                   </td>
-                  <td className="px-8 py-2 font-semibold text-center bg-gray-300">
+                  <td className="px-8 py-2 font-semibold text-center bg-white">
                     {currentChores.reduce(
                       (total, chore) => total + chore.chore_value,
                       0
                     )}
                   </td>
-                  <td className="px-8 py-2 bg-gray-300 text-right font-semibold"></td>
+                  <td className="px-8 py-2 bg-white text-right font-semibold"></td>
                 </tr>
                 <tr>
                   <td className="px-8 py-2 font-semibold text-left bg-gray-300 rounded-bl-xl">

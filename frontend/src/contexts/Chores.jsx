@@ -122,7 +122,6 @@ export function ChoresProvider({ children, addPoints}) {
   useEffect(() => {
     if (user) {
     getChoresToComeplete();
-    getChoreViews();
     }
   }, [newChores, user]);
 
