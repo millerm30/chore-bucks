@@ -107,7 +107,7 @@ router.get('/choreviews', authorization, async (req, res) => {
   const userId = req.user.id;
   try {
     const getChoreViews = await pool.query(
-    "SELECT predefined_chores.chore_name, selected_chores.chore_value, selected_chores.date_completed, selected_chores.selected_id FROM selected_chores JOIN predefined_chores ON selected_chores.predefined_id = predefined_chores.predefined_id WHERE selected_chores.user_id = $1",
+    "SELECT predefined_chores.chore_name, selected_chores.chore_value, selected_chores.completed, selected_chores.date_completed, selected_chores.selected_id FROM selected_chores JOIN predefined_chores ON selected_chores.predefined_id = predefined_chores.predefined_id WHERE selected_chores.user_id = $1 AND selected_chores.completed = true",
       [userId]
     );
     const choreViews = getChoreViews.rows.map((row) => {

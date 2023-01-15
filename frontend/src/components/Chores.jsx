@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 import Confetti from "react-confetti";
 import { Link } from "react-router-dom";
+import { MdOutlineHistoryEdu } from "react-icons/md";
 
 const Chores = () => {
   const { chores, removeChore, completeChore } = useChores();
@@ -20,11 +21,19 @@ const Chores = () => {
 
   return (
     <main className="text-center bg-blue-300">
-      <Link to="/choresview">
-        
-          View Chores
-       
-      </Link>
+      <div className="pt-2 flex justify-center">
+        <ul className="flex flex-row justify-center w-full pl-0 list-style-none mr-auto">
+          <li className="px-2 hover:text-gray-700 uppercase cursor-pointer relative">
+            <Link
+              to="/choresview"
+              className="flex after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#FF9950] after:transition-all after:ease-in-out after:hover:scale-x-100"
+            >
+              <MdOutlineHistoryEdu className="text-2xl" />
+              Chore History
+            </Link>
+          </li>
+        </ul>
+      </div>
       {isActive && (
         <Confetti
           style={{ pointerEvents: "none", width: "100%", height: "100%" }}

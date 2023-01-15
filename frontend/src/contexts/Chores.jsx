@@ -127,7 +127,7 @@ export function ChoresProvider({ children, addPoints}) {
   }, [newChores, user]);
 
   return (
-    <ChoresContext.Provider value={{ chores, choreStatus, setChoreStatus, completeChoreStatus, addChore, removeChore, completeChore, choreViews, setChoreViews }}>
+    <ChoresContext.Provider value={{ chores, choreStatus, setChoreStatus, completeChoreStatus, addChore, removeChore, completeChore, choreViews, getChoreViews }}>
       {children}
     </ChoresContext.Provider>
   );

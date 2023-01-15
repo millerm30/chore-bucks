@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useChores } from '../contexts/Chores';
 import { Link } from 'react-router-dom';
 import { IoIosReturnLeft } from 'react-icons/io';
 
 const ChoresView = () => {
-  const { choreViews } = useChores()
+  const { choreViews, getChoreViews } = useChores()
 
   const showPagination = () => {
     const pageNumbers = []
@@ -43,17 +43,26 @@ const ChoresView = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
+  useEffect(() => {
+    getChoreViews()
+  }, [])
+
   return (
     <main className="bg-blue-300">
       <section className="mx-auto pt-10">
         <h1 className="text-3xl font-semibold p-1 text-center">
           🧒 Chore History 🚀
         </h1>
-        <div className='flex justify-center'>
-          <Link to="/chores" className='flex'>
-            <IoIosReturnLeft className="text-2xl" />
-            Back to chores!
-          </Link>
+        <div className="flex justify-center">
+          <li className="px-2 hover:text-gray-700 uppercase cursor-pointer relative list-none">
+            <Link
+              to="/chores"
+              className="flex after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-[#FF9950] after:transition-all after:ease-in-out after:hover:scale-x-100"
+            >
+              <IoIosReturnLeft className="text-2xl" />
+              Back to chores!
+            </Link>
+          </li>
         </div>
         {choreViews.length === 0 ? (
           <p className="italic pt-4 text-center">No Chore History!</p>
