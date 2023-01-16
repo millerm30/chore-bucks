@@ -110,20 +110,24 @@ router.get('/choreviews', authorization, async (req, res) => {
     "SELECT predefined_chores.chore_name, selected_chores.chore_value, selected_chores.completed, selected_chores.date_completed, selected_chores.selected_id FROM selected_chores JOIN predefined_chores ON selected_chores.predefined_id = predefined_chores.predefined_id WHERE selected_chores.user_id = $1 AND selected_chores.completed = true",
       [userId]
     );
-    const choreViews = getChoreViews.rows.map((row) => {
-      const date = new Date();
-      const options = {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-      };
-      row.date_completed = date.toLocaleString("en-US", options);
-      return row;
-    });
-    res.json(choreViews);
+    const convertTime = getChoreViews.rows.map((chore) => {
+      const date = new Date(chore.date_completed);
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      const month = monthNames[date.getMonth()];
+      const day = date.getDate();
+      const year = date.getFullYear();
+      const convertTheDate = `${month} ${day}, ${year}`;
+      const currentTime = date.toLocaleTimeString();
+      const dateCompleted = `${convertTheDate} / ${currentTime}`;
+      return {
+        chore_name: chore.chore_name
+        , chore_value: chore.chore_value
+        , completed: chore.completed
+        , date_completed: dateCompleted
+        , selected_id: chore.selected_id
+      }
+    })
+    res.json(convertTime);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
