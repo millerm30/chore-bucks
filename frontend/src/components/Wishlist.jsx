@@ -19,7 +19,7 @@ const WishList = () => {
       {wishes.length === 0 ? (
         <p className="text-center italic pt-4">No wishes yet</p>
       ) : (
-        <section className="grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-3 lg:grid-cols-4">
+        <section className="grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-4 lg:grid-cols-6">
           {wishes.map((wish) => (
             <Card
               key={wish.wish_id}
