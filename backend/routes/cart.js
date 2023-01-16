@@ -97,7 +97,7 @@ router.get('/getcarttotal', authorization, async (req, res) => {
   }
 });
 
-router.get('/checkout', authorization, async (req, res) => {
+router.post('/checkout', authorization, async (req, res) => {
   const userId = req.user.id;
   try {
     const getCart = await pool.query(

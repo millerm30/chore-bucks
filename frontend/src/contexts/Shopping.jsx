@@ -70,7 +70,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
     if (points >= cartTotal) {
       try {
         await fetch("http://localhost:3001/cart/checkout", {
-          method: "GET",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             token: localStorage.token,
