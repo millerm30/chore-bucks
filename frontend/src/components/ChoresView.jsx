@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useChores } from '../contexts/Chores';
 import { Link } from 'react-router-dom';
 import { IoIosReturnLeft } from 'react-icons/io';
@@ -29,7 +29,6 @@ const ChoresView = () => {
             </Link>
           </li>
         </div>
-        <div>
         {choreViews.length === 0 ? (
           <p className="italic pt-4 text-center">No Chore History!</p>
         ) : (
@@ -37,7 +36,6 @@ const ChoresView = () => {
             <ChoreViewTable />
           </div>
         )}
-        </div>
       </section>
     </main>
   );
