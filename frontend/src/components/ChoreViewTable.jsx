@@ -4,15 +4,14 @@ import ChoreViewTableBody from './ChoreViewTableBody'
 import ChoreViewTableFoot from './ChoreViewTableFoot'
 import { useChores } from "../contexts/Chores";
 
+const columns = [
+  { label: "Chore Name", accessor: "chore_name", sortable: true },
+  { label: "Point Value", accessor: "chore_value", sortable: true },
+  { label: "Completed Date", accessor: "date_completed", sortable: true },
+];
 
 const ChoreViewTable = () => {
   const { choreViews, setChoreViews } = useChores()
-
-  const columns = [
-    { label: "Chore Name", accessor: "chore_name", sortable: true },
-    { label: "Point Value", accessor: "chore_value", sortable: true, },
-    { label: "Completed Date", accessor: "date_completed", sortable: true },
-  ]
 
   const showPagination = () => {
     const pageNumbers = [];
@@ -48,21 +47,21 @@ const ChoreViewTable = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
- const handleSorting = (sortField, sortOrder) => {
-   if (sortField) {
-     const sorted = [...choreViews].sort((a, b) => {
-       if (a[sortField] === null) return 1;
-       if (b[sortField] === null) return -1;
-       if (a[sortField] === null && b[sortField] === null) return 0;
-       return (
-         a[sortField].toString().localeCompare(b[sortField].toString(), "en", {
-           numeric: true,
-         }) * (sortOrder === "asc" ? 1 : -1)
-       );
-     });
-     setChoreViews(sorted);
-   }
- };
+  const handleSorting = (sortField, sortOrder) => {
+    if (sortField) {
+      const sorted = [...choreViews].sort((a, b) => {
+        if (a[sortField] === null) return 1;
+        if (b[sortField] === null) return -1;
+        if (a[sortField] === null && b[sortField] === null) return 0;
+        return (
+          a[sortField].toString().localeCompare(b[sortField].toString(), "en", {
+            numeric: true,
+          }) * (sortOrder === "asc" ? 1 : -1)
+        );
+      });
+      setChoreViews(sorted);
+    }
+  };
 
   return (
     <table className="my-10 table-fixed">

@@ -32,7 +32,7 @@ const ChoresView = () => {
         {choreViews.length === 0 ? (
           <p className="italic pt-4 text-center">No Chore History!</p>
         ) : (
-          <div className="grid grid-cols-1 grid-rows-1 w-full ml-auto mr-auto md:w-3/4 lg:w-1/2">
+          <div className="grid grid-cols-1 grid-rows-1 w-full ml-auto mr-auto md:w-3/4 lg:w-1/2 xl:w-1/2 2xl:w-5/12">
             <ChoreViewTable />
           </div>
         )}

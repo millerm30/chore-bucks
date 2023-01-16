@@ -64,7 +64,7 @@ const Chores = () => {
         {chores.every((chore) => chore.completed === true) ? (
           <p className="italic pt-4">No Chores to do!</p>
         ) : (
-          <section className="grid grid-cols-2 gap-5 mx-5 py-5 md:grid-cols-3 lg:grid-cols-4">
+          <section className="grid grid-cols-2 gap-5 mx-5 py-5 md:grid-cols-4 lg:grid-cols-6">
             {chores
               .filter((chore) => chore.completed === false)
               .map((chore) => (
