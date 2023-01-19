@@ -49,7 +49,7 @@ const createTables = async () => {
       )`,
       );
 
-    pool.query(
+    await pool.query(
       `CREATE TABLE IF NOT EXISTS predefined_chores (
         predefined_id uuid PRIMARY KEY DEFAULT 
         uuid_generate_v4(),
@@ -59,7 +59,7 @@ const createTables = async () => {
       )`,
     );
 
-    pool.query(
+    await pool.query(
       `CREATE TABLE IF NOT EXISTS selected_chores (
         selected_id uuid PRIMARY KEY DEFAULT 
         uuid_generate_v4(),
@@ -74,7 +74,7 @@ const createTables = async () => {
       )`,
     );
 
-    pool.query(
+    await pool.query(
       `CREATE TABLE IF NOT EXISTS wishes (
         wish_id uuid PRIMARY KEY DEFAULT 
         uuid_generate_v4(),
@@ -87,7 +87,7 @@ const createTables = async () => {
       )`,
     );
 
-    pool.query(
+    await pool.query(
       `CREATE TABLE IF NOT EXISTS shopping_cart (
         item_id uuid PRIMARY KEY DEFAULT 
         uuid_generate_v4(),
@@ -99,7 +99,7 @@ const createTables = async () => {
       )`,
     );
 
-    pool.query(
+    await pool.query(
       `CREATE TABLE IF NOT EXISTS wallet (
         wallet_id uuid PRIMARY KEY DEFAULT
         uuid_generate_v4(),
