@@ -14,25 +14,31 @@ const contactEmail = nodemailer.createTransport({
   },
 });
 
+const getCartMap = async (userId) => {
+  const getCart = await pool.query(
+    'SELECT * FROM shopping_cart WHERE user_id = $1',
+    [userId]
+  );
+  const getCartMap = getCart.rows.map(async (wish) => {
+    const getCartList = await pool.query(
+      'SELECT * FROM wishes WHERE wish_id = $1',
+      [wish.wish_id]
+    );
+    return {
+      wish_id: wish.wish_id,
+      wish_name: getCartList.rows[0].wish_name,
+      wish_value: getCartList.rows[0].wish_value,
+    }
+  });
+  const getCartResult = await Promise.all(getCartMap);
+  return getCartResult;
+}
+
+
 router.get('/getcart', authorization, async (req, res) => {
   const userId = req.user.id;
   try {
-    const getCart = await pool.query(
-      'SELECT * FROM shopping_cart WHERE user_id = $1',
-      [userId]
-    );
-    const getCartMap = getCart.rows.map(async (wish) => {
-      const getCartList = await pool.query(
-        'SELECT * FROM wishes WHERE wish_id = $1',
-        [wish.wish_id]
-      );
-      return {
-        wish_id: wish.wish_id,
-        wish_name: getCartList.rows[0].wish_name,
-        wish_value: getCartList.rows[0].wish_value,
-      }
-    });
-    const getCartResult = await Promise.all(getCartMap);
+    const getCartResult = await getCartMap(userId);
     res.json(getCartResult);
   } catch (err) {
     console.error(err.message);
