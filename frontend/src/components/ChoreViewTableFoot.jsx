@@ -5,10 +5,10 @@ const ChoreViewTableFoot = ({ currentChores, currentPage, choreViews }) => {
     <tfoot className="text-sm">
       <tr>
         <td className="p-2 font-semibold text-left bg-white" colSpan={2}>
-          Points Earned
+          Chores Completed
         </td>
         <td className="p-2 font-semibold text-right bg-white">
-          {currentChores.reduce((total, chore) => total + chore.chore_value, 0)}
+          {choreViews.length}
         </td>
       </tr>
       <tr>
