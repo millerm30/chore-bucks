@@ -134,7 +134,7 @@ const checkTriggers = async () => {
     const triggersExist = await pool.query(
       `SELECT trigger_name FROM information_schema.triggers WHERE trigger_schema = 'public'`
     );
-    const triggerNames = ["set_date_completed_trigger"];
+    const triggerNames = ["set_date_completed_trigger", "delete_old_chores_trigger"];
     if (
       !triggerNames.every((triggerName) =>
         triggersExist.rows.map((row) => row.trigger_name).includes(triggerName)
@@ -156,7 +156,7 @@ const checkFunctions = async () => {
     const functionsExist = await pool.query(
       `SELECT routine_name FROM information_schema.routines WHERE routine_schema = 'public'`
     );
-    const functionNames = ["set_date_completed"];
+    const functionNames = ["set_date_completed", "delete_old_chores"];
     if (
       !functionNames.every((functionName) =>
         functionsExist.rows
@@ -185,7 +185,17 @@ const createFunctions = async () => {
       END;
       $$ LANGUAGE plpgsql;`
     );
-    console.log("Function Created");
+
+    await pool.query(
+      `CREATE OR REPLACE FUNCTION delete_old_chores() RETURNS TRIGGER AS $$
+      BEGIN
+        DELETE FROM selected_chores WHERE date_added < NOW() - INTERVAL '90 days';
+        RETURN NEW;
+      END;
+      $$ LANGUAGE plpgsql;`
+    );
+    console.log("Functions Created");
+
   } catch (err) {
     console.log(err);
   }
@@ -193,13 +203,21 @@ const createFunctions = async () => {
 
 const createTriggers = async () => {
   try {
-    pool.query(
+    await pool.query(
       `CREATE TRIGGER set_date_completed_trigger
       BEFORE UPDATE ON selected_chores
       FOR EACH ROW
       EXECUTE PROCEDURE set_date_completed();`
     );
-    console.log("Trigger Created");
+
+    await pool.query(
+      `CREATE TRIGGER delete_old_chores_trigger
+      AFTER INSERT ON selected_chores
+      FOR EACH ROW
+      EXECUTE PROCEDURE delete_old_chores();`
+    );
+    console.log("Triggers Created");
+
   } catch (err) {
     console.log(err);
   }
