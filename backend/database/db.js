@@ -111,6 +111,18 @@ const createTables = async () => {
         FOREIGN KEY (wish_id) REFERENCES wishes (wish_id)
       )`
     );
+
+    await pool.query(
+      `CREATE TABLE wallet (
+        wallet_id uuid PRIMARY KEY DEFAULT
+        uuid_generate_v4(),
+        user_id uuid NOT NULL,
+        balance INT,
+        ADD CONSTRAINT wallet_user_id_key UNIQUE (user_id)
+        FOREIGN KEY (user_id) REFERENCES users (user_id)
+      )`
+    );
+
     console.log("Tables created successfully");
   } catch (err) {
     console.log(err);
