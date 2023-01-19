@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const authorization = require('../middleware/authorization');
-const pool = require('../database/db');
+const { pool } = require('../database/db');
 
 router.get('/getbalance', authorization, async (req, res) => {
   const userId = req.user.id;

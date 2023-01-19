@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const authorization = require("../middleware/authorization");
-const pool = require("../database/db");
+const { pool } = require("../database/db");
 
 router.post("/createwish", authorization, async (req, res) => {
   try {
