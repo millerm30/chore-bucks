@@ -4,7 +4,7 @@ const { pool } = require('../database/db');
 const nodemailer = require("nodemailer");
 const shared = require("shared");
 const path = require("path");
-const emailTemplate = require("../../shared/emailTemplate");
+const emailTemplate = require("../mail/emailTemplate");
 
 const contactEmail = nodemailer.createTransport({
   service: "gmail",
@@ -143,7 +143,7 @@ router.post('/checkout', authorization, async (req, res) => {
         attachments: [
           {
             filename: "chorebucks.png",
-            path: path.join(__dirname, "../../shared/chorebucks.png"),
+            path: path.join(__dirname, "../mail/chorebucks.png"),
             cid: "logo",
           },
         ],
