@@ -1,6 +1,6 @@
 
 export const API_URL = {
-  userProfile: "process.env.REACT_APP_API_URL/dashboard",
+  userProfile: "http://localhost:3001/api/dashboard",
   login: "http://localhost:3001/api/auth/login",
   register: "http://localhost:3001/api/auth/register",
   chores: "http://localhost:3001/api/chores/getallchores",
