@@ -1,0 +1,26 @@
+
+export const API_URL = {
+  userProfile: "process.env.REACT_APP_API_URL/dashboard",
+  login: "http://localhost:3001/api/auth/login",
+  register: "http://localhost:3001/api/auth/register",
+  chores: "http://localhost:3001/api/chores/getallchores",
+  addChore: "http://localhost:3001/api/chores/addtodochore",
+  deleteChore: "http://localhost:3001/api/chores/deletechore",
+  completeChore: "http://localhost:3001/api/chores/completechore",
+  addMoneyToWallett: "http://localhost:3001/api/wallet/addbalance",
+  getBalance: "http://localhost:3001/api/wallet/getbalance",
+  choreViews: "http://localhost:3001/api/chores/choreviews",
+  cart: "http://localhost:3001/api/cart/getcart",
+  removeCartItem: "http://localhost:3001/api/cart/removefromcart",
+  updateWishState: "http://localhost:3001/api/wishes/updatewish",
+  purchaseCart: "http://localhost:3001/api/cart/checkout",
+  cartTotal: "http://localhost:3001/api/cart/getcarttotal",
+  wishes: "http://localhost:3001/api/wishes/getwishes",
+  addWish: "http://localhost:3001/api/wishes/createwish",
+  completeWish: "http://localhost:3001/api/cart/addtoshoppingcart",
+  removeWishItem: "http://localhost:3001/api/wishes/deletewish",
+  predefinedChores: "http://localhost:3001/api/chores/predefinedchores",
+  addNewChore: "http://localhost:3001/api/chores/addpredefinedchore",
+  contactUs: "http://localhost:3001/api/contact/email",
+};
+

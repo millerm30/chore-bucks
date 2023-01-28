@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { API_URL } from '../Config';
 
 const UserContext = React.createContext();
 
@@ -30,7 +31,7 @@ export function UserProvider({ children }) {
 
   const getProfile = async () => {
     try {
-      const res = await fetch("http://localhost:3001/dashboard/", {
+      const res = await fetch(`${API_URL.userProfile}`, {
         method: "GET",
         headers: { token: localStorage.token },
       });
@@ -56,7 +57,7 @@ export function UserProvider({ children }) {
     setLoginStatus(loginStatuses.LOADING);
     try {
       const body = { email, password };
-      const response = await fetch("http://localhost:3001/auth/login", {
+      const response = await fetch(`${API_URL.login}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -76,7 +77,7 @@ export function UserProvider({ children }) {
       }
     } catch (err) {
       console.error(err.message);
-      toast.error(err.message);
+      toast.error(" Server Error 😠 ");
     }
   };
 
@@ -95,7 +96,7 @@ export function UserProvider({ children }) {
     setRegisterStatus(resgisterStatuses.LOADING);
     try {
       const body = { name, email, password };
-      const response = await fetch("http://localhost:3001/auth/register", {
+      const response = await fetch(`${API_URL.register}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

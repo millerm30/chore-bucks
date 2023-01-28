@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import toast from "react-hot-toast";
+import { API_URL } from '../Config';
 
 const ContactForm = () => {
   const [ inputs, setInputs ] = useState({
@@ -44,7 +45,7 @@ const ContactForm = () => {
           email,
           message,
         };
-        let response = await fetch("http://localhost:3001/contact/email", {
+        let response = await fetch(`${API_URL.contactUs}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json;charset=utf-8",

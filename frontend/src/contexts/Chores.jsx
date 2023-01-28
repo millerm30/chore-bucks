@@ -4,6 +4,7 @@ import success from "../sounds/success.mp3";
 import tada from "../sounds/tada.mp3";
 import failure from "../sounds/failure.mp3";
 import { useUser } from "./Auth";
+import { API_URL } from "../Config";
 
 const ChoresContext = React.createContext();
 
@@ -21,7 +22,7 @@ export function ChoresProvider({ children, addPoints}) {
 
   const getChoresToComeplete = async () => {
     try {
-      const getChores = await fetch("http://localhost:3001/chores/getallchores", {
+      const getChores = await fetch(`${API_URL.chores}`, {
         method: "GET",
         headers: {"Content-Type": "application/json", token: localStorage.token },
       });
@@ -37,7 +38,7 @@ export function ChoresProvider({ children, addPoints}) {
     try {
       const body = { predefined_id, points };
        const response = await fetch(
-         "http://localhost:3001/chores/addtodochore",
+         `${API_URL.addChore}`,
          {
            method: "POST",
            headers: {
@@ -58,7 +59,7 @@ export function ChoresProvider({ children, addPoints}) {
 
   const removeChore = async (chore) => {
     try {
-      await fetch(`http://localhost:3001/chores/deletechore/${chore}`, {
+      await fetch(`${API_URL.deleteChore}/${chore}`, {
         method: "DELETE",
         headers: { token: localStorage.token },
       });
@@ -75,7 +76,7 @@ export function ChoresProvider({ children, addPoints}) {
     setCompleteChoreStatus("Completing...");
     try {
       const body = { chore_value: chore.chore_value };
-      await fetch(`http://localhost:3001/wallet/addbalance`, {
+      await fetch(`${API_URL.addMoneyToWallett}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +89,7 @@ export function ChoresProvider({ children, addPoints}) {
       addPoints(chore.chore_value)
 
       const updateBody = { selected_id: chore.selected_id, completed: true };
-      const updateResponse = await fetch(`http://localhost:3001/chores/completechore/${chore.selected_id}`, {
+      const updateResponse = await fetch(`${API_URL.completeChore}/${chore.selected_id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -108,7 +109,7 @@ export function ChoresProvider({ children, addPoints}) {
 
   const getChoreViews = async () => {
     try {
-      const getChores = await fetch("http://localhost:3001/chores/choreviews", {
+      const getChores = await fetch(`${API_URL.choreViews}`, {
         method: "GET",
         headers: {"Content-Type": "application/json", token: localStorage.token },
       });

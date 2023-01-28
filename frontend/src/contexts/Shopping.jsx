@@ -4,6 +4,7 @@ import remove from "../sounds/remove.mp3";
 import purchse from "../sounds/purchase.mp3";
 import nomoney from "../sounds/nomoney.mp3";
 import { useUser } from "./Auth";
+import { API_URL } from "../Config";
 
 const ShoppingContext = React.createContext();
 
@@ -26,7 +27,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
    
   const getInitalCart = async () => {
     try {
-      const response = await fetch("http://localhost:3001/cart/getcart", {
+      const response = await fetch(`${API_URL.cart}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +43,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
 
   const removeFromCartHandler = async (item) => {
     try {
-      await fetch(`http://localhost:3001/cart/removefromcart/${item}`, {
+      await fetch(`${API_URL.removeCartItem}/${item}`, {
         method: "DELETE",
         headers: { token: localStorage.token },
       });
@@ -53,7 +54,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
       calculateCartTotal();
 
       const updateBody = { item, completed: false };
-      await fetch(`http://localhost:3001/wishes/updatewish/${item}`, {
+      await fetch(`${API_URL.updateWishState}/${item}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +70,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
   const purchaseCartHandler = async () => {
     if (points >= cartTotal) {
       try {
-        await fetch("http://localhost:3001/cart/checkout", {
+        await fetch(`${API_URL.purchaseCart}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -92,7 +93,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
 
   const calculateCartTotal = async () => {
     try {
-      const response = await fetch("http://localhost:3001/cart/getcarttotal", {
+      const response = await fetch(`${API_URL.cartTotal}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

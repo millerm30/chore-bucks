@@ -5,6 +5,7 @@ import success from "../sounds/success.mp3";
 import negative from "../sounds/icqdelete.mp3";
 import yay from "../sounds/yay.mp3";
 import { useUser } from "./Auth";
+import { API_URL } from "../Config";
 
 const WishesContext = React.createContext();
 
@@ -22,7 +23,7 @@ export function WishesProvider({ children }) {
     
     const getAllWishes = async () => {
       try {
-        const getWishes = await fetch("http://localhost:3001/wishes/getwishes", {
+        const getWishes = await fetch(`${API_URL.wishes}`, {
           method: "GET",
           headers: { "Content-Type": "application/json", token: localStorage.token },
         })
@@ -37,7 +38,7 @@ export function WishesProvider({ children }) {
       setWishStatus("Adding...");
       try {
         const body = { title, points };
-        const response = await fetch("http://localhost:3001/wishes/createwish", {
+        const response = await fetch(`${API_URL.addWish}`, {
           method: "POST",
           headers: { "Content-Type": "application/json", token: localStorage.token },
           body: JSON.stringify(body),
@@ -56,7 +57,7 @@ export function WishesProvider({ children }) {
       setCompleteStatus("Adding to cart...");
       try {
         const body = { wish_id: wish.wish_id };
-        const response = await fetch("http://localhost:3001/cart/addtoshoppingcart", {
+        const response = await fetch(`${API_URL.completeWish}`, {
           method: "POST",
           headers: { "Content-Type": "application/json", token: localStorage.token },
           body: JSON.stringify(body),
@@ -67,7 +68,7 @@ export function WishesProvider({ children }) {
         audioSuccess.play();
         
         const updateBody = { wish_id: wish.wish_id, completed: true };
-        const updateResponse = await fetch(`http://localhost:3001/wishes/updatewish/${wish.wish_id}`, {
+        const updateResponse = await fetch(`${API_URL.updateWishState}/${wish.wish_id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json", token: localStorage.token },
           body: JSON.stringify(updateBody),
@@ -84,7 +85,7 @@ export function WishesProvider({ children }) {
     const removeWish = async (wish) => {
       try {
         await fetch(
-          `http://localhost:3001/wishes/deletewish/${wish}`,
+          `${API_URL.removeWishItem}/${wish}`,
           {
             method: "DELETE",
             headers: { token: localStorage.token },

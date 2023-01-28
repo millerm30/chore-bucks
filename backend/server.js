@@ -8,19 +8,19 @@ const { checkAndConnectDB } = require('./database/db');
 app.use(cors());
 app.use(express.json());
 
-app.use('/auth', require('./routes/jwtAuth'));
+app.use('/api/auth', require('./routes/jwtAuth'));
 
-app.use('/dashboard', require('./routes/dashboard'));
+app.use('/api/dashboard', require('./routes/dashboard'));
 
-app.use('/chores', require('./routes/chores'));
+app.use('/api/chores', require('./routes/chores'));
 
-app.use('/wishes', require('./routes/wishes'));
+app.use('/api/wishes', require('./routes/wishes'));
 
-app.use('/wallet', require('./routes/wallet'));
+app.use('/api/wallet', require('./routes/wallet'));
 
-app.use('/cart', require('./routes/cart'));
+app.use('/api/cart', require('./routes/cart'));
 
-app.use('/contact', require('./routes/contactus'));
+app.use('/api/contact', require('./routes/contactus'));
 
 checkAndConnectDB();
 

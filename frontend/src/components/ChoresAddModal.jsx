@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { Dialog, Transition } from '@headlessui/react'
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
+import { API_URL } from "../Config";
 
 export default function MyModal() {
   const { addChore, choreStatus } = useChores();
@@ -24,7 +25,7 @@ export default function MyModal() {
   const getInitialDefinedChores = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3001/chores/predefinedchores",
+        `${API_URL.predefinedChores}`,
         {
           method: "GET",
           headers: {
@@ -53,7 +54,7 @@ export default function MyModal() {
     e.preventDefault();
     try {
       const body = { choreName };
-      const response = await fetch("http://localhost:3001/chores/addpredefinedchore", {
+      const response = await fetch(`${API_URL.addNewChore}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", token: localStorage.token },
         body: JSON.stringify(body),

@@ -15,12 +15,13 @@ import Register from "./components/Register";
 import ContactForm from "./components/ContactForm";
 import ChoresView from "./components/ChoresView";
 import { UserProvider, useUser } from "./contexts/Auth";
+import { API_URL } from "./Config";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const getBucksFromDataBase = async () => {
   try {
-  const response = await fetch("http://localhost:3001/wallet/getbalance", {
+  const response = await fetch(`${API_URL.getBalance}`, {
     method: "GET",
     headers: { "content-type": "application/json", token: localStorage.token },
   });
