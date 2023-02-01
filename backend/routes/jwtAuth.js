@@ -7,10 +7,8 @@ const authorization = require("../middleware/authorization");
 
 router.post("/register", validInfo, async (req, res) => {
   try {
-    //Destructure req.body (name, email, password)
     const { name, email, password } = req.body;
 
-    //Check if user doesn't exist (if user exists, throw error)
     const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
       email,
     ]);
@@ -18,18 +16,15 @@ router.post("/register", validInfo, async (req, res) => {
       return res.status(401).json("User already exists");
     }
 
-    //Bcrypt the user's password
     const saltRound = 10;
     const salt = await bcrypt.genSalt(saltRound);
     const bcryptPassword = await bcrypt.hash(password, salt);
 
-    //Enter the new user inside our database
     const newUser = await pool.query(
       "INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING *",
       [name, email, bcryptPassword]
     );
 
-    //Generating our jwt token
     const token = jwtGenerator(newUser.rows[0].user_id);
     res.json({ token });
   } catch (err) {
@@ -40,10 +35,8 @@ router.post("/register", validInfo, async (req, res) => {
 
 router.post("/login", validInfo, async (req, res) => {
   try {
-    //Destructure the req.body
     const { email, password } = req.body;
 
-    //Check if user doesn't exist (if not, throw error)
     const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
       email,
     ]);
@@ -51,7 +44,6 @@ router.post("/login", validInfo, async (req, res) => {
       return res.status(401).json("Email incorrect or not registered");
     }
 
-    //Check if incoming password is the same as the database password
     const validPassword = await bcrypt.compare(
       password,
       user.rows[0].user_password
@@ -60,7 +52,6 @@ router.post("/login", validInfo, async (req, res) => {
       return res.status(401).json("Password is incorrect");
     }
 
-    //Give them the jwt token
     const token = jwtGenerator(user.rows[0].user_id);
     res.json({ token });
   } catch (err) {
