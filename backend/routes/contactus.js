@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const authorization = require('../middleware/authorization');
 const nodemailer = require('nodemailer');
+const contactUs = require('../mail/contactUsTemplate');
+const path = require('path');
 
 const contactEmail = nodemailer.createTransport({
     service: 'gmail',
@@ -23,13 +25,15 @@ router.post('/email', authorization, async (req, res) => {
   const mail = {
     from: name,
     to: process.env.CONTACT_EMAIL,
-    subject: 'Chore Bucks Contact Form Message!',
-    html:
-    `
-      <p>Name: ${name}</p>
-      <p>Email: ${email}</p>
-      <p>Message: ${message}</p>
-    `,
+    subject: "Chore Bucks Contact Form Message!",
+    html: contactUs(name, email, message),
+    attachments: [
+      {
+        filename: "chorebucks.png",
+        path: path.join(__dirname, "../mail/chorebucks.png"),
+        cid: "logo",
+      },
+    ],
   };
 
   contactEmail.sendMail(mail, (error) => {
