@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { pool } = require("../database/db");
 const bcrypt = require("bcrypt");
 const jwtGenerator = require("../utils/jwtGenerator");
-const validInfo = require("../middleware/validInfo");
+const validInfo = require("../middleware/validinfo");
 const authorization = require("../middleware/authorization");
 
 router.post("/register", validInfo, async (req, res) => {
