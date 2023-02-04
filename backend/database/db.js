@@ -131,7 +131,7 @@ const createTables = async () => {
     );
 
     await pool.query(
-      `ALTER table wallet ADD CONSTRAINT IF NOT EXISTS wallet_user_id_key UNIQUE (user_id)`
+      `ALTER table wallet ADD CONSTRAINT wallet_user_id_key UNIQUE (user_id)`
     );
 
     console.log("Tables created successfully");
