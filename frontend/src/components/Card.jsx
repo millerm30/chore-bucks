@@ -11,7 +11,7 @@ export const Card = ({title, points, remove, children}) => {
         stiffness: 200,
         damping: 12,
       }}
-      className="bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-center border border-blue-700 rounded-lg"
+      className="bg-[#f8f8f8] w-full px-2 py-1 mt-5 flex flex-col justify-center border-2 border-blue-700 rounded-lg"
     >
       <div className="container h-full flex flex-col justify-between">
         <span>
