@@ -27,7 +27,7 @@ const Scroll = () => {
     <section className="py-5 bg-blue-300">
       {showScroll ? (
         <FaArrowUp
-          className="mx-auto text-2xl animate-bounce cursor-pointer"
+          className="mx-auto text-3xl animate-bounce cursor-pointer bg-white rounded-full p-2"
           onClick={scrollToTop}
         />
       ) : null}
