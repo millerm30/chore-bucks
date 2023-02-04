@@ -16,6 +16,14 @@ const checkAndConnectDB = async () => {
       if (err) throw err;
       console.log("Database Connected");
     });
+    const uuidExists = await pool.query(
+      `SELECT EXISTS(SELECT * FROM pg_extension WHERE extname = 'uuid-ossp')`
+    );
+    if (!uuidExists.rows[0].exists) {
+      await pool.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
+    } else {
+      console.log("uuid-ossp extension exists");
+    }
     const tableExist = await pool.query(
       `SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'`
     );
@@ -118,9 +126,12 @@ const createTables = async () => {
         uuid_generate_v4(),
         user_id uuid NOT NULL,
         balance INT,
-        ADD CONSTRAINT wallet_user_id_key UNIQUE (user_id)
         FOREIGN KEY (user_id) REFERENCES users (user_id)
       )`
+    );
+
+    await pool.query(
+      `ALTER table wallet ADD CONSTRAINT IF NOT EXISTS wallet_user_id_key UNIQUE (user_id)`
     );
 
     console.log("Tables created successfully");
