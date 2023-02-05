@@ -42,7 +42,7 @@ const Header = ({ points }) => {
           )}
           <span className="flex pr-2">
             <p className="text-center font-semibold">{String(points)}</p>
-            <p className="ml-1">Points</p>
+            <p className="ml-1">ChoreBucks</p>
           </span>
         </div>
       </div>

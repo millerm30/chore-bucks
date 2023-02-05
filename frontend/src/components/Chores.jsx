@@ -62,7 +62,7 @@ const Chores = () => {
       <Outlet />
       <section className="choresArea">
         {chores.every((chore) => chore.completed === true) ? (
-          <p className="italic pt-4">No Chores to do!</p>
+          <p className="italic pt-4">No Chores to complete!</p>
         ) : (
           <section className="grid grid-cols-2 gap-5 mx-5 py-5 md:grid-cols-4 lg:grid-cols-6">
             {chores
