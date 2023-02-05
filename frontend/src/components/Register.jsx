@@ -59,9 +59,9 @@ const Newuser = () => {
               >
                 Name
               </label>
-              <div className="flex flex-row border-2 border-gray-400 rounded bg-gray-400">
+              <div className="flex flex-row border-2 border-blue-700 rounded bg-blue-700">
                 <div className="flex self-center mx-1">
-                  <HiUserCircle className="text-2xl" />
+                  <HiUserCircle className="text-2xl text-white" />
                 </div>
                 <input
                   onChange={handleUserNameChange}
@@ -81,9 +81,9 @@ const Newuser = () => {
               >
                 Email
               </label>
-              <div className="flex flex-row border-2 border-gray-400 rounded bg-gray-400">
+              <div className="flex flex-row border-2 border-blue-700 rounded bg-blue-700">
                 <div className="flex self-center mx-1">
-                  <AiOutlineMail className="text-2xl" />
+                  <AiOutlineMail className="text-2xl text-white" />
                 </div>
                 <input
                   onChange={handleEmailChange}
@@ -107,9 +107,9 @@ const Newuser = () => {
                   </label>
                 </span>
               </div>
-              <div className="flex flex-row border-2 border-gray-400 rounded bg-gray-400">
+              <div className="flex flex-row border-2 border-blue-700 rounded bg-blue-700">
                 <div className="flex self-center mx-1">
-                  <MdVpnKey className="text-2xl" />
+                  <MdVpnKey className="text-2xl text-white" />
                 </div>
                 <input
                   onChange={handlePasswordChange}
@@ -124,7 +124,7 @@ const Newuser = () => {
                 <div className="flex self-center mx-1">
                   <button
                     onClick={handleChangeEye}
-                    className="text-2xl cursor-pointer"
+                    className="text-2xl text-white cursor-pointer"
                   >
                     {!showPassword ? (
                       <AiOutlineEye />
