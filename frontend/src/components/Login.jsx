@@ -49,7 +49,7 @@ const Login = () => {
             >
               Email
             </label>
-            <div className="flex flex-row border-2 border-blue-700 rounded bg-blue-700">
+            <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded">
               <div className="flex self-center mx-1">
                 <AiOutlineMail className="text-2xl text-white" />
               </div>
@@ -75,7 +75,7 @@ const Login = () => {
                 </label>
               </span>
             </div>
-            <div className="flex flex-row bg-blue-700 border-2 border-blue-700 rounded">
+            <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded">
               <div className="flex self-center mx-1">
                 <MdVpnKey className="text-2xl text-white" />
               </div>
@@ -94,11 +94,7 @@ const Login = () => {
                   onClick={handleChangeEye}
                   className="text-2xl text-white cursor-pointer"
                 >
-                  {!showPassword ? (
-                    <AiOutlineEye />
-                  ) : (
-                    <AiOutlineEyeInvisible />
-                  )}
+                  {!showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                 </button>
               </div>
             </div>

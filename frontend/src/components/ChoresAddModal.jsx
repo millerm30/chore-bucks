@@ -131,7 +131,7 @@ export default function MyModal() {
                           <label htmlFor="chores" className="mb-1 text-left">
                             Choose your chore:
                           </label>
-                          <div className="flex flex-row bg-blue-700 border-2 border-blue-700 rounded mb-4">
+                          <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded mb-4">
                             <div className="flex self-center mx-1">
                               <CgSelectR className="text-white text-2xl" />
                             </div>
@@ -156,7 +156,7 @@ export default function MyModal() {
                           <label htmlFor="chores" className="mb-1 text-left">
                             ChoreBucks value:
                           </label>
-                          <div className="flex flex-row bg-blue-700 border-2 border-blue-700 rounded">
+                          <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded">
                             <div className="flex self-center mx-1">
                               <RiMoneyDollarCircleFill className="text-2xl text-white" />
                             </div>
@@ -202,7 +202,7 @@ export default function MyModal() {
                               >
                                 New chore:
                               </label>
-                              <div className="flex flex-row bg-blue-700 border-2 border-blue-700 rounded">
+                              <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded">
                                 <div className="flex self-center mx-1">
                                   <GiVacuumCleaner className="text-2xl text-white" />
                                 </div>

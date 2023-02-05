@@ -47,7 +47,7 @@ const WishAdd = ({ addWish }) => {
         className="flex flex-col w-3/4 mx-auto md:w-1/3"
       >
         <label className="text-left mt-5">Wish Item:</label>
-        <div className="flex flex-row bg-blue-700 border-2 border-blue-700 rounded">
+        <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded">
           <div className="flex self-center mx-1">
             <FaGifts className="text-white text-2xl" />
           </div>
@@ -63,7 +63,7 @@ const WishAdd = ({ addWish }) => {
           />
         </div>
         <label className="text-left mt-4">ChoreBucks Value:</label>
-        <div className="flex flex-row bg-blue-700 border-2 border-blue-700 rounded mb-4 w-1/2">
+        <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded mb-4 w-1/2">
           <div className="flex self-center mx-1">
             <RiMoneyDollarCircleFill className="text-white text-2xl" />
           </div>

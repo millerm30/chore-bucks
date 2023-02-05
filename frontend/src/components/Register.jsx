@@ -59,7 +59,7 @@ const Newuser = () => {
               >
                 Name
               </label>
-              <div className="flex flex-row border-2 border-blue-700 rounded bg-blue-700">
+              <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded">
                 <div className="flex self-center mx-1">
                   <HiUserCircle className="text-2xl text-white" />
                 </div>
@@ -81,7 +81,7 @@ const Newuser = () => {
               >
                 Email
               </label>
-              <div className="flex flex-row border-2 border-blue-700 rounded bg-blue-700">
+              <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded">
                 <div className="flex self-center mx-1">
                   <AiOutlineMail className="text-2xl text-white" />
                 </div>
@@ -107,7 +107,7 @@ const Newuser = () => {
                   </label>
                 </span>
               </div>
-              <div className="flex flex-row border-2 border-blue-700 rounded bg-blue-700">
+              <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded">
                 <div className="flex self-center mx-1">
                   <MdVpnKey className="text-2xl text-white" />
                 </div>
