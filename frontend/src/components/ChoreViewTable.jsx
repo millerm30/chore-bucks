@@ -27,7 +27,7 @@ const ChoreViewTable = () => {
             <li key={number} className="mx-1">
               <button
                 onClick={() => paginate(number)}
-                className="bg-gray-300 hover:bg-blue-400 text-black font-bold py-1 px-2 rounded"
+                className="bg-white hover:bg-blue-400 text-black font-bold py-1 px-2 rounded"
               >
                 {number}
               </button>

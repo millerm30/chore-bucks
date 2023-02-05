@@ -16,7 +16,7 @@ const ChoreViewTableHead = ({ columns, showPagination, handleSorting }) => {
     <thead className="text-sm">
       <tr>
         <th
-          className="p-2 text-left bg-gray-300 rounded-tl-xl rounded-tr-xl"
+          className="p-2 text-left bg-blue-900 rounded-tl-xl rounded-tr-xl"
           colSpan={3}
         >
           {showPagination}

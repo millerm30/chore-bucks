@@ -12,13 +12,13 @@ const ChoreViewTableFoot = ({ currentChores, currentPage, choreViews }) => {
         </td>
       </tr>
       <tr>
-        <td className="p-2 font-semibold text-left bg-gray-300 rounded-bl-xl">
+        <td className="p-2 font-semibold text-left text-white bg-blue-900 rounded-bl-xl">
           Total Points
         </td>
-        <td className="p-2 font-semibold text-left bg-gray-300">
+        <td className="p-2 font-semibold text-left text-white bg-blue-900">
           {choreViews.reduce((total, chore) => total + chore.chore_value, 0)}
         </td>
-        <td className="p-2 bg-gray-300 rounded-br-xl text-right font-semibold">
+        <td className="p-2 bg-blue-900 rounded-br-xl text-right text-white font-semibold">
           Page - {currentPage}
         </td>
       </tr>
