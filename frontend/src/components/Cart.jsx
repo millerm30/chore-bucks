@@ -37,7 +37,10 @@ const Cart = ({ points }) => {
         {cart.length === 0 ? (
           <p className="italic pt-4">No items added to your cart!</p>
         ) : (
-          <div className="w-4/5 mx-auto mt-10 pb-5 rounded-lg bg-white md:w-1/2 lg:w-1/3">
+          <div className="w-4/5 mx-auto mt-10 rounded-lg bg-white md:w-1/2 lg:w-1/3">
+            <div className="w-full bg-blue-900 rounded-t">
+              <h2 className="text-left text-md p-2 text-white">Wish Items</h2>
+            </div>
             {cart.map((item) => (
               <CartItem
                 key={item.wish_id}
@@ -45,15 +48,15 @@ const Cart = ({ points }) => {
                 removeFromCartHandler={removeFromCartHandler}
               />
             ))}
+            {cart.length === 0 ? null : (
+              <span className="container flex justify-between w-full rounded-b bg-blue-900">
+                <h2 className="text-left text-md text-white p-2">Cart Total:</h2>
+                <h2 className="text-md text-white p-2">💰 {cartTotal}</h2>
+              </span>
+            )}
           </div>
         )}
         <div className="container flex flex-col justify-center w-3/4 items-center py-3 mx-auto md:w-1/2 lg:w-1/3">
-          {cart.length === 0 ? null : (
-            <span className="container flex justify-between w-4/5">
-              <h2 className="text-left text-md">Cart Total:</h2>
-              <h2 className="text-md">💰 {cartTotal}</h2>
-            </span>
-          )}
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
