@@ -27,13 +27,13 @@ const Header = ({ points }) => {
             className="mt-2 w-2/5 h-3/6 md:w-3/12 md:h-3/6 lg:w-2/12 lg:h-3/6"
           />
         </div>
-        <div className="flex flex-col items-center my-auto mr-2">
+        <div className="flex flex-col items-end my-auto mr-2">
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={goToShoppingCart}
           >
-            <AiOutlineShoppingCart className="text-4xl text-black pt-1 mx-auto" />
+            <AiOutlineShoppingCart className="text-4xl text-black pt-1 mr-1" />
           </motion.button>
           {cart.length > 0 && (
             <h2 className="absolute text-xs ml-7 bg-red-500 border-white text-white px-1.5 py-0.5 rounded-xl">
