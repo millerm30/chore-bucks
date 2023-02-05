@@ -57,7 +57,7 @@ const Login = () => {
                 onChange={handleUsernameChange}
                 value={email}
                 name="email"
-                className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none"
+                className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none rounded"
                 id="email"
                 type="text"
                 placeholder="User Email..."
@@ -83,7 +83,7 @@ const Login = () => {
                 onChange={handlePasswordChange}
                 value={password}
                 name="password"
-                className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none"
+                className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none rounded"
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="******************"

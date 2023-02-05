@@ -4,6 +4,10 @@ import AppImage from "../assets/chorebucks.png";
 import { FcCurrencyExchange } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useUser } from "../contexts/Auth";
+import { AiOutlineMail } from "react-icons/ai";
+import { MdVpnKey } from "react-icons/md";
+import { HiUserCircle } from "react-icons/hi";
+
 
 const Newuser = () => {
     const { register, registerStatus } = useUser();
@@ -55,15 +59,20 @@ const Newuser = () => {
               >
                 Name
               </label>
-              <input
-                onChange={handleUserNameChange}
-                value={name}
-                name="name"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name"
-                type="text"
-                placeholder="Name..."
-              />
+              <div className="flex flex-row border-2 border-gray-400 rounded bg-gray-400">
+                <div className="flex self-center mx-1">
+                  <HiUserCircle className="text-2xl" />
+                </div>
+                <input
+                  onChange={handleUserNameChange}
+                  value={name}
+                  name="name"
+                  className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none rounded"
+                  id="name"
+                  type="text"
+                  placeholder="Name..."
+                />
+              </div>
             </div>
             <div className="mb-4">
               <label
@@ -72,15 +81,20 @@ const Newuser = () => {
               >
                 Email
               </label>
-              <input
-                onChange={handleEmailChange}
-                value={email}
-                name="email"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="email"
-                type="text"
-                placeholder="Email..."
-              />
+              <div className="flex flex-row border-2 border-gray-400 rounded bg-gray-400">
+                <div className="flex self-center mx-1">
+                  <AiOutlineMail className="text-2xl" />
+                </div>
+                <input
+                  onChange={handleEmailChange}
+                  value={email}
+                  name="email"
+                  className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none rounded"
+                  id="email"
+                  type="text"
+                  placeholder="Email..."
+                />
+              </div>
             </div>
             <div className="mb-6">
               <div className="flex justify-between">
@@ -92,10 +106,25 @@ const Newuser = () => {
                     Password
                   </label>
                 </span>
-                <span className="flex items-start">
+              </div>
+              <div className="flex flex-row border-2 border-gray-400 rounded bg-gray-400">
+                <div className="flex self-center mx-1">
+                  <MdVpnKey className="text-2xl" />
+                </div>
+                <input
+                  onChange={handlePasswordChange}
+                  value={password}
+                  name="password"
+                  className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none rounded"
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="******************"
+                  autoComplete="off"
+                />
+                <div className="flex self-center mx-1">
                   <button
                     onClick={handleChangeEye}
-                    className="text-gray-700 text-2xl cursor-pointer mr-1"
+                    className="text-2xl cursor-pointer"
                   >
                     {!showPassword ? (
                       <AiOutlineEye />
@@ -103,19 +132,8 @@ const Newuser = () => {
                       <AiOutlineEyeInvisible />
                     )}
                   </button>
-                  {!showPassword ? "show" : "hide"}
-                </span>
+                </div>
               </div>
-              <input
-                onChange={handlePasswordChange}
-                value={password}
-                name="password"
-                className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="******************"
-                autoComplete="off"
-              />
             </div>
             <div className="flex flex-col">
               <button
