@@ -5,6 +5,9 @@ import { Dialog, Transition } from '@headlessui/react'
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import { API_URL } from "../Config";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { GiVacuumCleaner } from "react-icons/gi";
+import { CgSelectR } from "react-icons/cg";
 
 export default function MyModal() {
   const { addChore, choreStatus } = useChores();
@@ -128,36 +131,46 @@ export default function MyModal() {
                           <label htmlFor="chores" className="mb-1 text-left">
                             Choose your chore:
                           </label>
-                          <select
-                            value={chore}
-                            name="chores"
-                            onChange={handleChoresChange}
-                            className="rounded-md py-2 border mb-2 border-blue-700 outline-none"
-                          >
-                            {" "}
-                            <option value="">Please select a chore...</option>
-                            {choresList.map((chore) => (
-                              <option
-                                key={chore.predefined_id}
-                                value={chore.predefined_id}
-                              >
-                                {chore.chore_name}
-                              </option>
-                            ))}
-                          </select>
+                          <div className="flex flex-row bg-blue-700 border-2 border-blue-700 rounded mb-4">
+                            <div className="flex self-center mx-1">
+                              <CgSelectR className="text-white text-2xl" />
+                            </div>
+                            <select
+                              value={chore}
+                              name="chores"
+                              onChange={handleChoresChange}
+                              className="w-full outline-none rounded py-2 px-2"
+                            >
+                              {" "}
+                              <option value="">Please select a chore...</option>
+                              {choresList.map((chore) => (
+                                <option
+                                  key={chore.predefined_id}
+                                  value={chore.predefined_id}
+                                >
+                                  {chore.chore_name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
                           <label htmlFor="chores" className="mb-1 text-left">
-                            Point value:
+                            ChoreBucks value:
                           </label>
-                          <input
-                            type="number"
-                            required
-                            min={0}
-                            placeholder="Enter point value..."
-                            value={point}
-                            name="chores"
-                            onChange={handlePointChange}
-                            className="rounded-md p-2 border border-blue-700 outline-none w-1/2"
-                          ></input>
+                          <div className="flex flex-row bg-blue-700 border-2 border-blue-700 rounded">
+                            <div className="flex self-center mx-1">
+                              <RiMoneyDollarCircleFill className="text-2xl text-white" />
+                            </div>
+                            <input
+                              type="number"
+                              required
+                              min={0}
+                              placeholder="Enter value..."
+                              value={point}
+                              name="chores"
+                              onChange={handlePointChange}
+                              className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none rounded"
+                            />
+                          </div>
                           <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
@@ -189,14 +202,19 @@ export default function MyModal() {
                               >
                                 New chore:
                               </label>
-                              <input
-                                value={choreName}
-                                maxLength="100"
-                                placeholder="Enter new chore..."
-                                name="choresNew"
-                                onChange={(e) => setChoreName(e.target.value)}
-                                className="rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2"
-                              ></input>
+                              <div className="flex flex-row bg-blue-700 border-2 border-blue-700 rounded">
+                                <div className="flex self-center mx-1">
+                                  <GiVacuumCleaner className="text-2xl text-white" />
+                                </div>
+                                <input
+                                  value={choreName}
+                                  maxLength="100"
+                                  placeholder="Enter new chore..."
+                                  name="choresNew"
+                                  onChange={(e) => setChoreName(e.target.value)}
+                                  className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none rounded"
+                                />
+                              </div>
                               <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
