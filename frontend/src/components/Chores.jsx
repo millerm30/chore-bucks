@@ -47,7 +47,7 @@ const Chores = () => {
       )}
       <section className="pt-10 mb-6">
         <h2 className="text-3xl font-semibold p-1">🧒 Chore Area 🚀</h2>
-        <p>Complete chores to build points!</p>
+        <p>Complete chores to earn ChoreBucks!</p>
       </section>
       <section>
         <motion.button

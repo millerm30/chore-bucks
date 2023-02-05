@@ -117,7 +117,7 @@ export default function MyModal() {
                           🙂 Add chores! 🚀
                         </h2>
                         <p className="text-center">
-                          Add your chores below to start earning points!
+                          Add your chores below to start earning ChoreBucks!
                         </p>
                       </section>
                       <section className="pt-5">
@@ -187,7 +187,7 @@ export default function MyModal() {
                                 htmlFor="choresNew"
                                 className="mb-1 text-left"
                               >
-                                Add new chore:
+                                New chore:
                               </label>
                               <input
                                 value={choreName}

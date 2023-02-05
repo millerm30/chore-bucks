@@ -35,7 +35,7 @@ const WishAdd = ({ addWish }) => {
           😉 Wish List! 👍
         </h1>
         <p className="text-center">
-          Add items to your wish list that you would like to build your points
+          Add items to your wish list that you would like to build your ChoreBucks
           to purchase!
         </p>
       </section>
@@ -43,7 +43,7 @@ const WishAdd = ({ addWish }) => {
         onSubmit={handleSubmit}
         className="flex flex-col w-3/4 mx-auto md:w-1/3"
       >
-        <label className="text-left mt-5">Add Wish Item:</label>
+        <label className="text-left mt-5">Wish Item:</label>
         <input
           onChange={(e) => setTitle(e.target.value)}
           name="wish_name"
@@ -54,7 +54,7 @@ const WishAdd = ({ addWish }) => {
           placeholder="Enter your wish item..."
           className="rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2"
         ></input>
-        <label className="text-left mt-5">Add Point Value:</label>
+        <label className="text-left mt-5">Point Value:</label>
         <input
           onChange={(e) => setPoints(e.target.value)}
           name="wish_value"

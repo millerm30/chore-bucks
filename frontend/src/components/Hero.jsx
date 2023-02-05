@@ -9,7 +9,11 @@ const Hero = () => {
           🚀 Kids earn points for completing chores! 🎉
         </h2>
         <h4 className="text-md p-1 md:text-lg lg:text-lg">
-          Complete your chores to add points to your bank!
+          Complete chores to add{" "}
+          <span className="underline decoration-wavy">
+            ChoreBucks
+          </span>{" "}
+          to your bank!
         </h4>
       </section>
       <section>
