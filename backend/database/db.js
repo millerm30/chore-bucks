@@ -3,11 +3,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const pool = new Pool({
-  user: process.env.USER,
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port: process.env.PORT,
+  host: process.env.RDS_HOSTNAME,
+  database: process.env.RDS_DATABASE,
+  user: process.env.RDS_USERNAME,
+  password: process.env.RDS_PASSWORD,
+  port: process.env.RDS_PORT,
 });
 
 const checkAndConnectDB = async () => {
