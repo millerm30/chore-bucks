@@ -33,8 +33,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:dev": "cross-env REACT_APP_API_URL=http://localhost:3001 npm start",
-    "start:prod": "cross-env REACT_APP_API_URL=https://example.com npm start",
     "build": "CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
