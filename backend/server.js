@@ -1,5 +1,5 @@
 const express = require('express');
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3010;
 const cors = require('cors');
 const app = express();
 const shared = require('shared');
