@@ -1,4 +1,4 @@
-let host = "http://localhost:3010";
+let host = "http://localhost:3001";
 
 export const API_URL = {
   userProfile: `${host}/api/dashboard`,
