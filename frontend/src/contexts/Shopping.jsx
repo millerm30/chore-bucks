@@ -125,6 +125,7 @@ export function ShoppingProvider({ points, removePoints, children }) {
         cartTotal,
         setCart,
         getInitalCart,
+        calculateCartTotal,
       }}
     >
       {children}

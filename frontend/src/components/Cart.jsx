@@ -5,11 +5,12 @@ import Confetti from "react-confetti";
 import CartItem from "./Cartitem";
 
 const Cart = ({ points }) => {
-  const { cart, getInitalCart, removeFromCartHandler, purchaseCartHandler, cartTotal } = useShopping();
+  const { cart, getInitalCart, removeFromCartHandler, purchaseCartHandler, cartTotal, calculateCartTotal } = useShopping();
   const [isActive, setIsActive] = useState(false);
-
+  
   useEffect(() => {
     getInitalCart();
+    calculateCartTotal();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
