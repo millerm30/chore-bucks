@@ -1,13 +1,23 @@
 ![App Logo](frontend/src/assets/chorebucks.png)
 
-This is my second project as a student of Get Coding. This web app is written in ReactJS and uses Tailwind for styling.
-This idea came from dealing with my own daughter and trying to find a way to make completing any chores she was given something that would provide interest for her to complete using technology as she lives and breaths all day!
-This app allows families to create a fun chore list for kids to complete and earn points towards wish list items that they add to their wish list. Trade in points to pay for their wish list items, allowing kids to learn the value of money in a fun way!
+This is my second project as a student of Get Coding. This web app is written in ReactJS and uses Tailwind for styling for frontend. The backend is created using NodeJS, express and Postgres for my database. Deployment was completed using AWS EC2, RDS (PostgreSQL). I decided on the route for AWS creating the ECS and RDS manually was a much better learning experience to fully understand how AWS operates compaired to going with AWS Elastic Beanstalk. This route also gave me a better understanding of using pm2 for process management (app restarts, crashes, etc..), nginx for managing my frontend directs and backend api calls , and linux in general.
+
+The idea for this app came from dealing with my own daughter and trying to find a way to make completing any chores she was given something that would provide interest for her to complete using technology as she lives and breaths all day!
+This app allows families to create a fun chore list for kids to complete and earn points towards wish list items that they add to their wish list. Trade in points to pay for their wish list items, allowing kids to learn the value of money in a fun way! Onces the kids purchase their wish list items they will receive an email receipt to provide to their parents for purchase. Their receipt will provide their item with totals and will also show their point balance remaining.
+
+I plan to continually add new features to this app. Stay tunned!
 
 ## 🚀 About Me
 I'm currently a student with [Get Coding](http://www.get-coding.ca) completing Full Stack Development.
 
-### `npm start`
+### `Backend`
+You can cd into your backend folder and run "npm install" to install all dependancies.
+You will require psql and create a database prior to running your backend. The backend will create all tables, functions, triggers, etc..
+Once your databse is created, run "npm run dev server.js" to run your backend with nodemon.
+
+### `Frontend`
+You can cd into your frontend folder and run "npm install" to install all dependancies.
+Once all dependancies are installed you can continue to run your front end with "npm start"
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -32,10 +42,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `npm run eject`
 
-## Demo Site
+## Site
 
-- [Github Pages](https://millerm30.github.io/chore-bucks)
-
+- (https://www.chore-bucks.com)
 
 ## Authors
 
