@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - addbackend
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure and Build
+        run: |
+          rm .gitignore && mv .deploy-gitignore .gitignore
+          cd backend && npm install --production && cd ..
+          cd frontend && npm install --production && npm run build && cd ..
+      - name: Add node_modules and build output to git
+        run: |
+          git config --global user.email "${{secrets.HEROKU_EMAIL}}"
+          git config --global user.name "millerm30"
+          git add -A
+          git commit -m "Added node_modules and build folders"
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "chorebucks" #Must be unique in Heroku
+          heroku_email: ${{secrets.HEROKU_EMAIL}}

@@ -1,6 +1,5 @@
 {
-<<<<<<< HEAD
-  "homepage": "https://millerm30.github.io/chore-bucks",
+  "homepage": "https://chorebucks.herokuapp.com/",
   "name": "chore-bucks",
   "version": "0.1.0",
   "private": false,
@@ -10,7 +9,6 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.27.2",
     "framer-motion": "^6.5.1",
     "gh-pages": "^3.2.3",
     "hamburger-react": "^2.5.0",
@@ -25,32 +23,41 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "save-dev": "^0.0.1-security",
+    "shared": "file:../shared",
     "toastr": "^2.1.4",
     "tw-elements": "^1.0.0-alpha12",
     "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4"
   },
-=======
-  "name": "addbackend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
->>>>>>> addbackend
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server.js"
+    "start": "react-scripts start",
+    "build": "CI=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/millerm30/addbackend.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/millerm30/chore-bucks/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "homepage": "https://github.com/millerm30/chore-bucks#readme",
-  "engines": {
-    "node": "16.x"
+  "devDependencies": {
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.18",
+    "tailwindcss": "^3.2.1"
   }
 }
