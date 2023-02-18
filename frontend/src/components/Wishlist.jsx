@@ -1,41 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Wishadd from "./Wishadd";
-import { GoTrashcan } from "react-icons/go";
+import { GoTrashcan, GoCheck } from "react-icons/go";
 import { useWishes } from "../contexts/Wishes";
 import Card from "./Card";
 import { motion } from "framer-motion";
 
-const style = {
-  main: `bg-blue-300`,
-  section: `grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-3 lg:grid-cols-4`,
-  paragraph: `text-center italic pt-4`,
-  button: `bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg`,
-};
-
 const WishList = () => {
-  const { wishes, addWish, completeWish, removeWish } = useWishes();
+  const { wishes, addWish, completeWish, removeWish, completeStatus, getAllWishes } = useWishes();
+
+  useEffect(() => {
+    getAllWishes();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <main className={style.main}>
+    <main className="bg-blue-300">
       <Wishadd addWish={addWish} />
-      {wishes.length === 0 && (
-        <p className={style.paragraph}>No Wish List Items!</p>
-      )}
-      {
-        <section className={style.section}>
+      {wishes.length === 0 ? (
+        <p className="text-center italic pt-4">No wishes yet!</p>
+      ) : (
+        <section className="grid grid-cols-2 gap-5 py-5 mx-5 md:grid-cols-4 lg:grid-cols-6">
           {wishes.map((wish) => (
-            <Card key={wish.id} title={wish.title} points={wish.points} style={wish.style} remove={<GoTrashcan onClick={() => removeWish(wish)}/>}>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => completeWish(wish)}
-                  className={style.button}>
-                  Add To Cart
-                </motion.button>
+            <Card
+              key={wish.wish_id}
+              title={wish.wish_name}
+              points={wish.wish_value}
+              remove={
+                !wish.completed ? (
+                  <GoTrashcan onClick={() => removeWish(wish.wish_id)} />
+                ) : (
+                  <GoCheck 
+                    className="text-green-700"
+                  />
+                )
+              }
+            >
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => completeWish(wish)}
+                disabled={wish.completed}
+                className={`${"bg-blue-900 my-4 px-4 py-2 text-white font-bold rounded-lg"} ${
+                  wish.completed
+                    ? "opacity-40 cursor-not-allowed"
+                    : "curson-pointer"
+                }`}
+              >
+                {wish.completed ? "Completed" : `${completeStatus}`}
+              </motion.button>
             </Card>
           ))}
         </section>
-      }
+      )}
     </main>
   );
 }

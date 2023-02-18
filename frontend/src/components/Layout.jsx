@@ -18,7 +18,6 @@ const Layout = ({ points }) => {
   }
   window.addEventListener("scroll", handleScroll);
 
-
   return (
     <>
       <Header points={points} />

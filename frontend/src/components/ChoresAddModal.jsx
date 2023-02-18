@@ -1,23 +1,19 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useChores } from "../contexts/Chores";
-import choresChoices from "./Chorelist";
 import toast from "react-hot-toast";
-import { v4 as uuid } from 'uuid';
 import { Dialog, Transition } from '@headlessui/react'
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
-
-const getInitialNewChoresLocalStorage = () => {
-  const temp = localStorage.getItem("choresList");
-  if (temp) {
-    return JSON.parse(temp);
-  }
-  return choresChoices;
-};
+import { API_URL } from "../Config";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
+import { GiVacuumCleaner } from "react-icons/gi";
+import { CgSelectR } from "react-icons/cg";
 
 export default function MyModal() {
-  const { addChore } = useChores();
-  const [choresList, setChoresList] = useState(getInitialNewChoresLocalStorage);
+  const { addChore, choreStatus } = useChores();
+  const [choresList, setChoresList] = useState([]);
+  const [newChoresList, setNewChoresList] = useState([]);
+  const [addNewChoreStatus, setAddNewChoreStatus] = useState("Add New Chore");
   const navigate = useNavigate();
   const isOpen = true
 
@@ -27,7 +23,26 @@ export default function MyModal() {
 
   const [chore, setChore] = useState("");
   const [point, setPoint] = useState("");
-  const [label, setLabel] = useState("");
+  const [choreName, setChoreName] = useState("");
+
+  const getInitialDefinedChores = async () => {
+    try {
+      const response = await fetch(
+        `${API_URL.predefinedChores}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: localStorage.token,
+          },
+        }
+      );
+      const data = await response.json();
+      setChoresList(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleChoresChange = (e) => {
     setChore(e.target.value);
@@ -37,56 +52,43 @@ export default function MyModal() {
     setPoint(e.target.value);
   };
 
-  const handleNewChore = (e) => {
+  const handleNewChore = async (e) => {
+    setAddNewChoreStatus("Adding...");
     e.preventDefault();
-    setChoresList([...choresList,{ label: label, value: label, id: uuid()}]);
-    setLabel("");
-    toast(`${label} added to chore list!`, { icon: "👍" });
+    try {
+      const body = { choreName };
+      const response = await fetch(`${API_URL.addNewChore}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", token: localStorage.token },
+        body: JSON.stringify(body),
+      });
+      const parseRes = await response.json();
+      setNewChoresList([...newChoresList, parseRes]);
+      toast(`${choreName} added to chore list!`, { icon: "👍" });
+      setChoreName("");
+      setAddNewChoreStatus("Add New Chore");
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addChore(chore, Number(point));
+    const choreName = choresList.find((choreObj) => choreObj.predefined_id === chore).chore_name;
+    toast(`${choreName} added to chore list!`, { icon: "👍" });
     setChore("");
     setPoint("");
   };
 
-  useEffect(() => {
-    localStorage.setItem("choresList", JSON.stringify(choresList));
-  }, [choresList]);
-
-  const style = {
-    mainContainer: `bg-blue-300`,
-    transitionChild: `fixed inset-0 bg-black bg-opacity-25`,
-    mainDivider: `fixed inset-0 overflow-y-auto`,
-    secondDivider: `flex items-center justify-center p-4 text-center`,
-    dialogPanel: `w-full max-w-md transform overflow-hidden rounded-2xl bg-blue-300 p-6 text-left align-middle shadow-xl transition-all`,
-    dialogDivider: `text-center bg-blue-300`,
-    sectionOne: `pt-2`,
-    headingOne: `text-3xl font-semibold py-1`,
-    paragraphOne: `text-center`,
-    sectionTwo: `pt-5`,
-    form: `flex flex-col w-full mx-auto`,
-    chooseChoreLabel: `mb-1 text-left`,
-    chooseChoreSelect: `rounded-md py-2 border mb-2 border-blue-700 outline-none`,
-    pointsLabel: `mb-1 text-left`,
-    pointsValueInput: `rounded-md p-2 border border-blue-700 outline-none w-1/2`,
-    addChoreButton: `bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg`,
-    addNewChoreSection: `pb-5`,
-    addNewChoreHeadingContainer: `pt-5`,
-    headingTwo: `text-xl font-semibold p-1`,
-    addNewChoreInputContainer: `pt-2`,
-    addNewChoreForm: `flex flex-col w-full mx-auto`,
-    addNewChoreLabel: `mb-1 text-left`,
-    addNewChoreInput: `rounded-md py-2 px-2 border border-blue-700 outline-none w-full mb-2`,
-    addNewChoreButton: `bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg`,
-    closeButton: `inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2`,
-  };
-
+   useEffect(() => {
+     getInitialDefinedChores();
+   }, [newChoresList]);
+   
   return (
     <>
-      <main className={style.mainContainer}>
-        <Transition appear show={(isOpen)} as={Fragment}>
+      <main className="bg-blue-300">
+        <Transition appear show={isOpen} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={() => null}>
             <Transition.Child
               as={Fragment}
@@ -97,11 +99,11 @@ export default function MyModal() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className={style.transitionChild} />
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
             </Transition.Child>
 
-            <div className={style.mainDivider}>
-              <div className={style.secondDivider}>
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex items-center justify-center p-4 text-center">
                 <Transition.Child
                   as={Fragment}
                   enter="ease-out duration-300"
@@ -111,101 +113,121 @@ export default function MyModal() {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className={style.dialogPanel}>
-                    <div className={style.dialogDivider}>
-                      <section className={style.sectionOne}>
-                        <h2 className={style.headingOne}>
+                  <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-blue-300 p-6 text-left align-middle shadow-xl transition-all">
+                    <div className="text-center bg-blue-300">
+                      <section className="pt-2">
+                        <h2 className="text-3xl font-semibold py-1">
                           🙂 Add chores! 🚀
                         </h2>
-                        <p className={style.paragraphOne}>
-                          Add your chores below to start earning points!
+                        <p className="text-center">
+                          Add your chores below to start earning ChoreBucks!
                         </p>
                       </section>
-                      <section className={style.sectionTwo}>
+                      <section className="pt-5">
                         <form
                           onSubmit={handleSubmit}
-                          className={style.form}
+                          className="flex flex-col w-full mx-auto"
                         >
-                          <label htmlFor="chores" className={style.chooseChoreLabel}>
-                            Choose your chore:{""}
+                          <label htmlFor="chores" className="mb-1 text-left">
+                            Choose your chore:
                           </label>
-                          <select
-                            value={chore}
-                            name="chores"
-                            onChange={handleChoresChange}
-                            className={style.chooseChoreSelect}
-                          >
-                            {choresList.map((choice) => (
-                              <option key={choice.id} value={choice.value}>
-                                {choice.label}
-                              </option>
-                            ))}
-                          </select>
-                          <label htmlFor="chores" className={style.pointsLabel}>
-                            Point value:
+                          <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded mb-4">
+                            <div className="flex self-center mx-1">
+                              <CgSelectR className="text-white text-2xl" />
+                            </div>
+                            <select
+                              value={chore}
+                              name="chores"
+                              onChange={handleChoresChange}
+                              className="w-full outline-none rounded py-2 px-2"
+                            >
+                              {" "}
+                              <option value="">Please select a chore...</option>
+                              {choresList.map((chore) => (
+                                <option
+                                  key={chore.predefined_id}
+                                  value={chore.predefined_id}
+                                >
+                                  {chore.chore_name}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <label htmlFor="chores" className="mb-1 text-left">
+                            ChoreBucks value:
                           </label>
-                          <input
-                            type="number"
-                            required
-                            min={0}
-                            placeholder="Enter point value..."
-                            value={point}
-                            name="chores"
-                            onChange={handlePointChange}
-                            className={style.pointsValueInput}
-                          ></input>
+                          <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded">
+                            <div className="flex self-center mx-1">
+                              <RiMoneyDollarCircleFill className="text-2xl text-white" />
+                            </div>
+                            <input
+                              type="number"
+                              required
+                              min={0}
+                              placeholder="Enter value..."
+                              value={point}
+                              name="chores"
+                              onChange={handlePointChange}
+                              className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none rounded"
+                            />
+                          </div>
                           <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             type="submit"
                             disabled={!chore}
-                            className={`${style.addChoreButton} ${
+                            className={`${"bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"} ${
                               !chore
                                 ? "opacity-50 cursor-not-allowed"
                                 : "cursor-pointer"
                             }`}
                           >
-                            Add Chore
+                            {choreStatus}
                           </motion.button>
                         </form>
                       </section>
-                      <section className={style.addNewChoreSection}>
+                      <section className="pb-5">
                         <div>
-                          <div className={style.addNewChoreHeadingContainer}>
-                            <h2 className={style.headingTwo}>
+                          <div className="pt-5">
+                            <h2 className="text-xl font-semibold p-1">
                               Don't see your chore above? <br></br>Add it
                               yourself!
                             </h2>
                           </div>
-                          <div className={style.addNewChoreInputContainer}>
-                            <form className={style.addNewChoreForm}>
+                          <div className="pt-2">
+                            <form className="flex flex-col w-full mx-auto">
                               <label
                                 htmlFor="choresNew"
-                                className={style.addNewChoreLabel}
+                                className="mb-1 text-left"
                               >
-                                Add new chore:
+                                New chore:
                               </label>
-                              <input
-                                value={label}
-                                maxLength="100"
-                                placeholder="Enter new chore..."
-                                name="choresNew"
-                                onChange={(e) => setLabel(e.target.value)}
-                                className={style.addNewChoreInput}
-                              ></input>
+                              <div className="flex flex-row bg-blue-900 border-2 border-blue-900 rounded">
+                                <div className="flex self-center mx-1">
+                                  <GiVacuumCleaner className="text-2xl text-white" />
+                                </div>
+                                <input
+                                  value={choreName}
+                                  maxLength="100"
+                                  placeholder="Enter new chore..."
+                                  name="choresNew"
+                                  onChange={(e) => setChoreName(e.target.value)}
+                                  className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none rounded"
+                                />
+                              </div>
                               <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                                 type="submit"
-                                disabled={!label}
+                                disabled={!choreName}
                                 onClick={handleNewChore}
-                                className={`${style.addNewChoreButton} ${
-                                  !label
+                                className={`${"bg-blue-900 my-4 self-center px-4 py-2 text-white font-bold rounded-lg"} ${
+                                  !choreName
                                     ? "opacity-50 cursor-not-allowed"
                                     : "cursor-pointer"
                                 }`}
                               >
-                                Add New Chore
+                                {addNewChoreStatus}
                               </motion.button>
                             </form>
                           </div>
@@ -217,7 +239,7 @@ export default function MyModal() {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         type="button"
-                        className={style.closeButton}
+                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                         onClick={goBack}
                       >
                         Close

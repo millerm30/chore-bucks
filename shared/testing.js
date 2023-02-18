@@ -1,9 +1,8 @@
 console.log("Hello World")
 
-
 module.exports = { 
     sayHello: function() {
-      console.log("Hello World")
+      console.log("Shared Folder active!")
     }
 };
 

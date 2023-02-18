@@ -11,46 +11,58 @@ import ModalAdd from "./components/ChoresAddModal";
 import App from "./App";
 import Cart from "./components/Cart";
 import Login from "./components/Login";
-import { UserProvider } from "./contexts/Auth";
-import { useUser } from "./contexts/Auth";
+import Register from "./components/Register";
+import ContactForm from "./components/ContactForm";
+import ChoresView from "./components/ChoresView";
+import { UserProvider, useUser } from "./contexts/Auth";
+import { API_URL } from "./Config";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-function getBucksFromLocalStorage() {
-  const points = localStorage.getItem("points");
-  if (points) {
-    return Number(points);
+const getBucksFromDataBase = async () => {
+  try {
+  const response = await fetch(`${API_URL.getBalance}`, {
+    method: "GET",
+    headers: { "content-type": "application/json", token: localStorage.token },
+  });
+  const parseRes = await response.json();
+  return parseRes.length === 0 || undefined ? 0 : Number(parseRes[0].balance);
+  } catch (err) {
+    console.error(err.message);
   }
-  return 0;
 };
 
 const Router = () => {
-  const [points, setPoints] = useState(() => getBucksFromLocalStorage());
-  
+  const [points, setPoints] = useState(0);
   const { isLoggedIn } = useUser();
   
   const addPoints = (amount) => setPoints(points + amount);
   const removePoints = (amount) => setPoints(points - amount);
 
   useEffect(() => {
-    localStorage.setItem("points", points);
-  } , [points]);
-  
+    if (isLoggedIn) {
+      getBucksFromDataBase().then((value) => setPoints(value));
+    }
+  }, [isLoggedIn]);
+   
   return(
-  <App points={points} addPoints={addPoints} removePoints={removePoints}>
+  <App points={points} addPoints={addPoints} removePoints={removePoints} >
     <BrowserRouter basename="/">
       <Routes>
         {isLoggedIn ? (
-        <Route path="/" element={<Layout points={points}/>}>
+        <Route path="/" element={<Layout points={points} />}>
           <Route path="" element={<HeroPage />} />
           <Route path="/chores" element={<ChoresPage />} />
             <Route path="/choresadd" element={<ModalAdd />} />
           <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/choresview" element={<ChoresView />} />
           <Route path="/cart" element={<Cart points={points}/>} />
+          <Route path="/contact" element={<ContactForm />} />
         </Route>
         ) : (
           <Route path="/" element={<Login />} />
         )}
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   </App>
