@@ -9,8 +9,8 @@ router.post("/register", validInfo, async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [
-      email,
+    const user = await pool.query("SELECT * FROM users WHERE LOWER(user_email) = $1", [
+      email.toLowerCase(),
     ]);
     if (user.rows.length !== 0) {
       return res.status(401).json("User already exists");
@@ -22,7 +22,7 @@ router.post("/register", validInfo, async (req, res) => {
 
     const newUser = await pool.query(
       "INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING *",
-      [name, email, bcryptPassword]
+      [name, email.toLowerCase(), bcryptPassword]
     );
 
     const token = jwtGenerator(newUser.rows[0].user_id);
