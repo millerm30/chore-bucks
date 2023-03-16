@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest --silent --maxWorker=2",
+    "test": "jest --silent --maxWorker=2 --detectOpenHandles",
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
