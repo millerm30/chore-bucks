@@ -7,6 +7,8 @@ This app allows families to create a fun chore list for kids to complete and ear
 
 I plan to continually add new features to this app. Stay tunned!
 
+![App Screenshot](frontend/src/assets/screenshot.png)
+
 ## 🚀 About Me
 I'm currently a student with [Get Coding](http://www.get-coding.ca) completing Full Stack Development.
 
