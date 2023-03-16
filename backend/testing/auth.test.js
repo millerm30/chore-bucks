@@ -25,7 +25,7 @@ describe("Authorization Routes Test Suite", () => {
   });
 
   test("User should loggin, success", async () => {
-    // TODO: Aact
+    // TODO: Act
     const response = await request(baseURL)
       .post("/api/auth/login")
       .send({ email: "email@mail.com", password: "password" });
