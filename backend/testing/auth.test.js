@@ -10,6 +10,7 @@ describe("Authorization Routes Test Suite", () => {
   const express = require("express");
   const app = express();
   app.use("/api/auth", require("../routes/jwtAuth"));
+  let token;
 
   beforeAll(async () => {
     await checkAndConnectDB();
@@ -30,7 +31,8 @@ describe("Authorization Routes Test Suite", () => {
       .post("/api/auth/login")
       .send({ email: "email@mail.com", password: "password" });
     //TODO: Assert
-    expect(response.statusCode).toBe(200);
+    expect(response.body.token).toBeTruthy();
+    token = response.body.token;
   });
 
   afterAll(async () => {
