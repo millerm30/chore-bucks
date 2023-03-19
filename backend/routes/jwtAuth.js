@@ -60,6 +60,16 @@ router.post("/login", validInfo, async (req, res) => {
   }
 });
 
+router.post("/logout", (req, res) => {
+  try {
+    localStorage.removeItem("token");
+    res.json({ message: "Logged out successfully" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json("Server Error");
+  }
+});
+
 router.get("/verify", authorization, async (req, res) => {
   try {
     res.json(true);

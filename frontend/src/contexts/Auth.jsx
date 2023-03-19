@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
 import { API_URL } from '../Config';
 
@@ -50,8 +50,9 @@ export function UserProvider({ children }) {
   }, [user]);
 
   useEffect(() => {
-    setIsLoggedIn(!!getLoggedInUser)
-  }, [setIsLoggedIn]);
+    setIsLoggedIn(isLoggedIn);
+  }, [user, setIsLoggedIn, isLoggedIn]);
+
 
   const login = async (email, password) => {
     setLoginStatus(loginStatuses.LOADING);
@@ -81,16 +82,26 @@ export function UserProvider({ children }) {
     }
   };
 
-  const handleLogOut = () => {
+  const handleLogOut = useCallback(() => {
     toast(`Goodbye ${name}`, {
       icon: "💩",
     });
     localStorage.removeItem("token");
     localStorage.removeItem("User Name");
-    setIsLoggedIn(!isLoggedIn);
     setUser(undefined);
+    setIsLoggedIn(false);
     window.location = "/";
-  };
+  }, [setIsLoggedIn, setUser, name]);
+
+   useEffect(() => {
+     const handleBeforeUnload = () => {
+       handleLogOut();
+     };
+     window.addEventListener("beforeunload", handleBeforeUnload);
+     return () => {
+       window.removeEventListener("beforeunload", handleBeforeUnload);
+     };
+   }, [handleLogOut]);
 
   const register = async (name, email, password) => {
     setRegisterStatus(resgisterStatuses.LOADING);
