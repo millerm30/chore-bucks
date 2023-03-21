@@ -31,7 +31,7 @@ describe("Wishes Routes Test Suite", () => {
   });
 
   afterAll(async () => {
-    await pool.query("DELETE FROM wishes WHERE user_id = $1", [1]);
+    await pool.query("DELETE FROM wishes WHERE wish_name= $1", ["Test Wish"]);
     await pool.query("DELETE FROM users WHERE user_email = $1", ["testuser@email.com"]);
     await pool.end();
   });
