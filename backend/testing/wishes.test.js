@@ -30,6 +30,16 @@ describe("Wishes Routes Test Suite", () => {
     expect(response.body.wish_value).toBe(10);
   });
 
+  test("GET /api/wishes/getwishes should return all wishes for the logged in user", async () => {
+    const response = await request(baseURL)
+      .get("/api/wishes/getwishes")
+      .set("token", token);
+    expect(response.statusCode).toBe(200);
+    expect(response.body.length).toBe(1);
+    expect(response.body[0].wish_name).toBe("Test Wish");
+    expect(response.body[0].wish_value).toBe(10);
+  });
+
   afterAll(async () => {
     await pool.query("DELETE FROM wishes WHERE wish_name= $1", ["Test Wish"]);
     await pool.query("DELETE FROM users WHERE user_email = $1", ["testuser@mail.com"]);
