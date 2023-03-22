@@ -20,19 +20,19 @@ describe("Wishes Routes Test Suite", () => {
     token = loginResponse.body.token;
   });
 
-  test("POST /api/wishes/createwish should create a new wish for the user", async () => {
+  test("POST /api/wishes/createwish should create a new wish for the logged in user", async () => {
     const response = await request(baseURL)
       .post("/api/wishes/createwish")
       .send({ title: "Test Wish", points: 10 })
-      .set("Authorization", `${token}`);
+      .set("token", token);
     expect(response.statusCode).toBe(200);
-    expect(response.body.title).toBe("Test Wish");
-    expect(response.body.points).toBe(10);
+    expect(response.body.wish_name).toBe("Test Wish");
+    expect(response.body.wish_value).toBe(10);
   });
 
   afterAll(async () => {
     await pool.query("DELETE FROM wishes WHERE wish_name= $1", ["Test Wish"]);
-    await pool.query("DELETE FROM users WHERE user_email = $1", ["testuser@email.com"]);
+    await pool.query("DELETE FROM users WHERE user_email = $1", ["testuser@mail.com"]);
     await pool.end();
   });
 });
