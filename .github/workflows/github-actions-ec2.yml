@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deploy to Server 1
-        uses: appleboy/ssh-action@master
+        uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
