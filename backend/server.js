@@ -2,7 +2,6 @@ const express = require('express');
 const PORT = process.env.PORT || 3010;
 const cors = require('cors');
 const app = express();
-const shared = require('shared');
 const { checkAndConnectDB } = require('./database/db');
 
 app.use(cors());
