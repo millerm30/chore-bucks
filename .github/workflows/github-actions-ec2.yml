@@ -21,7 +21,7 @@ jobs:
           node-version: "16"
 ## Install dependencies for frontend
       - name: Install dependencies
-        run: cd chore-bucks/frontent && npm install && cd
+        run: cd chore-bucks/frontend && npm install && cd
 ## Build the frontend
       - name: Build
         run: CI="" cd chore-bucks/frontend && npm run build
