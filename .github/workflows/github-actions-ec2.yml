@@ -24,7 +24,7 @@ jobs:
         run: cd frontend && npm install && cd
 ## Build the frontend
       - name: Build
-        run: cd frontend && npm run build
+        run: CI="" cd frontend && npm run build
 ## Deploy to EC2
       - name: Deploy to Server 1
         uses: easingthemes/ssh-deploy@main
