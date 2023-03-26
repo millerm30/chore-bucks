@@ -19,9 +19,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "16"
-## Install dependencies for frontend
+## Install dependencies for frontend and backend
       - name: Install dependencies
-        run: cd frontend && npm install && cd
+        run: cd frontend && npm install && cd && cd backend && npm install && cd
 ## Build the frontend
       - name: Build
         run: cd frontend && npm run build && sudo rm -rf node_modules && cd
@@ -35,13 +35,3 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.TARGET }}
-## Remote ssh command
-      - name: Execute remove command for backend dependencies
-        uses: appleboy/ssh-action@master
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          script: |
-            cd /home/ubuntu/testing/backend
-            npm install
