@@ -10,11 +10,22 @@ jobs:
   deploy:
     name: Deploy to EC2 on master branch push
     runs-on: ubuntu-latest
-
+## Checkout the files
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
-
+## Install Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+## Install dependencies for frontend
+      - name: Install dependencies
+        run: npm install
+## Build the frontend
+      - name: Build
+        run: CI="" npm run build
+## Deploy to EC2
       - name: Deploy to Server 1
         uses: easingthemes/ssh-deploy@main
         env:
