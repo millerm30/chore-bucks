@@ -21,10 +21,10 @@ jobs:
           node-version: "16"
 ## Install dependencies for frontend and backend
       - name: Install dependencies
-        run: cd frontend && npm install && cd.. && cd backend && npm install && cd..
+        run: cd frontend && npm install && cd.. && cd backend && npm install
 ## Build the frontend
       - name: Build
-        run: cd frontend && npm run build && sudo rm -rf node_modules && cd..
+        run: cd frontend && npm run build && sudo rm -rf node_modules
         env:
           CI: false
 ## Deploy to EC2
