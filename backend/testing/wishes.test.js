@@ -8,6 +8,7 @@ const baseURL = "http://localhost:3010";
 describe("Wishes Routes Test Suite", () => {
   // TODO: Arrange
   let token;
+  let createWishId;
 
   beforeAll(async () => {
     await checkAndConnectDB();
@@ -28,6 +29,7 @@ describe("Wishes Routes Test Suite", () => {
     expect(response.statusCode).toBe(200);
     expect(response.body.wish_name).toBe("Test Wish");
     expect(response.body.wish_value).toBe(10);
+    createWishId = response.body.wish_id;
   });
 
   test("GET /api/wishes/getwishes should return all wishes for the logged in user", async () => {
@@ -38,6 +40,14 @@ describe("Wishes Routes Test Suite", () => {
     expect(response.body.length).toBe(1);
     expect(response.body[0].wish_name).toBe("Test Wish");
     expect(response.body[0].wish_value).toBe(10);
+  });
+
+  test("DELETE /api/wishes/deletewish/:id should delete a wish", async () => {
+    const response = await request(baseURL)
+      .delete(`/api/wishes/deletewish/${createWishId}`)
+      .set("token", token);
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toBe("Wish was deleted!");
   });
 
   afterAll(async () => {
