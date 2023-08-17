@@ -5,16 +5,16 @@
   "dependencies": {
     "-": "^0.0.1",
     "@headlessui/react": "^1.6.5",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.5.3",
     "@types/node": "^20.5.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "dotenv": "^16.0.3",
-    "framer-motion": "^6.5.1",
-    "gh-pages": "^3.2.3",
+    "framer-motion": "^10.16.0",
+    "gh-pages": "^6.0.0",
     "hamburger-react": "^2.5.0",
     "react": "^18.1.0",
     "react-canvas-confetti": "^1.3.0",
@@ -32,7 +32,7 @@
     "toastr": "^2.1.4",
     "tw-elements": "^1.0.0-alpha12",
     "uuidv4": "^6.2.13",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
