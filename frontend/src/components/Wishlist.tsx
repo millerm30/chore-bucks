@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Wishadd from "./Wishadd";
-import { GoTrashcan, GoCheck } from "react-icons/go";
+import { GoTrash, GoCheck } from "react-icons/go";
 import { useWishes } from "../contexts/Wishes";
 import Card from "./Card";
 import { motion } from "framer-motion";
@@ -27,7 +27,7 @@ const WishList = () => {
               points={wish.wish_value}
               remove={
                 !wish.completed ? (
-                  <GoTrashcan onClick={() => removeWish(wish.wish_id)} />
+                  <GoTrash onClick={() => removeWish(wish.wish_id)} />
                 ) : (
                   <GoCheck 
                     className="text-green-700"

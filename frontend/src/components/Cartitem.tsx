@@ -1,5 +1,5 @@
 import React from "react";
-import { GoTrashcan } from "react-icons/go";
+import { GoTrash } from "react-icons/go";
 
 export const CartItem = ({ wish, removeFromCartHandler }) => {
 
@@ -14,7 +14,7 @@ export const CartItem = ({ wish, removeFromCartHandler }) => {
           onClick={() => removeFromCartHandler(wish.wish_id)}
           className="text-2xl text-red-600"
         >
-          <GoTrashcan />
+          <GoTrash />
         </button>
       </span>
       <span className="container flex justify-end my-auto px-2">

@@ -56,7 +56,7 @@ const WishAdd = ({ addWish }) => {
             name="wish_name"
             value={title}
             type="text"
-            maxLength="100"
+            maxLength={100}
             required
             placeholder="Enter your wish item..."
             className="w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none rounded"

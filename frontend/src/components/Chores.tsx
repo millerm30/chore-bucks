@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useChores } from "../contexts/Chores";
-import { GoTrashcan } from "react-icons/go";
+import { GoTrash } from "react-icons/go";
 import Card from "./Card";
 import { Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -70,11 +70,11 @@ const Chores = () => {
               .map((chore) => (
                 <Card
                   key={chore.selected_id}
-                  style={chore.style}
+                  //style={chore.style}
                   title={chore.chore_name}
                   points={chore.chore_value}
                   remove={
-                    <GoTrashcan
+                    <GoTrash
                       onClick={() => removeChore(chore.selected_id)}
                     />
                   }

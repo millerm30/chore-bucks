@@ -13,7 +13,7 @@ const ContactForm = () => {
     message: ''
   });
   const [ status, setStatus ] = useState('Submit');
-  const [ errors, setErrors ] = useState({});
+  const [ errors, setErrors ] = useState<{ name?: string, email?: string, message?: string }>({});
 
   const { name, email, message } = inputs;
 
@@ -22,7 +22,7 @@ const ContactForm = () => {
   };
 
   const validate = () => {
-    const newErrors = {};
+    const newErrors: { name?: string, email?: string, message?: string } = {};
 
     if (!name) {
       newErrors.name = toast.error(errors.name = "Name is required");
@@ -129,7 +129,7 @@ const ContactForm = () => {
                 name="message"
                 value={message}
                 onChange={(e) => onChange(e)}
-                rows="5"
+                rows={5}
                 placeholder="Enter your message..."
               />
             </div>

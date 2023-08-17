@@ -208,7 +208,7 @@ export default function MyModal() {
                                 </div>
                                 <input
                                   value={choreName}
-                                  maxLength="100"
+                                  maxLength={100}
                                   placeholder="Enter new chore..."
                                   name="choresNew"
                                   onChange={(e) => setChoreName(e.target.value)}

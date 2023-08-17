@@ -8,7 +8,6 @@ import { AiOutlineMail } from "react-icons/ai";
 import { MdVpnKey } from "react-icons/md";
 import { HiUserCircle } from "react-icons/hi";
 
-
 const Newuser = () => {
     const { register, registerStatus } = useUser();
     const [ name, setName ] = useState("");

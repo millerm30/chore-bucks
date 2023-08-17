@@ -1,9 +1,13 @@
 {
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "App.tsx"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx","./src/**/*.jsx", "App.tsx"],
   "exclude": ["node_modules", "build", "dist"],
   "compilerOptions": {
+    "outDir": "./build",
     "jsx": "react",
-    "strictNullChecks": true,
     "esModuleInterop": true,
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["*", "src/*"],
+    }
   }
 }
