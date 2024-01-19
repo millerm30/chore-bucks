@@ -42,10 +42,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Site
-
-- (https://www.chore-bucks.com)
-
 ## Authors
 
 - [@millerm30](https://www.github.com/millerm30)
