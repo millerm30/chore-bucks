@@ -1,16 +1,18 @@
-const Pool = require("pg").Pool;
-const dotenv = require("dotenv");
+import pkg from 'pg';
+import dotenv from 'dotenv';
+const { Pool } = pkg;
+
 dotenv.config();
 
-const pool = new Pool({
+export const pool = new Pool({
   host: process.env.HOST,
   database: process.env.DATABASE,
   user: process.env.USER,
   password: process.env.PASSWORD,
-  port: process.env.PORT,
+  port: process.env.DB_PORT,
 });
 
-const checkAndConnectDB = async () => {
+export const checkAndConnectDB = async () => {
   try {
     await pool.query("SELECT NOW()", (err, res) => {
       if (err) throw err;
@@ -233,5 +235,3 @@ const createTriggers = async () => {
     console.log(err);
   }
 };
-
-module.exports = { pool, checkAndConnectDB };

@@ -1,4 +1,4 @@
-const emailTemplate = (getCartResult, total, userName, newBalance) => {
+export const emailTemplate = (getCartResult, total, userName, newBalance) => {
   const html =
   `
     <style>
@@ -39,5 +39,3 @@ const emailTemplate = (getCartResult, total, userName, newBalance) => {
   `;
   return html;
 };
-
-module.exports = emailTemplate;

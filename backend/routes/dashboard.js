@@ -1,6 +1,8 @@
-const router = require("express").Router();
-const { pool } = require("../database/db");
-const authorization = require("../middleware/authorization");
+import express from 'express';
+import { default as authorization } from "../middleware/authorization.js";
+import { pool } from '../database/db.js';
+
+const router = express.Router();
 
 router.get("/", authorization, async (req, res) => {
   try {
@@ -15,4 +17,4 @@ router.get("/", authorization, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

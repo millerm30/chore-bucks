@@ -1,11 +1,16 @@
-const router = require('express').Router();
-const authorization = require('../middleware/authorization');
-const { pool } = require('../database/db');
-const nodemailer = require("nodemailer");
-const path = require("path");
-const emailTemplate = require("../mail/emailTemplate");
+import express from 'express';
+import { default as authorization } from "../middleware/authorization.js";
+import { pool } from '../database/db.js';
+import { createTransport } from 'nodemailer';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
+import { emailTemplate } from "../mail/emailTemplate.js";
 
-const contactEmail = nodemailer.createTransport({
+const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const contactEmail = createTransport({
   service: "gmail",
   auth: {
     user: process.env.CONTACT_EMAIL,
@@ -162,5 +167,5 @@ router.post('/checkout', authorization, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
 

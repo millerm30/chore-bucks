@@ -1,10 +1,15 @@
-const router = require('express').Router();
-const authorization = require('../middleware/authorization');
-const nodemailer = require('nodemailer');
-const contactUs = require('../mail/contactUsTemplate');
-const path = require('path');
+import express from 'express';
+import { default as authorization } from "../middleware/authorization.js";
+import { createTransport } from 'nodemailer';
+import { contactTemplate } from '../mail/contactUsTemplate.js';
+import { fileURLToPath } from 'url';
+import path,  { dirname } from 'path';
 
-const contactEmail = nodemailer.createTransport({
+const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const contactEmail = createTransport({
     service: 'gmail',
     auth: {
         user: process.env.CONTACT_EMAIL,
@@ -26,7 +31,7 @@ router.post('/email', authorization, async (req, res) => {
     from: name,
     to: process.env.CONTACT_EMAIL,
     subject: "Chore Bucks Contact Form Message!",
-    html: contactUs(name, email, message),
+    html: contactTemplate(name, email, message),
     attachments: [
       {
         filename: "chorebucks.png",
@@ -45,4 +50,4 @@ router.post('/email', authorization, async (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;

@@ -1,4 +1,4 @@
-const contactTemplate = (name, email, message) => {
+export const contactTemplate = (name, email, message) => {
   const html = `
   <style>
       body {
@@ -23,5 +23,3 @@ const contactTemplate = (name, email, message) => {
   `;
   return html;
 };
-
-module.exports = contactTemplate;

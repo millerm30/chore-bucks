@@ -1,6 +1,8 @@
-const router = require("express").Router();
-const authorization = require("../middleware/authorization");
-const { pool } = require("../database/db");
+import express from 'express';
+import { default as authorization } from "../middleware/authorization.js";
+import { pool } from '../database/db.js';
+
+const router = express.Router();
 
 router.get("/predefinedchores", authorization, async (req, res) => {
   const userId = req.user.id;
@@ -134,4 +136,4 @@ router.get('/choreviews', authorization, async (req, res) => {
   }
 })
 
-module.exports = router;
+export default router;
