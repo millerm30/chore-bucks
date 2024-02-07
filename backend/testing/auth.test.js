@@ -1,15 +1,16 @@
-const dotenv = require("dotenv");
-dotenv.config();
-const { checkAndConnectDB } = require("../database/db");
-const { pool } = require("../database/db");
-const request = require("supertest");
+import dotenv from 'dotenv';
+import { pool, checkAndConnectDB } from '../database/db.js';
+import request from "supertest";
+import express from 'express';
+import jwtAuth from '../routes/jwtAuth';
 const baseURL = "http://localhost:3010";
+dotenv.config();
+
 
 describe("Authorization Routes Test Suite", () => {
   // TODO: Arrange
-  const express = require("express");
   const app = express();
-  app.use("/api/auth", require("../routes/jwtAuth"));
+  app.use("/api/auth", jwtAuth);
   let token;
 
   beforeAll(async () => {

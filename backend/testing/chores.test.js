@@ -1,8 +1,7 @@
-const dotenv = require("dotenv");
+import dotenv from 'dotenv';
 dotenv.config();
-const { checkAndConnectDB } = require("../database/db");
-const { pool } = require("../database/db");
-const request = require("supertest");
+import { pool, checkAndConnectDB } from '../database/db.js';
+import request from "supertest";
 const baseURL = "http://localhost:3010";
 
 describe("Choures Routes Test Suite", () => {
