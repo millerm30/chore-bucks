@@ -5,11 +5,13 @@ const { Pool } = pkg;
 dotenv.config();
 
 export const pool = new Pool({
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  port: process.env.DB_PORT,
+  host: process.env.DATABASE_HOST,
+  database: process.env.DATABASE_NAME,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 export const checkAndConnectDB = async () => {
